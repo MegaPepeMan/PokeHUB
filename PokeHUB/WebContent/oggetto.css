@@ -10,6 +10,10 @@ img.riduci{
 h3{
 	text-align:center;
 }
+form input[type=number]
+{
+	color:black;
+}
 ul.testi {
   list-style-type: none;
   margin-left: 23%;
