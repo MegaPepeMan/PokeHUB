@@ -1,35 +1,47 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  
-  
-  <style>
-    table,  td {
-  border:2px solid black;
-  background-image: url(https://cdn.bestmovie.it/wp-content/uploads/2021/07/pokemon-serie-tv.jpg);
-}
-  </style>
-  
-  
-<meta charset="utf-8">
+<style>
+@import url('http://fonts.cdnfonts.com/css/berlin-sans-fb-demi');
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="CSS/Login.css" rel="stylesheet" type="text/css">
 <title>Pagina di login</title>
 </head>
-
-
+<body>
+<div class="sinistra">
+<img class="secondimg" src="Image/sotto.png">
+</div>
+<div class="destra2">
+<img class="firstimg" src="Image/logo.png">
+</div>
 <form action="Login" method="post" >
+<div class="destra">
 
-<fieldset>
-     <legend>Login Custom</legend>
-     <label for="username">Login</label>
-     <input id="username" type="text" name="username" placeholder="enter login"> 
-     <br>   
-     <label for="password">Password</label>
-     <input id="password" type="password" name="password" placeholder="enter password"> 
+<ul class="testi">
+    <li> <label for="username">Login</label>
+     &nbsp;
+      &nbsp;
+       &nbsp;
+        &nbsp;
+       &nbsp;
+          &nbsp;
+             &nbsp;
+     
+     <input id="username" type="text" name="username" placeholder="enter login"> </li>
+   <li>  <br>   
      <br>
-     <input type="submit" value="Login"/>
-     <input type="reset" value="Reset"/>
-</fieldset>
+     <br>
+     <label for="password">Password</label>
+     <input id="password" type="password" name="password" placeholder="enter password"> </li></ul>
+    
+     <ul class="bottoni">
+     <li class="left"> <button type="submit" value="Login">Login</button></li>
+     <li class="right"><button type="Reset" value="Reset">Reset</button></li>
+     </ul>
 
+
+</div>
 
 </form>
 

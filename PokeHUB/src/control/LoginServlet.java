@@ -18,22 +18,30 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			String redirectedPage;
-			try {
-				UserBean persona = checkLogin(mail, password);
-				if (persona.getCategoriaUtente().equalsIgnoreCase("amministratore")) {
-					request.getSession().setAttribute("adminRoles", true);
-				}
-				else {
-					request.getSession().setAttribute("adminRoles", false);
-				}
-				request.getSession().setAttribute("userID", persona);
-				redirectedPage = "/userLogged.jsp";
-				
-			} catch (Exception e) {
-				request.getSession().setAttribute("adminRoles", false);
-				request.getSession().setAttribute("userID", false);
+			
+			if(mail.equalsIgnoreCase("") || mail==null) {
 				redirectedPage = "/LoginPage.jsp";
+			} else {
+				try {
+					UserBean persona = checkLogin(mail, password);
+					if (persona.getCategoriaUtente().equalsIgnoreCase("amministratore")) {
+						request.getSession().setAttribute("adminRoles", true);
+					}
+					else {
+						request.getSession().setAttribute("adminRoles", false);
+					}
+					request.getSession().setAttribute("userID", persona);
+					redirectedPage = "/userLogged.jsp";
+					
+				} catch (Exception e) {
+					request.getSession().setAttribute("adminRoles", false);
+					request.getSession().setAttribute("userID", false);
+					redirectedPage = "/LoginPage.jsp";
+				}
 			}
+			
+			
+			
 			response.sendRedirect(request.getContextPath() + redirectedPage);
 		}
 	}

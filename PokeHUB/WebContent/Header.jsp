@@ -1,26 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,model.*,control.*,java.text.DecimalFormat"%>
-<div align="right">
-<h2><a href="PaginaCatalogo.jsp">Catalogo</a></h2>
-<%
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="CSS/Header.css" rel="stylesheet" type="text/css">
+	</head>
+
+<ul>
+<li class="sinistra"><form action="search" method="get">
+<label for="search" class="structural">PokeHub</label>
+<input type="search" id="search" name="search"  placeholder="cerca"size="20"></form></li>
+  <li> <form action="PaginaCatalogo.jsp"  method="post">
+  <button class="header" type="submit">Catalogo</button>
+    </form></li>
+  <%
 UserBean utenteHeader = (UserBean) session.getAttribute("userID");
 if ( (utenteHeader != null) ) {
-%>
-    <h2><a href="userLogged.jsp"><%=utenteHeader.getNome() + " " + utenteHeader.getCognome()%></a></h2>
-    <%
+
+
+
     if( utenteHeader.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
     	%>
-    	<h2><a href="admin">Pagina Admin</a></h2>
+    	<li><form action="admin"  method="post"><button class="header" type="submit">Pagina Admin</button></form></li>
     	<%
     }
     %>
-   		<h2><a href="cart">Carrello</a></h2>
+   		<li><form action="cart"  method="post"><button class="header" type="submit">Carrello</button></form></li>
+   		  <li class="right"><form action="userLogged.jsp" method="post"><button class="header"  type="submit"><img  class ="fufu" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png"> </button></form></li>
 <%    
 } else {
 %>
-	<h2><a href="LoginPage.jsp">Login</a></h2>
+	<li><form action="LoginPage.jsp" method="post"><button class="header" type="submit">Login</button></form></li>
 <%
 }
 %>
-<hr size="3" noshade color="black" width="100%">
-</div>
+</ul>
