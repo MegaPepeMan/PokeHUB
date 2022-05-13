@@ -38,6 +38,13 @@ if (persona == null)
 				<%
 			
 				}
+				if(!cart.isEmpty()){
+					%>
+					<h2><a href="PreCheckuot">Acquista</a></h2>
+					<%
+				}
+				
+				
 			} catch(Exception e) {
 				%>
 					<h2>Nessun prodotto disponibile</h2>

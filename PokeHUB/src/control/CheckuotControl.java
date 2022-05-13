@@ -35,13 +35,15 @@ public class CheckuotControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Cart carrello = (Cart) request.getSession().getAttribute("cart");
-		AddressBean indirizzo = (AddressBean) request.getSession().getAttribute("indirizzoSpedizione");
-		UserBean utente = (UserBean) request.getSession().getAttribute("userID"); //Controllare questo attributo
-		
 		if(carrello == null) {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/cart");
 			dispatcher.forward(request, response);
 		}
+		
+		AddressBean indirizzo = (AddressBean) request.getSession().getAttribute("indirizzoSpedizione");
+		UserBean utente = (UserBean) request.getSession().getAttribute("userID"); //Controllare questo attributo
+		
+		
 		
 		ProductDAO prodotti = new ProductDAO();
 		CompositionDAO composizioni = new CompositionDAO();
