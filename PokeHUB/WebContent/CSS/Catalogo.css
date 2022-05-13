@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+
+
+table,tr{
+	width:100%;
+	border:0px solid black;
+	/*border-radius: 10px 10px 10px 10px;*/
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+}
+
+td.alta{
+	border-radius: 10px 10px 10px 10px;
+	border:3px solid black;
+	height:260px;
+	width:260px;
+}
+
+img{
+	width:30%;
+	display: block;
+	margin:0 auto;
+}

@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+label{
+	font-size:large;
+}
+
+button.header
+{
+	background-color:#ededed;
+	border:0px;
+	cursor:url("poke.png"),auto;	
+	font-size:large;
+	
+}
+img.fufu{
+	width:10%;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+form{
+	display: block;
+  	color: white;
+ 	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ededed;
+}
+
+li.destra {
+  right: 0;
+}
+
+li.sinistra{
+	left:0;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #160d0d;
+}
+
+button[type=submit],input[type=submit]{
+	font-size: 180%;
+	background-color: #fff59d;
+	border-radius:6px;
+	font-family:Georgia;
+	font-size:18px;
+	padding:8px;
+	font-weight:bold;
+	cursor:pointer;
+}

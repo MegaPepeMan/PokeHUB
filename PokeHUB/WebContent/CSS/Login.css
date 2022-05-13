@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+
+
+.firstimg{
+	width:55%;
+}
+.secondimg{
+	width:70%;
+}
+body{
+	background-color:#eff0f3;
+}
+ul.testi {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FBC70A;
+  border-radius: 10px 10px 0px 0px;
+}
+ul.bottoni{
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FA99BB;
+  border-radius: 0px 0px 10px 10px;
+}
+li.left{
+	float:left;
+}
+li.right{
+	float:right;
+}
+form input[type=text], form input[type=number], form input[type=password],
+	form input[type=date], form input[type=range], form input[type=email],
+	form input[type=url], form input[type=time], form input[list] {
+	font-size: 1em;
+	
+}
+label{
+	font-size: 200%;
+	font-family: 'Berlin Sans FB Demi', sans-serif;
+}
+button[type=submit],button[type=reset]{
+	background-color: #FA99BB;
+	border-width:0px;
+	font-family:Georgia;
+	 font-size:190%; 
+	 padding:8px; 
+	 font-weight:bold;
+	 cursor:pointer;	 
+}
+fieldset{
+	border-radius: 10px 10px 10px 10px;
+background: #ffd600;
+} 
+.destra2 {
+	position: absolute;
+	top: 20%;
+	left: 73%;
+	margin-top: -100px;
+	margin-left: -100px;
+	
+	}
+.destra {
+	position: absolute;
+	top: 52%;
+	left: 70%;
+	margin-top: -100px;
+	margin-left: -100px;
+	border-radius: 10px 10px 10px 10px;
+	}
+	.sinistra{
+	position: absolute;
+	top: 47%;
+	left: 10%;
+	margin-top: -100px;
+	margin-left: -100px;
+	
+	}
