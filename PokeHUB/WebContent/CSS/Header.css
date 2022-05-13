@@ -58,6 +58,7 @@ li a:hover {
 
 button[type=submit],input[type=submit]{
 	font-size: 180%;
+	color:black;
 	background-color: #fff59d;
 	border-radius:6px;
 	font-family:Georgia;
