@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+
+img.riduci{
+	width:200px;
+	display:block;
+      margin:0px auto;
+      text-align:center;
+}
+h3{
+	text-align:center;
+}
+ul.testi {
+  list-style-type: none;
+  margin-left: 23%;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px 10px 0px 0px;
+}
+ul.bottoni{
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FA99BB;
+  border-radius: 0px 0px 10px 10px;
+}
+li.left{
+	float:left;
+}
+li.right{
+	float:right;
+}
