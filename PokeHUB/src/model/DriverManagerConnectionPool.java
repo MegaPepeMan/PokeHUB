@@ -33,7 +33,7 @@ public class DriverManagerConnectionPool {
 			String port = "3306";
 			String db = "db_pokehub";
 			String username = "root";
-			String password = "bastardicacca";
+			String password = "Castelcivita23";
 
 			newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
 			
