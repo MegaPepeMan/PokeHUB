@@ -54,6 +54,44 @@ if (prodotto == null)
 		<input name="quantity" type="number" min="1" value="1" required><br>
 		<input type="submit" value="Aggiungi">
 	</form>	
+
+		<footer>
+		
+		<div class="footer">
+  		<div class="contain">
+  			
+  			
+  		<div class="col">
+    		<h1>Company</h1>
+    			<ul>
+      				<li>Cazzo</li>
+      			</ul>
+ 		</div>
+  		
+  		<div class="col">
+    		<h1>Products</h1>
+    			<ul>
+    					
+    			</ul>
+  		</div>
+  		
+  		
+ 		<div class="col social">
+    		<h1>Social</h1>
+   		 		<ul>
+      				<li><img src="https://svgshare.com/i/5fq.svg" width="32" style="width: 32px;"></li>
+      				<li><img src="https://svgshare.com/i/5eA.svg" width="32" style="width: 32px;"></li>
+     				<li><img src="https://svgshare.com/i/5f_.svg" width="32" style="width: 32px;"></li>
+    			</ul>
+  		</div>
+		
+		
+		<div class="clearfix">
+		</div>
+		</div>
+		</div>
+		
+	</footer>	
 	
 </body>
 </html>
