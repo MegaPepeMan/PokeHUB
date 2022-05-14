@@ -19,7 +19,13 @@ img.fufu{
 li:last-child {
   border-right: none;
 }
-
+label{
+	  font-family: arial, verdana, tahona, sans-serif;
+  font-size: 22px;
+  line-height: 150%;
+  color: #000;
+  text-shadow: -1px 0 #FF0000, 0 1px #FF0000, 1px 0 #FF0000, 0 -1px #FF0000;
+}
 form{
 	display: block;
   	color: white;
@@ -63,5 +69,5 @@ button[type=submit],input[type=submit]{
 	font-size:18px;
 	padding:8px;
 	font-weight:bold;
-	cursor:url("poke.png");
+	cursor:url("poke.png"),auto;
 }
