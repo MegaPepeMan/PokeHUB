@@ -72,7 +72,7 @@
 		%>
 	</table>
 	
-	<%@ include file="footer.html" %>
+
 	
 
 	

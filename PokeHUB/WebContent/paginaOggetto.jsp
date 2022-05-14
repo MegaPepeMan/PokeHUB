@@ -14,7 +14,7 @@ if (prodotto == null)
 <%@ include file="Header.jsp" %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="oggetto.css" rel="stylesheet" type="text/css">
+	<link href="CSS/oggetto.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -55,7 +55,7 @@ if (prodotto == null)
 		<input type="submit" value="Aggiungi">
 	</form>	
 
-<%@ include file="footer.html" %>
+
 	
 </body>
 </html>
