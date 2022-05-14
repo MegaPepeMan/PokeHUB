@@ -9,7 +9,7 @@
 <li class="sinistra"><form action="search" method="get">
 <label for="search" class="structural">PokeHub</label>
 <input type="search" id="search" name="search"  placeholder="cerca"size="20"></form></li>
-  <li> <form action="PaginaCatalogo.jsp"  method="post">
+  <li class="sinistra"> <form action="PaginaCatalogo.jsp"  method="post">
   <button class="header" type="submit">Catalogo</button>
     </form></li>
   <%
@@ -20,16 +20,16 @@ if ( (utenteHeader != null) ) {
 
     if( utenteHeader.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
     	%>
-    	<li><form action="admin"  method="post"><button class="header" type="submit">Pagina Admin</button></form></li>
+    	<li class="sinistra"><form action="admin"  method="post"><button class="header" type="submit">Pagina Admin</button></form></li>
     	<%
     }
     %>
-   		<li><form action="cart"  method="post"><button class="header" type="submit">Carrello</button></form></li>
+   		<li class="sinistra"><form action="cart"  method="post"><button class="header" type="submit">Carrello</button></form></li>
    		  <li class="right"><form action="userLogged.jsp" method="post"><button class="header"  type="submit"><img  class ="fufu" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png"> </button></form></li>
 <%    
 } else {
 %>
-	<li><form action="LoginPage.jsp" method="post"><button class="header" type="submit">Login</button></form></li>
+	<li class="sinistra"><form action="LoginPage.jsp" method="post"><button class="header" type="submit">Login</button></form></li>
 <%
 }
 %>

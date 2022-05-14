@@ -41,7 +41,7 @@ li.destra {
 }
 
 li.sinistra{
-	left:0;
+	float:left;
 }
 
 li a {
@@ -51,11 +51,9 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover {
   background-color: #160d0d;
 }
-
 button[type=submit],input[type=submit]{
 	font-size: 180%;
 	color:black;
@@ -65,5 +63,5 @@ button[type=submit],input[type=submit]{
 	font-size:18px;
 	padding:8px;
 	font-weight:bold;
-	cursor:pointer;
+	cursor:url("poke.png");
 }
