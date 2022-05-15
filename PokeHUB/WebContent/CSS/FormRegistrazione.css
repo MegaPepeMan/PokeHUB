@@ -1,0 +1,62 @@
+label{
+font-family: arial, verdana, tahona, sans-serif;
+  font-size: 30px;
+  line-height: 150%;
+  color: #000;
+  text-shadow: -1px 0 #ffff00, 0 1px #ffff00, 1px 0 #ffff00, 0 -1px #ffff00;
+}
+input {
+  font: 16px/26px "Raleway", sans-serif; }
+
+body {
+  color: #666;
+  background-color: #f1f2f2;
+  font: 16px/26px "Raleway", sans-serif; }
+
+a {
+  color: #666;
+  text-decoration: none; }
+  a:hover {
+    color: #4FDA8C; }
+form{
+  margin: 200px 800px;
+}
+
+form li {
+list-style: none;
+margin-bottom: 5px;
+}
+
+
+form ul li input {
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    padding: .8em 0 10px .8em;
+    border: 1px solid #CFCFCF;
+    outline: 0;
+    display: inline-block;
+    margin: 0 0 .8em 0;
+    padding-right: 2em;
+    width: 100%; }
+
+
+
+[type="submit"] {
+
+    width: 100%;
+    padding: .8em 0 10px .8em;
+    background-color: #ffff6a;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    text-transform: uppercase; }
+   
+    
+
+p {
+margin-left: 70px;
+font-weight: bold;
+}
