@@ -51,7 +51,7 @@
 									
 		%>
 		</tr>
-		<tr><td class="alta"><button><a href="object?id=<%=bean.getIdProdotto()%>"><%=bean.getNomeProdotto()%></a></button>
+		<tr><td class="alta"><button ><a href="object?id=<%=bean.getIdProdotto()%>"><%=bean.getNomeProdotto()%></a></button>
 			<img src="data:image/png;base64,<%=bean.getImmagineProdotto()%>" alt="immagine non presente"/>
 			<b>€<%=formatoPrezzo.format((bean.getPrezzoVetrina()/100)*bean.getIva() + bean.getPrezzoVetrina())%></b></td>
 		<%} else{ %>

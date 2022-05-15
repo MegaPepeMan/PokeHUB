@@ -21,30 +21,30 @@ li:last-child {
   border-right: none;
 }
 label{
-	  font-family: arial, verdana, tahona, sans-serif;
-  font-size: 22px;
-  line-height: 150%;
-  color: #000;
-  text-shadow: -1px 0 #FF0000, 0 1px #FF0000, 1px 0 #FF0000, 0 -1px #FF0000;
+	font-family: arial, verdana, tahona, sans-serif;
+  	font-size: 27px;
+  	line-height: 200s%;
+  	color: #000;
+  	text-shadow: -1px 0 #ff6ab5, 0 1px #ff6fb7, 1px 0 #ff28ff, 0 -1px #ff28ff;
 }
 form{
 	display: block;
   	color: white;
  	text-align: center;
-  	padding: 14px 16px;
+  	padding: 18px 20px;
   	text-decoration: none;
 }
 
 ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
   overflow: hidden;
   background-color: #ededed;
 }
 
 li.destra {
-  right: 0;
+  right: 10;
 }
 
 li.sinistra{
@@ -55,16 +55,19 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 18px 20px;
   text-decoration: none;
 }
 li a:hover {
-  background-color: #160d0d;
+  	font-family: arial, verdana, tahona, sans-serif;
+  	
+  	color: #000;
+  	text-shadow: -1px 0 #ff6ab5, 0 1px #ff6fb7, 1px 0 #ff28ff, 0 -1px #ff28ff;
 }
 button[type=submit],input[type=submit]{
 	font-size: 180%;
 	color:black;
-	background-color: #fff59d;
+	background-color: #ffb7db;
 	border-radius:6px;
 	font-family:Georgia;
 	font-size:18px;
