@@ -25,7 +25,7 @@ if ( (utenteHeader != null) ) {
     }
     %>
    		<li class="sinistra"><form action="cart"  method="post"><button class="header" type="submit">Carrello</button></form></li>
-   		  <li class="right"><form action="userLogged.jsp" method="post"><button class="header"  type="submit"><img  class ="fufu" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png"> </button></form></li>
+   		  <li class="destra"><form action="userLogged.jsp" method="post"><input type="image" class="riduci" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png" alt="profilo"></form></li>
 <%    
 } else {
 %>

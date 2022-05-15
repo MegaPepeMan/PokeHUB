@@ -44,7 +44,8 @@ ul {
 }
 
 li.destra {
-  right: 0;
+  float:right;
+ 
 }
 
 li.sinistra{
@@ -61,7 +62,7 @@ li a {
 li a:hover {
   background-color: #160d0d;
 }
-button[type=submit],input[type=submit]{
+button[type=submit]{
 	font-size: 180%;
 	color:black;
 	background-color: #fff59d;
@@ -72,6 +73,12 @@ button[type=submit],input[type=submit]{
 	font-weight:bold;
 	cursor:url("poke.png"),auto;
 }
+input[type=submit].riduci,input[type=image].riduci{
+	cursor:url("poke.png"),auto;
+	height:29px; 
+	width:29px;
+}
+
 
 
 
