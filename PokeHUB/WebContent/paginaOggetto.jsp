@@ -55,7 +55,7 @@ if (prodotto == null)
 		<input type="submit" value="Aggiungi">
 	</form>	
 
-
+	<%@include file="Footer.html" %>
 	
 </body>
 </html>
