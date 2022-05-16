@@ -20,14 +20,14 @@ img.fufu{
 li:last-child {
   border-right: none;
 }
-label{
+label.header3{
 	  font-family: arial, verdana, tahona, sans-serif;
   font-size: 22px;
   line-height: 150%;
   color: #000;
   text-shadow: -1px 0 #FF0000, 0 1px #FF0000, 1px 0 #FF0000, 0 -1px #FF0000;
 }
-form{
+form.header2{
 	display: block;
   	color: white;
  	text-align: center;
@@ -35,7 +35,7 @@ form{
   	text-decoration: none;
 }
 
-ul {
+ul.header2 {
   list-style-type: none;
   margin: 0;
   padding: 0;

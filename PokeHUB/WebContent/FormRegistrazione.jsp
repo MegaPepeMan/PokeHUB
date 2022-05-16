@@ -1,15 +1,18 @@
 
 <!DOCTYPE html>
+<%@ include file="Header.jsp" %>
 <head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="CSS/FormRegistrazione.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+
 <label>Sono un nuovo cliente</label>
 
-<form name='registration'>
+<form  class="reg"name='registration'>
 
 <ul>
 <li><label for="userid">UserID:</label></li>
@@ -27,6 +30,7 @@
 <li><input type="submit" name="submit" value="Invia" /></li>
 </ul>
 </form>
+
 
 </body>
 </html>

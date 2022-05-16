@@ -18,9 +18,7 @@ a {
   text-decoration: none; }
   a:hover {
     color: #4FDA8C; }
-form{
-  margin: 200px 800px;
-}
+
 
 form li {
 list-style: none;
@@ -28,7 +26,7 @@ margin-bottom: 5px;
 }
 
 
-form ul li input {
+  form ul li input {
 
     box-sizing: border-box;
     -moz-box-sizing: border-box;

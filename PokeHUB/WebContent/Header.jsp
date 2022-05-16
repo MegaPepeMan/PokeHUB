@@ -5,11 +5,11 @@
 	<link href="CSS/Header.css" rel="stylesheet" type="text/css">
 	</head>
 
-<ul>
-<li class="sinistra"><form action="search" method="get">
-<label for="search" class="structural">PokeHub</label>
+<ul class="header2">
+<li class="sinistra"><form class="header2" action="search" method="get">
+<label for="search" class="header3">PokeHub</label>
 <input type="search" id="search" name="search"  placeholder="cerca"size="20"></form></li>
-  <li class="sinistra"> <form action="PaginaCatalogo.jsp"  method="post">
+  <li class="sinistra"> <form  class="header2"action="PaginaCatalogo.jsp"  method="post">
   <button class="header" type="submit">Catalogo</button>
     </form></li>
   <%
@@ -20,16 +20,16 @@ if ( (utenteHeader != null) ) {
 
     if( utenteHeader.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
     	%>
-    	<li class="sinistra"><form action="admin"  method="post"><button class="header" type="submit">Pagina Admin</button></form></li>
+    	<li class="sinistra"><form action="admin" class="header2" method="post"><button class="header" type="submit">Pagina Admin</button></form></li>
     	<%
     }
     %>
-   		<li class="sinistra"><form action="cart"  method="post"><button class="header" type="submit">Carrello</button></form></li>
-   		  <li class="destra"><form action="userLogged.jsp" method="post"><input type="image" class="riduci" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png" alt="profilo"></form></li>
+   		<li class="sinistra"><form action="cart" class="header2" method="post"><button class="header" type="submit">Carrello</button></form></li>
+   		  <li class="destra"><form action="userLogged.jsp" class="header2" method="post"><input type="image" class="riduci" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png" alt="profilo"></form></li>
 <%    
 } else {
 %>
-	<li class="sinistra"><form action="LoginPage.jsp" method="post"><button class="header" type="submit">Login</button></form></li>
+	<li class="sinistra"><form action="LoginPage.jsp" class="header2" method="post"><button class="header" type="submit">Login</button></form></li>
 <%
 }
 %>
