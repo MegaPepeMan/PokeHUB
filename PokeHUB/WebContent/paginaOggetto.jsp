@@ -51,7 +51,7 @@ if (prodotto == null)
 		<input type="hidden" name="addID" value="<%=prodotto.getIdProdotto()%>">
 		
 		<label for="quantity">Quantità:</label><br> 
-		<input name="quantity" type="number" min="1" value="1" required><br>
+		<input name="quantity" type="number" value="1" min="1"  max="<%=prodotto.getQuantita()%>" required><br>
 		<input type="submit" value="Aggiungi">
 	</form>	
 

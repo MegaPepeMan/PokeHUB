@@ -63,7 +63,7 @@ public class Cart {
 	}
 	
 	public void addProduct(Integer key, Integer quantity) throws SQLException, IOException {
-		System.out.println("L'ID �: "+key+" e la quantit� � "+quantity);
+		System.out.println("L'ID e': "+key+" e la quantita' e' "+quantity);
 		if(isEmpty()) {
 			insert(key, quantity);
 		} else {

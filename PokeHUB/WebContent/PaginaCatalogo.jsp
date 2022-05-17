@@ -45,7 +45,6 @@
 					ProductBean bean = (ProductBean) it.next();
 					if(bean.isProdottoMostrato()){
 						i++;
-						System.out.println(i);
 						if(i%3==0)
 						{
 									

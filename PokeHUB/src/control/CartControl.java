@@ -40,12 +40,12 @@ public class CartControl extends HttpServlet {
 				System.out.println("L'utente "+ utente.getNome() +" "+ utente.getCognome()+" sta accedendo al carrello");
 
 			
-				//Caso in cui l'utente è già loggato
+				//Caso in cui l'utente ï¿½ giï¿½ loggato
 				Cart cart = (Cart) request.getSession().getAttribute("cart"); 		//qui potrebbe generarsi il throw
 				
 				if(cart == null) {
 					cart = new Cart();
-					System.out.println("L'utente è loggato ma non ha un carrello");
+					System.out.println("L'utente ï¿½ loggato ma non ha un carrello");
 					request.getSession().setAttribute("cart", cart );
 				}
 					
@@ -56,7 +56,7 @@ public class CartControl extends HttpServlet {
 						//Caso in cui l'utente sta aggiungendo/rimuovendo prodotti dal carrello
 						id = Integer.parseInt(request.getParameter("addID"));
 						qty = Integer.parseInt(request.getParameter("quantity"));
-						System.out.println("L'ID è: "+id+" , la quantità è: "+qty+" del prodotto da aggiungere");
+						System.out.println("L'ID e': "+id+" , la quantita' e': "+qty+" del prodotto da aggiungere");
 						
 						if(id != null && qty.intValue()>0 ) {
 							try {
@@ -92,7 +92,7 @@ public class CartControl extends HttpServlet {
 					}
 			
 		} catch(Exception e) {
-			System.out.println("L'utente non è loggato");
+			System.out.println("L'utente non e' loggato");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login");
 			dispatcher.forward(request, response);
 		}

@@ -19,6 +19,7 @@ import model.Cart;
 import model.CompositionBean;
 import model.CompositionDAO;
 import model.OrderBean;
+import model.PaymentBean;
 import model.ProductBean;
 import model.ProductDAO;
 import model.UserBean;
@@ -34,15 +35,29 @@ public class CheckuotControl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		UserBean utente = (UserBean)request.getSession().getAttribute("userID");
+		if(utente == null) {
+			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+		}
+		
 		Cart carrello = (Cart) request.getSession().getAttribute("cart");
-		if(carrello == null) {
+		if(carrello.isEmpty()) {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/cart");
 			dispatcher.forward(request, response);
 		}
+
 		
 		AddressBean indirizzo = (AddressBean) request.getSession().getAttribute("indirizzoSpedizione");
-		UserBean utente = (UserBean) request.getSession().getAttribute("userID"); //Controllare questo attributo
+		if(indirizzo == null) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PreCheckuot");
+			dispatcher.forward(request, response);
+		}
 		
+		PaymentBean pagamento = (PaymentBean) request.getSession().getAttribute("sistemaPagamento");
+		if(pagamento == null) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PreCheckuot");
+			dispatcher.forward(request, response);
+		}
 		
 		
 		ProductDAO prodotti = new ProductDAO();
