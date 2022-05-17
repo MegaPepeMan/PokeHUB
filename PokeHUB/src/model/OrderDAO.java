@@ -3,6 +3,7 @@ package model;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,7 +104,7 @@ public class OrderDAO {
 	
 	public synchronized Collection<OrderBean> doRetrieveAll() throws SQLException, IOException {
 		
-		//fare quando dobbiamo cercare oggetti precisi sul db
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -146,5 +147,50 @@ public class OrderDAO {
 		return orders;
 	}
 	
+	public synchronized Collection<OrderBean> doRetrieveByDate(Date dataInizio, Date dataFine) throws SQLException, IOException {
+		
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		OrderBean bean;
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		
+		//SELECT * FROM ordine WHERE data_ordine BETWEEN "2022-10-01" AND "2022-12-31";
+		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN "+dataInizio+" AND "+dataFine;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+	
+			while (rs.next()) {
+				bean = new OrderBean();
+				
+				bean.setIdOrdine(rs.getInt("id_ordine"));
+				bean.setMailCliente(rs.getString("mail_cliente"));
+				bean.setTrakingOrdine(rs.getString("traking_ordine"));
+				bean.setDataOrdine(rs.getDate("data_ordine"));
+				bean.setStato(rs.getString("status_consegna"));
+				bean.setVia(rs.getString("via"));
+				bean.setCivico(rs.getString("civico"));
+				bean.setCap(rs.getString("cap"));
+				bean.setTelefono(rs.getString("telefono"));
+				
+				orders.add(bean);
+			}
+			
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return orders;
+	}
 
 }
