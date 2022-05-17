@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Cart;
+import model.ProductDAO;
 import model.UserBean;
 
 
@@ -30,7 +31,7 @@ public class CartControl extends HttpServlet {
 		
 		Integer id = null;
 		Integer qty = null;
-		
+		ProductDAO prodotto = new ProductDAO();
 		
 		System.out.println("La richiesta per la pagina del carrello e' stata ricevuta");
 		//try n.1
@@ -56,12 +57,25 @@ public class CartControl extends HttpServlet {
 						//Caso in cui l'utente sta aggiungendo/rimuovendo prodotti dal carrello
 						id = Integer.parseInt(request.getParameter("addID"));
 						qty = Integer.parseInt(request.getParameter("quantity"));
+						
 						System.out.println("L'ID e': "+id+" , la quantita' e': "+qty+" del prodotto da aggiungere");
 						
-						if(id != null && qty.intValue()>0 ) {
+						if(id != null && qty.intValue()>0 && prodotto.doRetrieveByKey(id).getQuantita() >= qty.intValue() ) {
 							try {
 								System.out.println("Aggiungo prodotti al carrello");
-								cart.addProduct(id, qty);
+								
+								cart.addProduct(id,qty);
+								/*
+								//FARE STO PUNTO ASSOLUTAMENTE
+								if(prodotto.doRetrieveByKey(id).getQuantita() >= cart.quantityObject(id)) {
+									cart.addProduct(id, prodotto.doRetrieveByKey(id).getQuantita() - qty);	
+								}
+								else {
+									cart.addProduct(id,qty);
+								}
+								
+								//STA PARTE VA FATTA
+								*/
 								System.out.println("Ho aggiunto i prodotti al carrello");
 								cart.toString();
 								request.getSession().removeAttribute("cart");
@@ -75,6 +89,10 @@ public class CartControl extends HttpServlet {
 								e.printStackTrace();
 							}
 						} 
+						else if(prodotto.doRetrieveByKey(id).getQuantita() != qty.intValue() ) {
+							RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaCarrello.jsp");
+							dispatcher.forward(request, response);
+						}
 						
 						else if(id != null && qty.intValue()==0){
 							System.out.println("Rimuovo prodotti dal carrello");
