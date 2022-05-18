@@ -18,27 +18,7 @@
 		
   			
   		
-  			<%
-  			Collection<?> pagamenti = (Collection<?>) request.getSession().getAttribute("pagamentiUtente");
-			if (pagamenti != null && pagamenti.size() != 0) {
-				%>
-				<select name="creditCard" required>
-				<%
-				Iterator<?> it = pagamenti.iterator();
-				
-				while (it.hasNext()) {
-					PaymentBean bean = (PaymentBean) it.next();
-					String carta = "Carta che termina con "+bean.getNumeroCarta().substring( bean.getNumeroCarta().length()-4 , bean.getNumeroCarta().length() );
-					
-		%>
-		<option value="<%=bean.getNumeroCarta()%>"><%=carta%></option>
-		<%
-				}
-				%>
-				</select><br>
-				<%
-			}
-		%>
+  			
 		<h2>Inserisci carta:</h2>
 				
 		
@@ -88,26 +68,7 @@
 		<label for="shipmentAddress">Indirizzo:</label><br>
   			
   		
-  			<%
-  			Collection<?> indirizzi = (Collection<?>) request.getSession().getAttribute("indirizziUtente");
-			if (indirizzi != null && indirizzi.size() != 0) {
-				%>
-				<select name="shipmentAddress" required>
-				<%
-				Iterator<?> it = indirizzi.iterator();
-				
-				while (it.hasNext()) {
-					AddressBean bean = (AddressBean) it.next();
-					
-		%>
-		<option value="<%=bean.getIdIndirizzo()%>"><%=bean.getVia()%> <%=bean.getCivico()%> <%=bean.getCap()%></option>
-		<%
-				}
-				%>
-				</select><br>
-				<%
-			}
-		%>
+  			
 		
 		<h2>Inserisci indirizzo:</h2>
 				
@@ -131,8 +92,53 @@
 				
 		</form>
 		
+		<br><br><br><br>
 	
+		<form action="" method="post">
+		<%
+	  			Collection<?> pagamenti = (Collection<?>) request.getSession().getAttribute("pagamentiUtente");
+				if (pagamenti != null && pagamenti.size() != 0) {
+					%>
+					<select name="creditCard" required>
+					<%
+					Iterator<?> it = pagamenti.iterator();
+					
+					while (it.hasNext()) {
+						PaymentBean bean = (PaymentBean) it.next();
+						String carta = "Carta che termina con "+bean.getNumeroCarta().substring( bean.getNumeroCarta().length()-4 , bean.getNumeroCarta().length() );
+						
+			%>
+			<option value="<%=bean.getNumeroCarta()%>"><%=carta%></option>
+			<%
+					}
+					%>
+					</select><br>
+					<%
+				}
+			%>
 	
-	
+		
+		<%
+  			Collection<?> indirizzi = (Collection<?>) request.getSession().getAttribute("indirizziUtente");
+			if (indirizzi != null && indirizzi.size() != 0) {
+				%>
+				<select name="shipmentAddress" required>
+				<%
+				Iterator<?> it = indirizzi.iterator();
+				
+				while (it.hasNext()) {
+					AddressBean bean = (AddressBean) it.next();
+					
+		%>
+		<option value="<%=bean.getIdIndirizzo()%>"><%=bean.getVia()%> <%=bean.getCivico()%> <%=bean.getCap()%></option>
+		<%
+				}
+				%>
+				</select><br>
+				<%
+			}
+		%>
+		<input type="submit" value="Paga ora">
+		</form>
 </body>
 </html>
