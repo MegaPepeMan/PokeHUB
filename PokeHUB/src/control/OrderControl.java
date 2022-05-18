@@ -31,7 +31,7 @@ public class OrderControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UserBean utente=(UserBean) request.getSession().getAttribute("userID");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		
 		if(utente == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
