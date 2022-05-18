@@ -2,7 +2,7 @@
 UserBean persona = (UserBean) session.getAttribute("userID");
 if (persona == null)
 {	
-    response.sendRedirect("./LoginPage.jsp");
+    response.sendRedirect("/LoginPage.jsp");
     return;
 }
 %>

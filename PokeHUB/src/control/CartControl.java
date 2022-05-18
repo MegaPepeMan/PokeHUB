@@ -38,6 +38,8 @@ public class CartControl extends HttpServlet {
 		try {
 				//Ottengo gli attributi di sessione e inizializzo id e qty
 				UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+
+				
 				System.out.println("L'utente "+ utente.getNome() +" "+ utente.getCognome()+" sta accedendo al carrello");
 
 			
@@ -46,7 +48,7 @@ public class CartControl extends HttpServlet {
 				
 				if(cart == null) {
 					cart = new Cart();
-					System.out.println("L'utente � loggato ma non ha un carrello");
+					System.out.println("L'utente e' loggato ma non ha un carrello");
 					request.getSession().setAttribute("cart", cart );
 				}
 					
@@ -60,24 +62,36 @@ public class CartControl extends HttpServlet {
 						
 						System.out.println("L'ID e': "+id+" , la quantita' e': "+qty+" del prodotto da aggiungere");
 						
-						if(id != null && qty.intValue()>0 && prodotto.doRetrieveByKey(id).getQuantita() >= qty.intValue() ) {
+						if( id != null && qty.intValue()>0 ) {
 							try {
 								System.out.println("Aggiungo prodotti al carrello");
 								
-								cart.addProduct(id,qty);
-								/*
-								//FARE STO PUNTO ASSOLUTAMENTE
-								if(prodotto.doRetrieveByKey(id).getQuantita() >= cart.quantityObject(id)) {
-									cart.addProduct(id, prodotto.doRetrieveByKey(id).getQuantita() - qty);	
-								}
-								else {
+								
+								if(cart.findObject(id) == null) {
+									System.out.println("Non è mai stato aggiunto questo prodotto");
 									cart.addProduct(id,qty);
 								}
+								else if ( cart.quantityObject(id) + qty.intValue() <= prodotto.doRetrieveByKey(id).getQuantita() ) {
+									System.out.println("La quantità massima non è stata raggiunta");
+									cart.addProduct(id,qty);
+								}
+								else if( cart.quantityObject(id) + qty.intValue() > prodotto.doRetrieveByKey(id).getQuantita() ) {
+									System.out.println("La quantità massima è stata raggiunta");
+									System.out.println("Prodotti rimanenti: "+ (prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id)));
+									qty = prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id) - qty.intValue();
+									if (qty.intValue()<0) {
+										qty = 0;
+									}
+									System.out.println("Aggiungo questi prodotti: "+ qty.intValue());
+									cart.addProduct(id, qty);
+								}
 								
-								//STA PARTE VA FATTA
-								*/
+								
+								
 								System.out.println("Ho aggiunto i prodotti al carrello");
+								
 								cart.toString();
+								
 								request.getSession().removeAttribute("cart");
 								request.getSession().setAttribute("cart", cart );
 								
@@ -89,10 +103,6 @@ public class CartControl extends HttpServlet {
 								e.printStackTrace();
 							}
 						} 
-						else if(prodotto.doRetrieveByKey(id).getQuantita() != qty.intValue() ) {
-							RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaCarrello.jsp");
-							dispatcher.forward(request, response);
-						}
 						
 						else if(id != null && qty.intValue()==0){
 							System.out.println("Rimuovo prodotti dal carrello");
@@ -111,7 +121,7 @@ public class CartControl extends HttpServlet {
 			
 		} catch(Exception e) {
 			System.out.println("L'utente non e' loggato");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginPage.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
