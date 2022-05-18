@@ -50,7 +50,7 @@ public class AddressDAO {
 		}
 
 		
-		public synchronized AddressBean doRetrieveByKey(String mail_cliente) throws SQLException {
+		public synchronized AddressBean doRetrieveByKey(String mail_cliente, String id_indirizzo) throws SQLException {
 			
 			
 			Connection connection = null;
@@ -58,14 +58,14 @@ public class AddressDAO {
 
 			AddressBean bean = new AddressBean();
 
-			String selectSQL = "SELECT * FROM " + AddressDAO.TABLE_NAME + " WHERE mail_cliente = ?";
+			String selectSQL = "SELECT * FROM " + AddressDAO.TABLE_NAME + " WHERE mail_cliente = ? AND id_indirizzo = ?";
 
 			try {
 				connection = DriverManagerConnectionPool.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL);
 
 				preparedStatement.setString(1, mail_cliente);
-				
+				preparedStatement.setString(2, id_indirizzo);
 				
 				ResultSet rs = preparedStatement.executeQuery();
 
