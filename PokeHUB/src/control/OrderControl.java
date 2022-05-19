@@ -53,10 +53,10 @@ public class OrderControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 		/*
+
 		try {
-			Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDate(request.getParameter("dataInizio"), request.getParameter("dataFine")) ;
+			Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDate(Date.valueOf("2022-01-01"), Date.valueOf("2022-12-31")) ;
 		} catch (SQLException e) {
 			System.out.println("Errore stringa SQL");
 			e.printStackTrace();
@@ -64,9 +64,9 @@ public class OrderControl extends HttpServlet {
 			System.out.println("Errore di IO");
 			e.printStackTrace();
 		}
+		
+		
 		*/
-		
-		
 	}
 
 
