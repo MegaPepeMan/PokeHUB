@@ -32,7 +32,7 @@ public class CompositionDAO {
 				preparedStatement.setInt(2,composizione.getIdentificativo_ordine());
 				preparedStatement.setInt(3, composizione.getQuantita());
 				preparedStatement.setDouble(4, composizione.getPrezzo_acquisto());
-				preparedStatement.setDouble(5, composizione.getPrezzo_acquisto());
+				preparedStatement.setDouble(5, composizione.getIva_acquisto());
 				preparedStatement.executeUpdate();
 
 				connection.commit();

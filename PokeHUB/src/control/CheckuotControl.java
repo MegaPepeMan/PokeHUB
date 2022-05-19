@@ -37,108 +37,127 @@ public class CheckuotControl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		boolean flag = true;
+		
+		//Richieste attributi sessione / parametri corredati di controlli
 		UserBean utente = (UserBean)request.getSession().getAttribute("userID");
 		if(utente == null) {
+			flag = false;
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
-		}
-		
-		Cart carrello = (Cart) request.getSession().getAttribute("cart");
-		if(carrello.isEmpty()) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/cart");
-			dispatcher.forward(request, response);
-		}
-
-		
-		String indirizzoSpedizione = request.getParameter("shipmentAddress");
-		String cartaPagamento = request.getParameter("creditCard");
-		
-		if(indirizzoSpedizione == null || cartaPagamento == null) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PreCheckuot");
-			dispatcher.forward(request, response);
-		}
-		
-		AddressDAO indirizzi = new AddressDAO();
-		PaymentDAO pagamenti = new PaymentDAO();
-		
-		AddressBean indirizzo = null;
-		PaymentBean pagamento = null;
-		try {
-			indirizzo = indirizzi.doRetrieveByKey(utente.getMail(),indirizzoSpedizione);
-			pagamento = pagamenti.doRetrieveByKey(cartaPagamento);
-		} catch (SQLException e1) {
-			System.out.println("Errore nella ricerca dell'indirizzo/pagamento");
-			e1.printStackTrace();
-		}
-		
-		
-		
-		
-		ProductDAO prodotti = new ProductDAO();
-		CompositionDAO composizioni = new CompositionDAO();
-		OrderDAO ordini = new OrderDAO();
-		OrderBean ordine = new OrderBean();
-		ProductBean prodotto;
-		CompositionBean composizione;
-		
-		if(true) {
-			//L'acquisto ha avuto successo
-			request.getSession().removeAttribute("cart");
-			
-			
-			
-			ordine.setCap(indirizzo.getCap());
-			ordine.setCivico(indirizzo.getCivico());
-			ordine.setDataOrdine(Date.valueOf(LocalDate.now()));
-			ordine.setMailCliente(utente.getMail());
-			ordine.setStato("IN CONSEGNA");
-			ordine.setTelefono(indirizzo.getTelefono());
-			ordine.setTrakingOrdine("XXX-XXX-XXX");
-			ordine.setVia(indirizzo.getVia());
-			
-			try {
-				ordini.doSave(ordine);
-			} catch (SQLException e1) {
-				System.out.println("Errore salvataggio ordine");
-				e1.printStackTrace();
-			}
-			
-			
-			Iterator<Integer> iter = carrello.iterator();
-			
-			while(iter.hasNext()) {
-				int idProdotto = iter.next();
-				composizione = new CompositionBean();
+		} else {
+			Cart carrello = (Cart) request.getSession().getAttribute("cart");
+			if(carrello == null) {
+				flag = false;
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/cart");
+				dispatcher.forward(request, response);
+			} else {
+				String indirizzoSpedizione = request.getParameter("shipmentAddress");
+				String cartaPagamento = request.getParameter("creditCard");
 				
-				try {
-					prodotto = prodotti.doRetrieveByKey(idProdotto);
-					ordine = ordini.doRetrieveLastInsert(utente.getMail());
-					
-					composizione.setIdentificativo_ordine(ordine.getIdOrdine());
-					composizione.setIdentificativo_prodotto(idProdotto);
-					composizione.setIva_acquisto(prodotto.getIva());
-					composizione.setPrezzo_acquisto(prodotto.getPrezzoVetrina());
-					composizione.setQuantita(carrello.quantityObject(idProdotto));
-					composizioni.doSave(composizione);
-					
-					prodotto.setQuantita(prodotto.getQuantita()-carrello.quantityObject(idProdotto));
-					prodotti.doUpdate(prodotto);
-					
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				if(indirizzoSpedizione == null || cartaPagamento == null) {
+					flag = false;
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PreCheckuot");
+					dispatcher.forward(request, response);
+				} else {
 
+					AddressDAO indirizzi = new AddressDAO();
+					PaymentDAO pagamenti = new PaymentDAO();
+					ProductDAO prodotti = new ProductDAO();
+					CompositionDAO composizioni = new CompositionDAO();
+					OrderDAO ordini = new OrderDAO();
+					OrderBean ordine = new OrderBean();
+					ProductBean prodotto;
+					CompositionBean composizione;
+					
+					AddressBean indirizzo = null;
+					PaymentBean pagamento = null;
+					try {
+						indirizzo = indirizzi.doRetrieveByKey(utente.getMail(),indirizzoSpedizione);
+						pagamento = pagamenti.doRetrieveByKey(cartaPagamento);
+					} catch (SQLException e1) {
+						flag = false;
+						System.out.println("Errore nella ricerca dell'indirizzo/pagamento");
+						e1.printStackTrace();
+					}
+					
+					
+					
+					
+					if(flag) {
+						request.getSession().removeAttribute("cart");
+						
+						
+						
+						ordine.setCap(indirizzo.getCap());
+						ordine.setCivico(indirizzo.getCivico());
+						ordine.setDataOrdine(Date.valueOf(LocalDate.now()));
+						ordine.setMailCliente(utente.getMail());
+						ordine.setStato("IN CONSEGNA");
+						ordine.setTelefono(indirizzo.getTelefono());
+						ordine.setTrakingOrdine("XXX-XXX-XXX");
+						ordine.setVia(indirizzo.getVia());
+						
+						try {
+							ordini.doSave(ordine);
+						} catch (SQLException e1) {
+							System.out.println("Errore salvataggio ordine");
+							e1.printStackTrace();
+						}
+						
+						
+						Iterator<Integer> iter = carrello.iterator();
+						
+						while(iter.hasNext()) {
+							int idProdotto = iter.next();
+							composizione = new CompositionBean();
+							
+							try {
+								System.out.println("Questo è il carrello visto dalla servlet CheckoutControl: "+carrello);
+								prodotto = prodotti.doRetrieveByKey(idProdotto);
+								ordine = ordini.doRetrieveLastInsert(utente.getMail());
+								
+								
+								composizione.setIdentificativo_ordine(ordine.getIdOrdine());
+								composizione.setIdentificativo_prodotto(idProdotto);
+								composizione.setIva_acquisto(prodotto.getIva());
+								composizione.setPrezzo_acquisto(prodotto.getPrezzoVetrina());
+								composizione.setQuantita(carrello.quantityObject(idProdotto));
+								
+								composizioni.doSave(composizione);
+								
+								prodotto.setQuantita(prodotto.getQuantita()-carrello.quantityObject(idProdotto));
+								prodotti.doUpdate(prodotto);
+								
+								
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						}
+						
+						
+						carrello = new Cart();
+						response.sendRedirect(request.getContextPath()+"/product");
+					}
+				}
 			}
-			
-			
-			carrello = new Cart();
-			
-			
 		}
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+			
 	}
 
 	

@@ -94,7 +94,7 @@
 		
 		<br><br><br><br>
 	
-		<form action="" method="post">
+		<form action="CheckuotControl" method="post">
 		<%
 	  			Collection<?> pagamenti = (Collection<?>) request.getSession().getAttribute("pagamentiUtente");
 				if (pagamenti != null && pagamenti.size() != 0) {
