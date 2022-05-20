@@ -22,7 +22,7 @@
 <body>
 	<%@ include file="Header.jsp" %>
 	
-	<form action="OrderControl">
+	<form action="OrderControl" method="post">
 	
 	<input type="hidden" name="action" value="data">
 	<h3>Data Inizio</h3>
@@ -75,6 +75,13 @@ cellspacing="0">
 					<% 
 					
 				}
+			}else {
+				%>
+				<tr>
+					<td colspan="6">Nessun ordine disponibile</td>
+				</tr>
+				<% 
+				
 			}
 			%>
 			 
@@ -84,9 +91,7 @@ cellspacing="0">
 		
 		
 		
-		<tr>
-			<td colspan="6">Nessun ordine disponibile</td>
-		</tr>
+		
 		
 	</table>
 	
