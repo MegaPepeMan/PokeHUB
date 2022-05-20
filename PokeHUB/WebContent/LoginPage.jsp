@@ -27,9 +27,8 @@
       &nbsp;
        &nbsp;
         &nbsp;
-       &nbsp;
-          &nbsp;
-             &nbsp;
+      
+          
      
      <input id="username" type="text" name="username" placeholder="enter login" required> </li>
    <li>  <br>   
