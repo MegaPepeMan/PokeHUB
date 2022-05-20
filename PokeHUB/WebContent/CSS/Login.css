@@ -19,12 +19,7 @@ ul.testi {
   background-color: #FBC70A;
   border-radius: 10px 10px 0px 0px;
 }
-.footer {
-	position: absolute;
-	top: 20%;
-	left: 73%;
-	
-}
+
 ul.bottoni{
 	list-style-type: none;
   margin: 0;
