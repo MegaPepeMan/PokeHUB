@@ -102,7 +102,7 @@ public class OrderDAO {
 	}
 	
 	
-	public synchronized Collection<OrderBean> doRetrieveAll() throws SQLException, IOException {
+	public synchronized Collection<OrderBean> doRetrieveAll(String order) throws SQLException, IOException {
 		
 
 		Connection connection = null;
@@ -112,7 +112,12 @@ public class OrderDAO {
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 
 		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME;
-
+			
+			if (order != null && !order.equals(""))
+			{
+				selectSQL += " ORDER BY " + order;
+			}
+			
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
@@ -156,8 +161,9 @@ public class OrderDAO {
 		OrderBean bean;
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 		
-		//SELECT * FROM ordine WHERE data_ordine BETWEEN "2022-10-01" AND "2022-12-31";
-		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN "+dataInizio+" AND "+dataFine;
+		
+		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN '"+ dataInizio +"' AND '"+dataFine+"'";
+		System.out.println(selectSQL);
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();

@@ -35,15 +35,36 @@ public class OrderControl extends HttpServlet {
 		
 		if(utente == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+			return;
 		}
 		else if(!utente.getCategoriaUtente().equalsIgnoreCase("amministratore")) {
 			response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+			return;
 		}
 		
 		OrderDAO ordini = new OrderDAO();
+		if(request.getParameter("action").equalsIgnoreCase("visualizza")) {
+			
 		
+		String ordinamento= null;
+		String sort=request.getParameter("sort");
+		if(sort!=null) {
+		switch (sort){
+		
+		case "id_ordine":
+			ordinamento="id_ordine";
+			break;
+		case "mail_cliente":
+			ordinamento="mail_cliente";
+			break;
+		case "data_ordine":
+			ordinamento="data_ordine";
+			break;
+		
+		}
+		}
 		try {
-			Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll();
+			Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll(ordinamento);
 			request.getSession().setAttribute("totaleOrdini", totaleOrdini);
 		} catch (SQLException e) {
 			System.out.println("Errore stringa SQL");
@@ -52,11 +73,12 @@ public class OrderControl extends HttpServlet {
 			System.out.println("Errore di IO");
 			e.printStackTrace();
 		}
+		}else if(request.getParameter("action").equalsIgnoreCase("data")) {
 		
-		/*
-
 		try {
-			Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDate(Date.valueOf("2022-01-01"), Date.valueOf("2022-12-31")) ;
+			Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDate(Date.valueOf(request.getParameter("datai")), Date.valueOf(request.getParameter("dataf"))) ;
+			request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+			
 		} catch (SQLException e) {
 			System.out.println("Errore stringa SQL");
 			e.printStackTrace();
@@ -65,8 +87,9 @@ public class OrderControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		}
+		response.sendRedirect(request.getContextPath()+"/PaginaOrdiniAdmin.jsp");
 		
-		*/
 	}
 
 

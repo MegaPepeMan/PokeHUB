@@ -21,6 +21,7 @@ if ( (utenteHeader != null) ) {
     if( utenteHeader.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
     	%>
     	<li class="sinistra"><form action="admin" class="header2" method="post"><button class="header" type="submit">PAGINA ADMIN</button></form></li>
+    	
     	<%
     }
     %>

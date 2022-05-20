@@ -25,6 +25,9 @@
 
 <body>
 <%@ include file="Header.jsp" %>
+	<br>
+	<br>
+	<a href="PaginaOrdiniAdmin.jsp"><input type="button" value="Ordini Admin"></a>
 	<h2>Prodotti:</h2>
 	<a href="admin">List</a>
 	<table border="1">
