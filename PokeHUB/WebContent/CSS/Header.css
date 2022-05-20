@@ -1,84 +1,95 @@
 @CHARSET "UTF-8";
 
 
+
+
 label{
-	font-size:large;
+font-size:large;
 }
+
+
 
 button.header
 {
-	background-color:#ededed;
-	border:0px;
-	cursor:url("poke.png"),auto;	
-	font-size:large;
-	
+background-color:#ededed;
+border:0px;
+cursor:url("poke.png"),auto;
+font-size:large;
+
 }
 img.fufu{
-	width:10%;
+width:10%;
 }
+
+
 
 li:last-child {
-  border-right: none;
+border-right: none;
 }
 label.header3{
-	  font-family: arial, verdana, tahona, sans-serif;
-  font-size: 22px;
-  line-height: 150%;
-  color: #000;
-  text-shadow: -1px 0 #FF0000, 0 1px #FF0000, 1px 0 #FF0000, 0 -1px #FF0000;
+font-family: arial, verdana, tahona, sans-serif;
+font-size: 22px;
+line-height: 150%;
+color: #000;
+text-shadow: -1px 0 #FF0000, 0 1px #FF0000, 1px 0 #FF0000, 0 -1px #FF0000;
 }
 form.header2{
-	display: block;
-  	color: white;
- 	text-align: center;
-  	padding: 14px 16px;
-  	text-decoration: none;
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
 }
+
+
 
 ul.header2 {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #ededed;
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #ededed;
 }
+
+
 
 li.destra {
-  float:right;
- 
+float:right;
+
 }
+
+
 
 li.left{
-	float:left;
+float:left;
 }
+
+
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
 }
 li a:hover {
-  background-color: #160d0d;
+background-color: #160d0d;
 }
 button[type=submit]{
-	font-size: 180%;
-	color:black;
-	background-color: #fff59d;
-	border-radius:6px;
-	font-family:Georgia;
-	font-size:18px;
-	padding:8px;
-	font-weight:bold;
-	cursor:url("poke.png"),auto;
+font-size: 180%;
+color:black;
+background-color: #fff59d;
+border-radius:6px;
+font-family:Georgia;
+font-size:18px;
+padding:8px;
+font-weight:bold;
+cursor:url("poke.png"),auto;
 }
 input[type=submit].riduci,input[type=image].riduci{
-	cursor:url("poke.png"),auto;
-	height:29px; 
-	width:29px;
+cursor:url("poke.png"),auto;
+height:29px;
+width:29px;
 }
-
-
-
 
