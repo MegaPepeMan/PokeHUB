@@ -163,7 +163,7 @@ public class OrderDAO {
 		
 		
 		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN '"+ dataInizio +"' AND '"+dataFine+"'";
-		System.out.println(selectSQL);
+		
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
