@@ -31,18 +31,23 @@
 	<h3>Data Fine</h3>
 	<input type="date" name="dataf">
 	<br><br>
-	<center><input type="submit" value="Invia"></center>
+	<input type="submit" value="Invia">
 	</form>
 	
-	<table>
+	<table border="1" cellpadding="10"
+cellspacing="0">
 		<tr>
-			<th><h2><a href="OrderControl?sort=id_ordine&action=visualizza">ID ordine</a></h2></th>
+			<td><b><a href="OrderControl?sort=id_ordine&action=visualizza">ID ordine</a></b></td>
 			
-			<th><h2><a href="OrderControl?sort=mail_cliente&action=visualizza">Cliente</a></h2></th>
-			<th><h2>Codice di tracking</h2></th>
-			<th><h2><a href="OrderControl?sort=data_ordine&action=visualizza">Data ordine</a></h2></th>
-			<th><h2>Status consegna</h2></th>
-			<th><h2>Indirizzo di spedizione</h2></th>
+			<td><b><a href="OrderControl?sort=mail_cliente&action=visualizza">Cliente</a></b></td>
+			<td><b>Codice di tracking</b></td>
+			<td><b><a href="OrderControl?sort=data_ordine&action=visualizza">Data ordine</a></b></td>
+			<td><b>Status consegna</b></td>
+			<td><b>Indirizzo di spedizione</b></td>
+			<td><b> Numero civico </b></td>
+			<td><b> Cap </b> </td>
+			<td> <b> Numero di telefono</b></td>
+			
 			
 			
 		</tr>
