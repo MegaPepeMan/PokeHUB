@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <style>
 @import url('http://fonts.cdnfonts.com/css/berlin-sans-fb-demi');
@@ -7,8 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="CSS/Login.css" rel="stylesheet" type="text/css">
 <title>Pagina di login</title>
+
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 <div class="sinistra">
 <img class="secondimg" src="Image/sotto.png">
 </div>
@@ -28,16 +31,16 @@
           &nbsp;
              &nbsp;
      
-     <input id="username" type="text" name="username" placeholder="enter login"> </li>
+     <input id="username" type="text" name="username" placeholder="enter login" required> </li>
    <li>  <br>   
      <br>
      <br>
      <label for="password">Password</label>
-     <input id="password" type="password" name="password" placeholder="enter password"> </li></ul>
+     <input id="password" type="password" name="password" placeholder="enter password" required> </li></ul>
     
      <ul class="bottoni">
-     <li class="left"> <button type="submit" value="Login">Login</button></li>
-     <li class="right"><button type="Reset" value="Reset">Reset</button></li>
+     <li class="left"> <button type="submit" class="login" value="Login">Login</button></li>
+     <li class="right"><button type="Reset" class="login" value="Reset">Reset</button></li>
      </ul>
 
 
@@ -46,4 +49,6 @@
 </form>
 
 </body>
+
 </html>
+
