@@ -8,7 +8,15 @@
 <ul class="header2">
 <li class="left"><form class="header2" action="search" method="get">
 <label for="search" class="header3">PokeHub</label>
-<input type="search" id="search" name="search"  placeholder="cerca"size="20"></form></li>
+</li>
+<li class="left"><form class="header2" action="search" method="get">
+
+	<br>
+        <input type="text" class="form-control" placeholder="Search" name="search">
+     
+     	
+    </form>
+</li>
   <li class="left"> <form  class="header2"action="PaginaCatalogo.jsp"  method="post">
   <button class="header" type="submit">CATALOGO</button>
     </form></li>
