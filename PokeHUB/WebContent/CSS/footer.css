@@ -2,25 +2,27 @@
 
 .boxassoluto { 
   position: relative; 
-background-color: #c4fd75;
+background-color: #bbce0f;
  	height: auto;
   width: 100%;
 }
   .footer .col {
+  	
 	width: 190px;
 	height: auto;
-	float: left;
+	float:left;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	padding: 0px 20px 20px 20px;
+	line-height: 23px;
   }
   .footer .col h1 {
 	margin: 0;
 	padding: 0;
 	font-family: inherit;
-	font-size: 12px;
-	line-height: 17px;
+	font-size: 15px;
+	line-height: 22px;
 	padding: 20px 0px 5px 0px;
 	color: #0000a0;
 	font-weight: normal;
@@ -33,7 +35,8 @@ background-color: #c4fd75;
 	padding: 0;
   }
   .footer .col ul li {
-	color: #00ff00;
+  
+	color: #0000ff;
 	font-size: 14px;
 	font-family: inherit;
 	font-weight: bold;
@@ -61,10 +64,10 @@ background-color: #c4fd75;
   }
   
 	.footer .col h1 {
-	  font-size: 14px;
+	  font-size: 17px;
 	}
 	.footer .col ul li {
-	  font-size: 13px;
+	  font-size: 17px;
 	}
   
   
