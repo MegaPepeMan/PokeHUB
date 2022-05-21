@@ -212,6 +212,6 @@
 		<input type="submit" value="Aggiungi"><input type="reset" value="Reset">
 		
 	</form>
-	
+	<%@ include file="Footer.html" %>
 	</body>
 </html>

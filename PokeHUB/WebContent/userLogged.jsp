@@ -48,5 +48,6 @@ if (persona == null)
 	<form action="Logout" method="get" > 
     <input type="submit" value="Logout"/>
     </form>
+    <%@ include file="Footer.html" %>
 </body>
 </html>

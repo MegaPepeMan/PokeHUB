@@ -80,7 +80,7 @@ if (persona == null)
 				
 		</form>
 				
-				
+				<%@ include file="Footer.html" %>
 				
 	
 	

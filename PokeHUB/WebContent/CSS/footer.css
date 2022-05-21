@@ -6,7 +6,7 @@
 	width: 100%;
 	position: relative;
 	height: auto;
-	background-color: #c0c0c0;
+	background-color: #c4fd75;
   }
   .footer .col {
 	width: 190px;
@@ -35,7 +35,7 @@
 	padding: 0;
   }
   .footer .col ul li {
-	color: #999999;
+	color: #00ff00;
 	font-size: 14px;
 	font-family: inherit;
 	font-weight: bold;
@@ -51,7 +51,7 @@
   }
   
   .footer .col ul li:hover {
-	color: #ffffff;
+	color: #0000ff;
 	transition: .1s;
 	-webkit-transition: .1s;
 	-moz-transition: .1s;

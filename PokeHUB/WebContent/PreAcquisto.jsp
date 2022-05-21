@@ -140,5 +140,6 @@
 		%>
 		<input type="submit" value="Paga ora">
 		</form>
+		<%@ include file="Footer.html" %>
 </body>
 </html>
