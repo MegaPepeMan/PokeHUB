@@ -46,8 +46,9 @@
 </div>
 
 </form>
-
+<div class=boxassolut>
 <%@ include file="Footer.html" %>
+</div>
 </body>
 
 </html>

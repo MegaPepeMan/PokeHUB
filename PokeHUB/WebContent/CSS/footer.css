@@ -1,13 +1,11 @@
 @CHARSET "UTF-8";
 
-
-
-.footer {
-	width: 100%;
-	position: relative;
-	height: auto;
-	background-color: #c4fd75;
-  }
+.boxassoluto { 
+  position: relative; 
+background-color: #c4fd75;
+ 	height: auto;
+  width: 100%;
+}
   .footer .col {
 	width: 190px;
 	height: auto;

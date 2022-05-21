@@ -72,8 +72,9 @@
 	</table>
 	
 
-	<%@include file="Footer.html"%>
+	
 
 	
 	</body>
+	<%@include file="Footer.html"%>
 </html>

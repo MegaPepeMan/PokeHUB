@@ -16,28 +16,18 @@ public class DriverManagerConnectionPool {
 			freeDbConnections = new LinkedList<Connection>();
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-			} 
-			
-				
+			} 	
 			catch (ClassNotFoundException e) {
 				System.out.println("DB driver not found:"+ e.getMessage());
 			} 
 		}
-		
-		
-		
-		
 		private static synchronized Connection createDBConnection() throws SQLException {
 			Connection newConnection = null;
 			String ip = "127.0.0.1";
 			String port = "3306";
 			String db = "db_pokehub";
 			String username = "root";
-
-			String password = "Castelcivita23";
-
-
-
+			String password = "bastardicacca";
 			newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", username, password);
 			
 			newConnection.setAutoCommit(false);
