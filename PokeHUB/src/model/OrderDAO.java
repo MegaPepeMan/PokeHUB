@@ -152,7 +152,7 @@ public class OrderDAO {
 		return orders;
 	}
 	
-	public synchronized Collection<OrderBean> doRetrieveByDate(Date dataInizio, Date dataFine) throws SQLException, IOException {
+	public synchronized Collection<OrderBean> doRetrieveByDateAndUser(Date dataInizio, Date dataFine, String mail) throws SQLException, IOException {
 		
 
 		Connection connection = null;
@@ -162,13 +162,26 @@ public class OrderDAO {
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 		
 		
-		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN '"+ dataInizio +"' AND '"+dataFine+"'";
+		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN '"+ dataInizio +"' AND '"+dataFine+"' AND mail_cliente = ?";
 		
+		if(mail.equalsIgnoreCase("*")) {
+			selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME+ " WHERE data_ordine BETWEEN '"+ dataInizio +"' AND '"+dataFine+"'";
+		}
 		
 		try {
+			System.out.println("Lo username del retrieve sono: "+mail);
 			connection = DriverManagerConnectionPool.getConnection();
+			
 			preparedStatement = connection.prepareStatement(selectSQL);
-
+			if(mail.equalsIgnoreCase("*")) {
+				//nessun ? da settare nella stringa
+			} else {
+				preparedStatement.setString(1, mail);
+			}
+			
+			
+			System.out.println(selectSQL);
+			
 			ResultSet rs = preparedStatement.executeQuery();
 	
 			while (rs.next()) {

@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -42,51 +43,82 @@ public class OrderControl extends HttpServlet {
 			return;
 		}
 		
+		String action = request.getParameter("action");
+		System.out.println("L'azione della sevlet OrderControl e': "+action);
+		if(action == null){
+			action = "all";
+		}
 		OrderDAO ordini = new OrderDAO();
-		if(request.getParameter("action").equalsIgnoreCase("visualizza")) {
+		if(action.equalsIgnoreCase("all")) {
+			String ordinamento= null;
+			String sort=request.getParameter("sort");
 			
-		
-		String ordinamento= null;
-		String sort=request.getParameter("sort");
-		if(sort!=null) {
-		switch (sort){
-		
-		case "id_ordine":
-			ordinamento="id_ordine";
-			break;
-		case "mail_cliente":
-			ordinamento="mail_cliente";
-			break;
-		case "data_ordine":
-			ordinamento="data_ordine";
-			break;
-		
-		}
-		}
-		try {
-			Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll(ordinamento);
-			request.getSession().setAttribute("totaleOrdini", totaleOrdini);
-		} catch (SQLException e) {
-			System.out.println("Errore stringa SQL");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Errore di IO");
-			e.printStackTrace();
-		}
-		}else if(request.getParameter("action").equalsIgnoreCase("data")) {
-		
-		try {
-			Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDate(Date.valueOf(request.getParameter("datai")), Date.valueOf(request.getParameter("dataf"))) ;
-			request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+			if(sort!=null) {
+				switch (sort){
+					
+					case "id_ordine":
+						ordinamento="id_ordine";
+						break;
+					case "mail_cliente":
+						ordinamento="mail_cliente";
+						break;
+					case "data_ordine":
+						ordinamento="data_ordine";
+						break;
+					
+				}
+			}
 			
-		} catch (SQLException e) {
-			System.out.println("Errore stringa SQL");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Errore di IO");
-			e.printStackTrace();
-		}
-		
+			
+			try {
+				Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll(ordinamento);
+				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+			} catch (SQLException e) {
+				System.out.println("Errore stringa SQL");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("Errore di IO");
+				e.printStackTrace();
+			}
+		}else if(action.equalsIgnoreCase("search")) {
+			
+			request.getSession().removeAttribute("totaleOrdini");
+			
+			try {
+				Date data_inizio;
+				Date data_fine;
+				String user;
+				try {
+					data_inizio = Date.valueOf(request.getParameter("datai"));
+					data_fine = Date.valueOf(request.getParameter("dataf"));
+				} catch(Exception e){
+					data_inizio = null;
+					data_fine = null;
+				}
+				
+				try {
+					user = request.getParameter("username");
+				} catch (Exception e) {
+					user = "*";
+				}
+				
+				if (data_inizio == null || data_fine == null) {
+					
+					data_inizio = Date.valueOf("1990-1-1");
+					data_fine = Date.valueOf(LocalDate.now());
+				}
+				Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDateAndUser(data_inizio, data_fine, user) ;
+				System.out.println(totaleOrdini);
+				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+				
+			} catch (SQLException e) {
+				System.out.println("Errore stringa SQL");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("Errore di IO");
+				e.printStackTrace();
+			}
+			
 		}
 		response.sendRedirect(request.getContextPath()+"/PaginaOrdiniAdmin.jsp");
 		

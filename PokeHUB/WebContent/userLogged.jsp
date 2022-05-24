@@ -36,6 +36,7 @@ if (persona == null)
 	if(persona.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
 		%>
 		<h2>Si</h2>
+		<a href="OrderControl">Pagina degli ordini</a>
 		<%
 	} else {
 		%>

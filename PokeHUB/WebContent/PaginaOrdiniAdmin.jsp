@@ -1,14 +1,12 @@
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-		<% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
-			if(ordini == null)
-			{
-				response.sendRedirect("./OrderControl?action=visualizza");
-				return;
-			}
-		%> 
+
+<% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
+	if(ordini == null)
+	{
+		response.sendRedirect("./OrderControl?action=all");
+		return;
+	}
+%> 
 		
 <!DOCTYPE html>
 <html>
@@ -23,25 +21,25 @@
 	<%@ include file="Header.jsp" %>
 	
 	<form action="OrderControl" method="post">
-	
-	<input type="hidden" name="action" value="data">
-	<h3>Data Inizio</h3>
-	<input type="date" name="datai">
-	<br>
-	<h3>Data Fine</h3>
-	<input type="date" name="dataf">
-	<br><br>
-	<input type="submit" value="Invia">
+		<input type="hidden" name="action" value="search">
+		<h3>Data Inizio</h3>
+		<input type="date" name="datai">
+		<br>
+		<h3>Data Fine</h3>
+		<input type="date" name="dataf">
+		<h3>Utente</h3>
+		<input type="text" name="username" value ="*">
+		<br><br>
+		<input type="submit" value="Invia">
 	</form>
 	
-	<table border="1" cellpadding="10"
-cellspacing="0">
+	<table border="1" cellpadding="10" cellspacing="0">
 		<tr>
-			<td><b><a href="OrderControl?sort=id_ordine&action=visualizza">ID ordine</a></b></td>
+			<td><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
 			
-			<td><b><a href="OrderControl?sort=mail_cliente&action=visualizza">Cliente</a></b></td>
+			<td><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
 			<td><b>Codice di tracking</b></td>
-			<td><b><a href="OrderControl?sort=data_ordine&action=visualizza">Data ordine</a></b></td>
+			<td><b><a href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
 			<td><b>Status consegna</b></td>
 			<td><b>Indirizzo di spedizione</b></td>
 			<td><b> Numero civico </b></td>
