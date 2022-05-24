@@ -81,18 +81,12 @@
 				<% 
 				
 			}
-			%>
-			 
-			
 	
+			%>
 		
-		
-		
-		
-		
+	
 		
 	</table>
-	
 	
 	
 	<%@ include file="Footer.html" %>
