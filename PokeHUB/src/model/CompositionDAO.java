@@ -165,6 +165,8 @@ public class CompositionDAO {
 			}
 			return compositions;
 		}
+		
+		
 		public void doUpdate(CompositionBean composizione) throws SQLException {
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -194,6 +196,59 @@ public class CompositionDAO {
 					DriverManagerConnectionPool.releaseConnection(connection);
 				}
 			}
+		}
+		
+		
+		public synchronized Collection<CompositionBean> doRetrieveByOrder(int id, String order) throws SQLException {
+			
+			
+			
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+
+			Collection<CompositionBean> compositions = new LinkedList <CompositionBean>();
+
+			String selectSQL = "SELECT * FROM " + CompositionDAO.TABLE_NAME + " WHERE identificativo_ordine = ? ";
+
+			
+			if (order != null && !order.equals("")) {
+				selectSQL += " ORDER BY " + order;
+			}
+
+			try {
+				connection = DriverManagerConnectionPool.getConnection();
+				preparedStatement = connection.prepareStatement(selectSQL);
+				
+				preparedStatement.setInt(1, id);
+				
+				System.out.println("La stringa è: "+selectSQL);
+				System.out.println(id);
+				
+				ResultSet rs = preparedStatement.executeQuery();
+
+				while (rs.next()) {
+					CompositionBean bean = new CompositionBean();
+					
+					bean.setIdentificativo_ordine(rs.getInt("identificativo_ordine"));
+					bean.setIdentificativo_prodotto(rs.getInt("identificativo_prodotto"));
+					bean.setIva_acquisto(rs.getDouble("iva_acquisto"));
+					bean.setPrezzo_acquisto(rs.getDouble("prezzo_acquisto"));
+					bean.setQuantita(rs.getInt("quantità"));
+					
+					bean.toString();
+					
+					compositions.add(bean);
+				}
+
+			} finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				} finally {
+					DriverManagerConnectionPool.releaseConnection(connection);
+				}
+			}
+			return compositions;
 		}
 
 	}
