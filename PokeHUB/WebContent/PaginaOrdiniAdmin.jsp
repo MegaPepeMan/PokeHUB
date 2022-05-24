@@ -60,7 +60,7 @@
 					ordine=it.next();
 					%>
 					<tr>
-					<td> <%= ordine.getIdOrdine()  %> </td>
+					<td><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
 					<td> <%= ordine.getMailCliente() %> </td>
 					<td> <%= ordine.getTrakingOrdine() %> </td>
 					<td> <%= ordine.getDataOrdine() %> </td>

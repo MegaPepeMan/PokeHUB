@@ -8,8 +8,21 @@
 </head>
 <body>
 	<%
-		Collection<CompositionBean> fattura = (Collection<CompositionBean>) request.getSession().getAttribute("fattura");
-		fattura.toString();
+	Collection<CompositionBean> fattura = (Collection<CompositionBean>) request.getSession().getAttribute("fattura");
+	Collection<ProductBean> prodotti = (Collection<ProductBean>) request.getSession().getAttribute("prodotti");
+	if (fattura != null && fattura.size() != 0) {
+	
+		ProductBean pezzo = new ProductBean();
+		Iterator<ProductBean> it = prodotti.iterator();
+			while (it.hasNext()) {
+				pezzo = it.next();
+				%>
+				
+				<img src="data:image/png;base64,<%=pezzo.getImmagineProdotto()%>" alt="immagine non presente"/>
+				
+				<%
+			}
+		}
 	%>
 	
 	<%=fattura.toString()%>

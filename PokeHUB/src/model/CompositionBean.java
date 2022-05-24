@@ -69,5 +69,7 @@ public class CompositionBean implements Serializable {
 				+ ", iva_acquisto=" + iva_acquisto + "]";
 	}
 
+	
+
 
 }

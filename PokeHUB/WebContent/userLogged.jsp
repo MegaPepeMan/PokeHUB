@@ -41,6 +41,7 @@ if (persona == null)
 	} else {
 		%>
 		<h2>No</h2>
+		<a href="UserInvoiceControl">Pagina degli ordini</a>
 		<%	
 	}
 	%>

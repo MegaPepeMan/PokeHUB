@@ -3,7 +3,10 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CompositionBean;
 import model.CompositionDAO;
+import model.ProductBean;
+import model.ProductDAO;
 import model.UserBean;
 
 /**
@@ -37,6 +42,9 @@ public class OrderUserControl extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 			return;
 		}
+		
+		request.getSession().removeAttribute("fattura");
+		
 		Integer id = null;
 		try {
 			id = Integer.valueOf(request.getParameter("idOrdine"));
@@ -47,19 +55,38 @@ public class OrderUserControl extends HttpServlet {
 		
 		
 		CompositionDAO fatture = new CompositionDAO();
+		ProductDAO fotoProdotti = new ProductDAO();
 		
 		Collection<CompositionBean> fattura = null;
 		try {
 			System.out.println("Ricerca composizione dell'ordine");
-			fattura = fatture.doRetrieveByOrder(15, null);
-			fattura.toString();
+			fattura = fatture.doRetrieveByOrder(id, null);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		Iterator<CompositionBean> it = fattura.iterator();
+		ProductBean fotoProdotto;
+		Collection<ProductBean> prodotti = new LinkedList<ProductBean>();
+		while(it.hasNext()) {
+			try {
+				prodotti.add( fotoProdotti.doRetrieveByKey(  it.next().getIdentificativo_prodotto()  ) );
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		
+		request.getSession().setAttribute("prodotti",prodotti);
 		request.getSession().setAttribute("fattura",fattura);
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaFattura.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	
