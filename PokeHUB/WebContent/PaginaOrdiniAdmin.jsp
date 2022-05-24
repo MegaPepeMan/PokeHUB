@@ -83,18 +83,12 @@ cellspacing="0">
 				<% 
 				
 			}
-			%>
-			 
-			
 	
+			%>
 		
-		
-		
-		
-		
+	
 		
 	</table>
-	
 	
 	
 	<%@ include file="Footer.html" %>
