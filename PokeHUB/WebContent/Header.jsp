@@ -39,6 +39,7 @@ if ( (utenteHeader != null) ) {
 } else {
 %>
 	<li class="left"><form action="LoginPage.jsp" class="header2" method="post"><button class="header" type="submit">LOGIN</button></form></li>
+	<li class="left"><form action="FormRegistrazione.jsp" class="header2" method="post"><button class="header" type="submit">REGISTRATI</button></form></li>
 <%
 }
 %>

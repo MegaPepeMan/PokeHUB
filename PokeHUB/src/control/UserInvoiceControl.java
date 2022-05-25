@@ -5,22 +5,16 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.CompositionBean;
-import model.CompositionDAO;
 import model.OrderBean;
 import model.OrderDAO;
-import model.ProductBean;
-import model.ProductDAO;
 import model.UserBean;
 
 /**
@@ -38,9 +32,7 @@ public class UserInvoiceControl extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
 		
