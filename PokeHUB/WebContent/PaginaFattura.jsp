@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" import="model.*,java.util.*"%>
 <!DOCTYPE html>
 <html>
+
+<%@ include file="Header.jsp" %>
+
 <style>
 table, th, td {
   border:1px solid black;

@@ -22,7 +22,7 @@ public class CompositionDAO {
 			PreparedStatement preparedStatement = null;
 
 			String insertSQL = "INSERT INTO " +CompositionDAO.TABLE_NAME
-					+ " ( identificativo_prodotto,identificativo_ordine,quantita ,prezzo_acquisto,iva_acquisto) VALUES (?,?,?,?,?)";
+					+ " ( identificativo_prodotto,identificativo_ordine,quantita,prezzo_acquisto,iva_acquisto) VALUES (?,?,?,?,?)";
 
 			try {
 				connection = DriverManagerConnectionPool.getConnection();
@@ -237,7 +237,7 @@ public class CompositionDAO {
 					System.out.println("Id Prodotto: "+bean.getIdentificativo_prodotto());
 					System.out.println("IVA: "+bean.getIva_acquisto());
 					System.out.println("Prezzo senza IVA: "+bean.getPrezzo_acquisto());
-					System.out.println("Quantita' : "+bean.getQuantita());
+					System.out.println("Quantita'ï¿½: "+bean.getQuantita());
 					
 					compositions.add(bean);
 					
