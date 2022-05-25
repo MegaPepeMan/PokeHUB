@@ -171,7 +171,7 @@ public class CompositionDAO {
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
 
-			String updateSQL =" UPDATE "+CompositionDAO.TABLE_NAME+" SET quantita  = ?,prezzo_acquisto = ?,iva_acquisto = ? WHERE (identificativo_ordine = ? AND identificativo_prodotto= ?)" ;
+			String updateSQL =" UPDATE "+CompositionDAO.TABLE_NAME+" SET quantita = ?,prezzo_acquisto = ?,iva_acquisto = ? WHERE (identificativo_ordine = ? AND identificativo_prodotto= ?)" ;
 
 			try {
 				connection = DriverManagerConnectionPool.getConnection();
