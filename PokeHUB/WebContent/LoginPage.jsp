@@ -16,13 +16,14 @@
 <img class="secondimg" src="Image/sotto.png">
 </div>
 <div class="destra2">
-<img class="firstimg" src="Image/logo.png">
+<img class="firstimg" src="Image/Logo.png" alt="logo">
 </div>
-<form action="Login" method="post" >
 <div class="destra">
 
 <ul class="testi">
+<form action="Login" method="post" >
     <li> <label for="username">Login</label>
+    <br>
      &nbsp;
       &nbsp;
        &nbsp;
@@ -34,7 +35,7 @@
    <li>  <br>   
      <br>
      <br>
-     <label for="password">Password</label>
+     <label for="password">Password</label><br>
      <input id="password" type="password" name="password" placeholder="enter password" required> </li></ul>
     
      <ul class="bottoni">
@@ -42,10 +43,10 @@
      <li class="right"><button type="Reset" class="login" value="Reset">Reset</button></li>
      </ul>
 
+</form>
 
 </div>
 
-</form>
 <div class=boxassolut>
 <%@ include file="Footer.html" %>
 </div>

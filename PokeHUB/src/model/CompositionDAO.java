@@ -22,7 +22,7 @@ public class CompositionDAO {
 			PreparedStatement preparedStatement = null;
 
 			String insertSQL = "INSERT INTO " +CompositionDAO.TABLE_NAME
-					+ " ( identificativo_prodotto,identificativo_ordine,quantit√†,prezzo_acquisto,iva_acquisto) VALUES (?,?,?,?,?)";
+					+ " ( identificativo_prodotto,identificativo_ordine,quantita†,prezzo_acquisto,iva_acquisto) VALUES (?,?,?,?,?)";
 
 			try {
 				connection = DriverManagerConnectionPool.getConnection();
@@ -171,7 +171,7 @@ public class CompositionDAO {
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
 
-			String updateSQL =" UPDATE "+CompositionDAO.TABLE_NAME+" SET quantit√† = ?,prezzo_acquisto = ?,iva_acquisto = ? WHERE (identificativo_ordine = ? AND identificativo_prodotto= ?)" ;
+			String updateSQL =" UPDATE "+CompositionDAO.TABLE_NAME+" SET quantita† = ?,prezzo_acquisto = ?,iva_acquisto = ? WHERE (identificativo_ordine = ? AND identificativo_prodotto= ?)" ;
 
 			try {
 				connection = DriverManagerConnectionPool.getConnection();
@@ -228,7 +228,7 @@ public class CompositionDAO {
 					
 					bean.setIdentificativo_prodotto(rs.getInt("identificativo_prodotto"));
 					bean.setIdentificativo_ordine(rs.getInt("identificativo_ordine"));
-					bean.setQuantita(rs.getInt("quantit√†"));
+					bean.setQuantita(rs.getInt("quantita"));
 					bean.setPrezzo_acquisto(rs.getDouble("prezzo_acquisto"));
 					bean.setIva_acquisto(rs.getDouble("iva_acquisto"));
 					
@@ -237,7 +237,7 @@ public class CompositionDAO {
 					System.out.println("Id Prodotto: "+bean.getIdentificativo_prodotto());
 					System.out.println("IVA: "+bean.getIva_acquisto());
 					System.out.println("Prezzo senza IVA: "+bean.getPrezzo_acquisto());
-					System.out.println("Quantit√†: "+bean.getQuantita());
+					System.out.println("Quantita'†: "+bean.getQuantita());
 					
 					compositions.add(bean);
 					
