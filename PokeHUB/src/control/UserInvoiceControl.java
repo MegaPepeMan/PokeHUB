@@ -17,16 +17,13 @@ import model.OrderBean;
 import model.OrderDAO;
 import model.UserBean;
 
-/**
- * Servlet implementation class UserInvoiceControl
- */
+
+
 @WebServlet("/UserInvoiceControl")
 public class UserInvoiceControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public UserInvoiceControl() {
         super();
         // TODO Auto-generated constructor stub

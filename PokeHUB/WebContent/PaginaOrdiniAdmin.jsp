@@ -1,3 +1,16 @@
+<%
+UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+
+if(utente == null) {
+	response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+	return;
+}
+if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
+	response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+	return;
+}
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");

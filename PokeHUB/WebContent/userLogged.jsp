@@ -36,15 +36,15 @@ if (persona == null)
 	if(persona.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
 		%>
 		<h2>Si</h2>
-		<a href="OrderControl">Pagina degli ordini</a>
+		<a href="OrderControl">Gestione ordini</a>
 		<%
 	} else {
 		%>
 		<h2>No</h2>
-		<a href="UserInvoiceControl">Pagina degli ordini</a>
 		<%	
 	}
 	%>
+	<a href="UserInvoiceControl">Pagina degli ordini</a>
 	<a href="PaymentControl">Metodi di pagamento</a>
 	<a href="ShipmentControl">Indirizzi di spedizione</a>
 	<form action="Logout" method="get" > 

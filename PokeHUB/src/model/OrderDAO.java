@@ -255,7 +255,52 @@ public class OrderDAO {
 		}
 		return bean;
 	}
-	//select *from getLastRecord ORDER BY id DESC LIMIT 1
+	
+	public synchronized OrderBean doRetrieveByKey(int identificativo_ordine) throws SQLException {
+		
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		OrderBean bean = new OrderBean();
+
+		String selectSQL = "SELECT * FROM " + OrderDAO.TABLE_NAME + " WHERE id_ordine = ?";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+
+			preparedStatement.setInt(1, identificativo_ordine);
+			
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				
+				bean.setIdOrdine(rs.getInt("id_ordine"));
+				bean.setMailCliente(rs.getString("mail_cliente"));
+				bean.setTrakingOrdine(rs.getString("traking_ordine"));
+				bean.setDataOrdine(rs.getDate("data_ordine"));
+				bean.setStato(rs.getString("status_consegna"));
+				bean.setVia(rs.getString("via"));
+				bean.setCivico(rs.getString("civico"));
+				bean.setCap(rs.getString("cap"));
+				bean.setTelefono(rs.getString("telefono"));
+				
+				
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return bean;
+	}
+
 	
 
 }

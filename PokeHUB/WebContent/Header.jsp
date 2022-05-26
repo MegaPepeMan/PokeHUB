@@ -21,7 +21,12 @@
   <button class="header" type="submit">CATALOGO</button>
     </form></li>
   <%
-UserBean utenteHeader = (UserBean) session.getAttribute("userID");
+  UserBean utenteHeader;
+  try {
+	  utenteHeader = (UserBean) session.getAttribute("userID");
+  } catch(Exception e){
+	  utenteHeader = null; 
+  } 
 if ( (utenteHeader != null) ) {
 
 

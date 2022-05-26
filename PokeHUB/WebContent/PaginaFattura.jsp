@@ -1,3 +1,43 @@
+<%
+	UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+
+	
+
+	if(utente == null) {
+		response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+		return;
+	}
+	
+	OrderBean ordine = (OrderBean) request.getSession().getAttribute("ordine");
+	Collection<CompositionBean> fattura = null;
+	Collection<ProductBean> prodotti = null;
+
+	fattura = (Collection<CompositionBean>) request.getSession().getAttribute("fattura");
+	prodotti = (Collection<ProductBean>) request.getSession().getAttribute("prodotti");	
+
+	if(fattura == null || prodotti == null) {
+		System.out.println("Redirect dal primo userLogged.jsp");
+		response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+		return;
+	}
+	
+	Iterator<CompositionBean> iterControllo = fattura.iterator();
+	CompositionBean controlloComposizione;
+	while (iterControllo.hasNext()){
+		controlloComposizione = iterControllo.next();
+		Boolean valore = utente.getCategoriaUtente().equalsIgnoreCase("Amministratore");
+		valore.toString();
+		if ( !ordine.getMailCliente().equalsIgnoreCase(utente.getMail()) ){
+			if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
+				response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+				return;
+			}
+			
+		}
+	}
+	
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.*,java.util.*"%>
 <!DOCTYPE html>
@@ -17,8 +57,6 @@ table, th, td {
 <body>
 
 <%
-	Collection<CompositionBean> fattura = (Collection<CompositionBean>) request.getSession().getAttribute("fattura");
-	Collection<ProductBean> prodotti = (Collection<ProductBean>) request.getSession().getAttribute("prodotti");
 	double totaleFattura=0;
 %>
 

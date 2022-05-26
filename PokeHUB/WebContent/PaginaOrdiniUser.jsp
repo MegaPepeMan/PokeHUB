@@ -1,3 +1,12 @@
+<%
+UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+
+if(utente == null) {
+	response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+	return;
+}
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
@@ -33,16 +42,16 @@
 	
 	<table border="1" cellpadding="10" cellspacing="0">
 		<tr>
-			<td><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
+			<td><b>ID ordine</b></td>
 			
-			<td><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
+			<td><b>Cliente</b></td>
 			<td><b>Codice di tracking</b></td>
-			<td><b><a href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
+			<td><b>Data ordine</b></td>
 			<td><b>Status consegna</b></td>
 			<td><b>Indirizzo di spedizione</b></td>
 			<td><b> Numero civico </b></td>
 			<td><b> Cap </b> </td>
-			<td> <b> Numero di telefono</b></td>
+			<td><b> Numero di telefono</b></td>
 			
 			
 			
