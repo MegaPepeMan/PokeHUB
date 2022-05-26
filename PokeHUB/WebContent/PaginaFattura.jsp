@@ -105,12 +105,17 @@ table, th, td {
 			<h3><%= composizione.getQuantita() %></h3>
 			</th>
 			<th>
-			<h3>€<%= composizione.getQuantita()*composizione.getPrezzo_acquisto()*composizione.getIva_acquisto() %></h3>
+			<%
+				double percentualeIVA = composizione.getIva_acquisto()/100;
+				double prezzoConIVA = (percentualeIVA * composizione.getPrezzo_acquisto() ) + composizione.getPrezzo_acquisto();
+				double totaleProdotti = prezzoConIVA * composizione.getQuantita();
+			%>
+			<h3>€<%=totaleProdotti%></h3>
 			</th>
 			</tr>
 			
 			<%
-			 totaleFattura += composizione.getQuantita()*composizione.getPrezzo_acquisto()*composizione.getIva_acquisto();
+			 totaleFattura += totaleProdotti;
 		}
 		
 	}

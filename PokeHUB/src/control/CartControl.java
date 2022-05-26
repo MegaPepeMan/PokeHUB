@@ -43,7 +43,7 @@ public class CartControl extends HttpServlet {
 				System.out.println("L'utente "+ utente.getNome() +" "+ utente.getCognome()+" sta accedendo al carrello");
 
 			
-				//Caso in cui l'utente � gi� loggato
+				//Caso in cui l'utente e' gia' loggato
 				Cart cart = (Cart) request.getSession().getAttribute("cart"); 		//qui potrebbe generarsi il throw
 				
 				if(cart == null) {
@@ -80,7 +80,7 @@ public class CartControl extends HttpServlet {
 									System.out.println("Prodotti rimanenti: "+ (prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id)));
 									qty = prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id) - qty.intValue();
 									if (qty.intValue()<0) {
-										qty = 0;
+										qty = prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id);
 									}
 									System.out.println("Aggiungo questi prodotti: "+ qty.intValue());
 									cart.addProduct(id, qty);
