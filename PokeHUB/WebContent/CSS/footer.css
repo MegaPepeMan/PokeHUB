@@ -1,14 +1,20 @@
 @CHARSET "UTF-8";
 
+.contain{
+	display: flex;
+  	justify-content: center;
+}
 .boxassoluto { 
-  position: relative; 
-background-color: #bbce0f;
+	text-align:center; 
+  	position: relative; 
+	background-color: #bbce0f;
  	height: auto;
-  width: 100%;
+  	width: 100%;
 }
   .footer .col {
-  	
-	width: 190px;
+  
+  	text-align: center;
+	width: 300px;
 	height: auto;
 	float:left;
 	box-sizing: border-box;
@@ -18,25 +24,32 @@ background-color: #bbce0f;
 	line-height: 23px;
   }
   .footer .col h1 {
+ 	 
+  	text-align:center;
 	margin: 0;
 	padding: 0;
 	font-family: inherit;
 	font-size: 15px;
-	line-height: 22px;
+	line-height: 20px;
+	 width: 300px;
+	
 	padding: 20px 0px 5px 0px;
-	color: #0000a0;
+	color: #8e3187;
 	font-weight: normal;
 	text-transform: uppercase;
 	letter-spacing: 0.250em;
   }
   .footer .col ul {
+  	
 	list-style-type: none;
+	justify-content:center;
 	margin: 0;
 	padding: 0;
   }
   .footer .col ul li {
-  
-	color: #0000ff;
+  	
+  	text-align:center;
+	color: #8e3187;
 	font-size: 14px;
 	font-family: inherit;
 	font-weight: bold;
@@ -47,11 +60,13 @@ background-color: #bbce0f;
 	-moz-transition: .2s;
   }
   .social ul li {
+  	text-align: center;
 	display: inline-block;
 	padding-right: 5px !important;
   }
   
   .footer .col ul li:hover {
+  	text-align: center;
 	color: #0000ff;
 	transition: .1s;
 	-webkit-transition: .1s;
@@ -59,14 +74,17 @@ background-color: #bbce0f;
   }
   
 	.social h1 {
+	justify-content:center;
 	  margin: 0px;
 	}
   }
   
 	.footer .col h1 {
-	  font-size: 17px;
+	text-align: center;
+	font-size: 17px;
 	}
 	.footer .col ul li {
+	text-align: center;
 	  font-size: 17px;
 	}
   
