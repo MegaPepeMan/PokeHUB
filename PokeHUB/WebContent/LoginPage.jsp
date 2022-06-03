@@ -1,3 +1,9 @@
+<%
+UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+if(utente != null) {
+	response.sendRedirect(request.getContextPath() + "/userLogged.jsp");
+}
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
