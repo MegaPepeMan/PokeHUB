@@ -1,52 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,model.*,control.*,java.text.DecimalFormat"%>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="CSS/Header.css" rel="stylesheet" type="text/css">
-	</head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-<ul class="header2">
-<li class="left"><form class="header2" action="search" method="get">
-<label for="search" class="header3">PokeHub</label>
-</li>
-<li class="left"><form class="header2" action="search" method="get">
 
-	<br>
-        <input type="text" class="form-control" placeholder="Search" name="search">
-     
-     	
+
+<div id="navbar">
+  <a class="active" href="product"><img id="logo" src="Image/Logo_Immagine.png" alt=""></a>
+  
+  
+  <div class="container">
+    <form action="" method="get" class="form">
+      
+      <input type="text" placeholder="Cerca prodotti" class="search-field" />
+      <button type="submit" class="search-button">
+        <img src="Image/search.png">
+      </button>
     </form>
-</li>
-  <li class="left"> <form  class="header2"action="PaginaCatalogo.jsp"  method="post">
-  <button class="header" type="submit">CATALOGO</button>
-    </form></li>
-  <%
-  UserBean utenteHeader;
-  try {
-	  utenteHeader = (UserBean) session.getAttribute("userID");
-  } catch(Exception e){
-	  utenteHeader = null; 
-  } 
-if ( (utenteHeader != null) ) {
+  </div>
+
+  <div id="navbarDestra">
+  <a href="LoginPage.jsp"><img id="iconUser" src="Image/user_icon.png" alt=""></a>
+  <a href="cart"><img id="iconCart" src="Image/cart_icon.png" alt=""></a>
+  </div>
+
+</div>
+
+<div class="content"></div>
 
 
+<script>
+	window.onscroll = function() {myFunction()};
+	
+	var navbar = document.getElementById("navbar");
+	var sticky = navbar.offsetTop;
+	
+	function myFunction() {
+	  if(window.innerWidth > 600){
+	        if (window.pageYOffset >= sticky) {
+	        navbar.classList.add("sticky")
+	      } else {
+	        navbar.classList.remove("sticky");
+	      }
+	    }
+	  
+	}
+	
 
-    if( utenteHeader.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
-    	%>
-    	<li class="left"><form action="admin" class="header2" method="post"><button class="header" type="submit">PAGINA ADMIN</button></form></li>
-    	
-    	<%
-    }
-    %>
-   		<li class="left"><form action="cart" class="header2" method="post"><button class="header" type="submit">CARRELLO</button></form></li>
-   		  <li class="destra"><form action="userLogged.jsp" class="header2" method="post"><input type="image" class="riduci" src="https://www.agenziadiecommerce.it/wp-content/uploads/2015/03/Utente.png" alt="profilo"></form></li>
-<%    
-} else {
-%>
-	<li class="left"><form action="LoginPage.jsp" class="header2" method="post"><button class="header" type="submit">LOGIN</button></form></li>
-	<li class="left"><form action="FormRegistrazione.jsp" class="header2" method="post"><button class="header" type="submit">REGISTRATI</button></form></li>
-<%
-}
-%>
-</ul>
+</script>
 
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+</html>

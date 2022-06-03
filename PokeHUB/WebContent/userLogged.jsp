@@ -51,6 +51,5 @@ if (persona == null)
     <input type="submit" value="Logout"/>
     </form>
    
-    <%@ include file="Footer.html" %>
 </body>
 </html>

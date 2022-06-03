@@ -33,10 +33,7 @@ public class RegistrationControl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UserBean utente = (UserBean)request.getSession().getAttribute("userID");
-		if(utente != null) {
-			response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
-		}
+		
 		
 		UserBean utenti=new UserBean();
 		
@@ -60,7 +57,7 @@ public class RegistrationControl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+		response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 	}
 		
 

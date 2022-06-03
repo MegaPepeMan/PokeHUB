@@ -1,61 +1,232 @@
-label{
-font-family: arial, verdana, tahona, sans-serif;
-  font-size: 30px;
-  line-height: 50%;
-  color: #000;
-  text-shadow: -1px 0 #ffff00, 0 1px #ffff00, 1px 0 #ffff00, 0 -1px #ffff00;
+#login form {
+    max-width:600px;
+    margin:auto;
 }
 
-input {
-  font: 16px/26px "Raleway", sans-serif; }
+* {box-sizing: border-box;}
 
-body {
-  color: #666;
-  background-color: #f1f2f2;
-  font: 16px/26px "Raleway", sans-serif; }
-
-a {
-  color: #666;
-  text-decoration: none; }
-  a:hover {
-    color: #4FDA8C; }
-
-
-form li {
-list-style: none;
-margin-bottom: 5px;
-}
-
-
-  form ul li input {
-
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    color: inherit;
-    font-family: inherit;
-    padding: 8em 0 10px 8em;
-    border: 1px solid #CFCFCF;
-    outline: 0;
-    display: inline-block;
-    margin: 0 0 8em 0;
-    padding-right: 2em;
-    width: 100%; }
-
-
-
-[type="submit"] {
-
+.input-container {
+    display: flex;
     width: 100%;
-    padding: .8em 0 10px .8em;
-    background-color: #ffff6a;
-    border: none;
-    color: #000000;
-    cursor: pointer;
-    text-transform: uppercase; }
-   
+    margin-bottom: 5%;
+
+    padding-right: 20px;
     
 
-p {
-margin-left: 50px;
-font-weight: bold;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.btnLogin {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fdd8357b;
+    border: solid 2px white;
+    margin-bottom: 10%;
+}
+
+.btnRegister {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #f2a6c740;
+    border: solid 2px white;
+    margin-bottom: 10%;
+}
+
+.icon {
+  padding: 20px;
+  background: white;
+  color: black;
+  min-width: 50px;
+  max-width: 100px;
+
+  border-bottom-left-radius: 18px;
+  border-top-left-radius: 18px;
+}
+
+.input-field {
+  width: 100%;
+  padding-left: 10px;
+  font-size: large;
+  outline: none;
+  border: none;
+}
+
+.input-container:focus-within .icon {  
+    background-color: #fdd835;
+    color: white;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.btnLogin:hover{
+    background-color: #fdd835;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.btnRegister:hover{
+    background-color: #f2a6c7;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+hr{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-top: 1px solid rgba(128, 128, 128, 0.27);  
+    border-radius: 5px;
+}
+
+#Logo_Testo {
+	width: 60%;
+	height: auto;
+}
+
+.error2 {
+	position: relative;
+    color: white;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ff0000b7;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    vertical-align:middle;
+}
+
+#errorMail {
+    display: none;
+}
+#errorPassword {
+    display: none;
+}
+#errorPassword2 {
+	display: none;
+}
+#errorName {
+    display: none;
+}
+#errorSurname {
+    display: none;
+}
+#errorNumber {
+    display: none;
+}
+
+
+
+
+#errorMessageMail {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessagePassword {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessagePassword2 {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageName {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageSurname {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageNumber {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    top: -20px;
+    
+    font-style: italic;
+}
+
+
+@media screen and (max-width: 500px) {
+	#login  form {
+	    max-width:300px;
+	    margin:auto;
+	}
+	
+	.input-container {
+    	width: 80%;
+    	margin-left: 10%;
+    	margin-right: 10%;
+	}
+	
+	.btnLogin {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+    	margin-bottom: 10%;
+	}
+
+	.btnRegister {
+		width: 80%;
+		margin-top: 5%;
+		margin-left: 10%;
+    	margin-right: 10%;
+    	margin-bottom: 10%;
+	}
 }

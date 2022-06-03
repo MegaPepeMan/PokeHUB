@@ -1,95 +1,131 @@
-@CHARSET "UTF-8";
-
-
-
-.boxassolut { 
-  position: relative; 
-  top: 570px;
-
-background-color: #c4fd75;
- 	height: auto;
-  width: 100%;
-}
-
-.firstimg{
-width:40%;
-margin-top:75px;
-}
-.secondimg{
-width:70%;
-}
 body{
-background-color:#eff0f3;
+	background-color: white;
 }
-ul.testi {
-list-style-type: none;
-margin: 0;
-padding: 0;
-overflow: hidden;
-background-color: #FBC70A;
-border-radius: 10px 10px 0px 0px;
+#login form {
+    max-width:600px;
+    margin:auto;
+}
+
+* {box-sizing: border-box;}
+
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+
+    padding-right: 20px;
+    
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.btnLogin {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fdd8357b;
+    border: solid 2px white;
+}
+
+.btnRegister {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #f2a6c740;
+    border: solid 2px white;
+}
+
+.icon {
+  padding: 20px;
+  background: white;
+  color: black;
+  min-width: 50px;
+  max-width: 100px;
+
+  border-bottom-left-radius: 18px;
+  border-top-left-radius: 18px;
+}
+
+.input-field {
+  
+  width: 100%;
+  padding-left: 10px;
+  font-size: large;
+  outline: none;
+  border: none;
+}
+
+.input-container:focus-within .icon {  
+    background-color: #fdd835;
+    color: white;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.btnLogin:hover{
+    background-color: #fdd835;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.btnRegister:hover{
+    background-color: #f2a6c7;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+hr{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-top: 1px solid rgba(128, 128, 128, 0.27);  
+    border-radius: 5px;
+}
+
+#Logo_Testo {
+	width: 60%;
+	height: auto;
 }
 
 
+@media screen and (max-width: 500px) {
+	#login  form {
+	    max-width:300px;
+	    margin:auto;
+	}
+	
+	.input-container {
+    	width: 80%;
+    	margin-left: 10%;
+    	margin-right: 10%;
+	}
+	
+	.btnLogin {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+	}
 
-ul.bottoni{
-list-style-type: none;
-margin: 0;
-padding: 0;
-overflow: hidden;
-background-color: #FA99BB;
-border-radius: 0px 0px 10px 10px;
-}
-li.left{
-float:left;
-}
-li.right{
-float:right;
-}
-form input[type=text], form input[type=number], form input[type=password],
-form input[type=date], form input[type=range], form input[type=email],
-form input[type=url], form input[type=time], form input[list] {
-font-size: 1em;
-
-}
-label{
-font-size: 200%;
-font-family: 'Berlin Sans FB Demi', sans-serif;
-}
-button[type=submit].login,button[type=reset].login{
-background-color: #FA99BB;
-border-width:0px;
-font-family:Georgia;
-font-size:190%;
-padding:8px;
-font-weight:bold;
-cursor:url("poke.png"),auto;
-}
-fieldset{
-border-radius: 10px 10px 10px 10px;
-background: #ffd600;
-}
-.destra2 {
-position: absolute;
-top: 16%;
-left: 69%;
-margin-top: -100px;
-margin-left: -100px;
-
-}
-.destra {
-position: absolute;
-top: 52%;
-left: 70%;
-margin-top: -100px;
-margin-left: -100px;
-border-radius: 10px 10px 10px 10px;
-}
-.sinistra{
-position: absolute;
-top: 47%;
-left: 10%;
-margin-top: -100px;
-margin-left: -100px;
-
+	.btnRegister {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+    	margin-bottom: 10%;
+	}
 }
