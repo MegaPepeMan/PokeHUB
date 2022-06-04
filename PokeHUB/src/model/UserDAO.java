@@ -25,7 +25,7 @@ public synchronized void doSave(UserBean utente) throws SQLException {
 			preparedStatement.setString(2,utente.getCellulare());
 			preparedStatement.setString(3, utente.getPassword());
 			preparedStatement.setString(4,utente.getNome());
-			preparedStatement.setString(5,utente.getCategoriaUtente());
+			preparedStatement.setString(5,utente.getCognome());
 			
 
 			preparedStatement.executeUpdate();
