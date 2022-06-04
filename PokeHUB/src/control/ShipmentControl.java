@@ -30,7 +30,7 @@ public class ShipmentControl extends HttpServlet {
 		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
 		
 		if(utente == null) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginPage.jsp");
 			dispatcher.forward(request, response);
 		}
 		

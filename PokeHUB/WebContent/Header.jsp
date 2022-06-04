@@ -7,7 +7,7 @@
 	<link href="CSS/Header.css" rel="stylesheet" type="text/css">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="bodyNavbar">
 
 
 
@@ -15,8 +15,8 @@
   <a class="active" href="product"><img id="logo" src="Image/Logo_Immagine.png" alt=""></a>
   
   
-  <div class="container">
-    <form action="" method="get" class="form">
+  <div class="containerHeader">
+    <form action="" method="get" class="formRicerca">
       
       <input type="text" placeholder="Cerca prodotti" class="search-field" />
       <button type="submit" class="search-button">

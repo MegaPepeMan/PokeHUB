@@ -1,0 +1,282 @@
+html,body{margin:0; padding:0;height:100%;}
+body {
+    font-family: 'Roboto', sans-serif;font-weight: 300;
+}
+
+
+h1{padding:40px;padding-bottom: 0}
+p{color:#fff}
+
+.container-slider{position: relative; width:80%; margin: 40px auto;}
+
+
+
+.slider-nav div{ text-align: center; display: block}
+
+.slider-for div img,
+.slider-nav div img{width:100%; float:left;}
+
+.slider-for div h3,
+.slider-nav div h4{float:left; width: 100%}
+
+
+.slick-dots{bottom:-50px!important;}
+.slick-dots li button:before{font-size: 17px!important;}
+
+.slick-slider {
+    margin-bottom: 0px!important;
+}
+.slick-prev{left: -30px!important}
+
+.slick-prev:before,
+.slick-next:before{
+   color: #000!important;
+}
+
+/*CSS per form nuovo indirizzo*/
+body{
+	background-color: white;
+}
+#login form {
+    max-width:600px;
+    margin:auto;
+}
+
+* {box-sizing: border-box;}
+
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+
+    padding-right: 20px;
+    
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.btnLogin {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fdd8357b;
+    border: solid 2px white;
+}
+
+.btnRegister {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #f2a6c740;
+    border: solid 2px white;
+}
+
+.icon {
+  padding: 20px;
+  background: white;
+  color: black;
+  min-width: 50px;
+  max-width: 100px;
+
+  border-bottom-left-radius: 18px;
+  border-top-left-radius: 18px;
+}
+
+.input-field {
+  
+  width: 100%;
+  padding-left: 10px;
+  font-size: large;
+  outline: none;
+  border: none;
+}
+
+.input-container:focus-within .icon {  
+    background-color: #fdd835;
+    color: white;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.btnLogin:hover{
+    background-color: #fdd835;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.btnRegister:hover{
+    background-color: #f2a6c7;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+hr{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-top: 1px solid rgba(128, 128, 128, 0.27);  
+    border-radius: 5px;
+}
+
+#Logo_Testo {
+	width: 60%;
+	height: auto;
+}
+
+
+@media screen and (max-width: 500px) {
+	#login  form {
+	    max-width:300px;
+	    margin:auto;
+	}
+	
+	.input-container {
+    	width: 80%;
+    	margin-left: 10%;
+    	margin-right: 10%;
+	}
+	
+	.btnLogin {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+	}
+
+	.btnRegister {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+    	margin-bottom: 10%;
+	}
+}
+
+
+/*CSS per le card degli indirizzi*/
+
+.containerinterno{
+
+    height:8em;
+    width: 85%;
+    max-width: 360px;
+
+    margin: 0 auto;
+    border: solid 8px #ffd835;
+    background-color: #ffd73571;
+    border-radius: 20px;
+    padding: 5%;
+}
+
+
+
+.elimina{
+    float: right;
+    cursor: pointer;
+    color: black;
+}
+
+.elimina:hover{
+    color: #ff00009a;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.modifica{
+    cursor: pointer;
+    color: black;
+}
+
+.modifica:hover{
+    color: #00a800be;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.iconSliderLeft {
+    cursor: pointer; 
+    position: absolute; 
+    right: 104%; 
+    top: 42%;      
+}
+
+.iconSliderRight {
+    cursor: pointer; 
+    position: absolute;
+    left: 104%;
+    top: 42%;
+}
+
+.iconLeft {
+    color: rgba(0, 0, 0, 0.15);
+    background-color: #ffd73550;
+    border-radius: 100%;
+}
+
+.iconLeft:hover {
+    color: white;
+    background-color: #ffd835;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.iconRight {
+    color: rgba(0, 0, 0, 0.15);
+    background-color: #ffd73550;
+    border-radius: 100%;
+}
+
+.iconRight:hover {
+    color: white;
+    background-color: #ffd835;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.paragrafoIndirizzo {
+    font-size: 17pt;
+    font-weight: bold;
+    color: black;
+
+    position: relative;
+    top: -10%;
+}
+
+.paragrafoNumero {
+    font-size: 17pt;
+    font-weight: lighter;
+    color: black;
+
+    position:absolute;                
+    bottom:0;                        
+}
+
+@media screen and (max-width: 1000px) {
+	.paragrafoIndirizzo {
+        font-size: 15pt;
+    }
+    
+    .paragrafoNumero {
+        font-size: 15pt;     
+    }
+}

@@ -1,9 +1,8 @@
-body {
+.bodyNavbar {
   margin: 0;
   font-size: 28px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 
 #navbar {
   overflow: hidden;
@@ -79,19 +78,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .topnav input[type=search] {
   float: left;
 
@@ -122,19 +108,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #logo {
   max-width:150px;
   max-height:75px;
@@ -154,21 +127,7 @@ body {
   max-height:50px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.container {
+.containerHeader {
   float: left;
   
   margin-top: 20px;
@@ -179,7 +138,7 @@ body {
 }
 
 /* Lente di ingrandimento sulla barra di ricerca */
-.form {
+.formRicerca {
   display: flex;
   flex-direction: row;
 }
@@ -231,7 +190,7 @@ body {
 
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
-  .container {
+  .containerHeader {
     float: right;
     margin-right: 5%;
   }
