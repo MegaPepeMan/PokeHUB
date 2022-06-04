@@ -6,50 +6,91 @@ if (persona == null)
     return;
 }
 %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
-    
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*,control.*"%>
 
 <head>
-<meta charset="UTF-8">
-<title>Utente loggato</title>
+	<meta charset="UTF-8">
+	<title>Pagina Utente</title>
+	<link href="CSS/PaginaUtente.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
-<%@ include file="Header.jsp" %>
+<body id="userLogged">
+	<%@ include file="Header.jsp" %>
+
+	<h2 class="welcome">Bentornato/a,</h2>
+	<h2 class="welcome"><%=persona.getNome()%> <%=persona.getCognome()%></h2>
+	
+	<div class="cards">
+	
+		<a href="UserInvoiceControl">
+			<div class="card">
+				<ion-icon class="iconFunction" name="document-text-outline" size="large"></ion-icon><p>Ordini</p>
+			</div>
+		</a>
+			
+		<a href="ShipmentControl">	
+			<div class="card">
+				<ion-icon class="iconFunction" name="paper-plane-outline" size="large"></ion-icon><p>Indirizzi</p>
+			</div>
+		</a>
+		
+		<a href="PaymentControl">
+			<div class="card">
+				<ion-icon class="iconFunction" name="card-outline" size="large"></ion-icon><p>Pagamenti</p>
+			</div>
+		</a>
+		<% if(persona.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
+		
+			%>
+		<a href="OrderControl">
+			<div class="card">
+				<ion-icon class="iconFunction" name="documents-outline" size="large"></ion-icon><p>Gestione Ordini</p>
+			</div>
+		</a>
+		
+		<a href="admin">
+			<div class="card">
+				<ion-icon class="iconFunction" name="grid-outline" size="large"></ion-icon><p>Gestione Catalogo</p>
+			</div>
+		</a>
+		
+		<a href="/">
+			<div class="card">
+				<ion-icon class="iconFunction" name="people-outline" size="large"></ion-icon><p>Gestione Utenti</p>
+			</div>
+		</a>
+		
+		<% 
+			}
+		%>
+		<a href="/">
+			<div class="card">
+				<ion-icon class="iconFunction" name="cog-outline" size="large"></ion-icon><p>Impostazioni Account</p>
+			</div>
+		</a>
+		
+		<a href="Logout">
+			<div class="cardLogout">
+				<ion-icon class="iconFunction" name="log-out-outline" size="large"></ion-icon><p>Esci</p>
+			</div>
+		</a>
+	
+	</div>
+	
+	<div class="content"></div>
+	<div class="content"></div>
+	<div class="content"></div>
 
 	
-	<%
-	String nome = persona.getNome();
-	String cognome = persona.getCognome();
-	%>
 	
-	<h1>Sei un utente loggato</h1>
-	<h2>Bentornato <%=nome%> <%=cognome%></h2>
-	<h2>Sei amministratore?</h2>
-	<% 
-	if(persona.getCategoriaUtente().equalsIgnoreCase("amministratore") ){
-		%>
-		<h2>Si</h2>
-		<a href="OrderControl">Gestione ordini</a>
-		<%
-	} else {
-		%>
-		<h2>No</h2>
-		<%	
-	}
-	%>
-	<a href="UserInvoiceControl">Pagina degli ordini</a>
-	<a href="PaymentControl">Metodi di pagamento</a>
-	<a href="ShipmentControl">Indirizzi di spedizione</a>
-	<form action="Logout" method="get" > 
-    <input type="submit" value="Logout"/>
-    </form>
-   
+	
+	
+	
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

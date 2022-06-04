@@ -1,0 +1,111 @@
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
+
+.welcome {
+	text-align: center;
+}
+
+.card {
+  background-color: #f2a6c740;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  padding: 2rem;
+  height: 6rem;
+  justify-content:center;
+  margin: 0 auto;
+}
+
+.cardLogout {
+  background-color: #f2a6c740;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  padding: 2rem;
+  height: 6rem;
+  margin: 0 auto;
+}
+
+.iconFunction ion-icon {
+    display: block;
+    
+    z-index: -1;
+    
+}
+
+.cards {
+  max-width: 80%;
+  margin:0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.card:hover{
+    background-color: #fdd835;
+    
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.cardLogout:hover{
+    background-color: #ff00009a;
+    
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+@media (min-width: 400px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .card{
+  	width: 100px;
+  	height: 100px;
+  }
+  .cardLogout{
+  	width: 100px;
+  	height: 100px;
+  }
+}
+
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .card{
+  	width: 100px;
+  	height: 100px;
+  }
+  .cardLogout{
+  	width: 100px;
+  	height: 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards { grid-template-columns: repeat(5, 1fr); }
+  .card{
+  	width: 100px;
+  	height: 100px;
+  }
+  .cardLogout{
+  	width: 100px;
+  	height: 100px;
+  }
+}
+
