@@ -66,6 +66,13 @@ if (persona == null)
 		<% 
 			}
 		%>
+		
+		<a href="/">
+			<div class="card">
+				<ion-icon name="star-half-outline" size="large"></ion-icon><p>Valutazione Prodotti</p>
+			</div>
+		</a>
+		
 		<a href="/">
 			<div class="card">
 				<ion-icon class="iconFunction" name="cog-outline" size="large"></ion-icon><p>Impostazioni Account</p>
@@ -77,6 +84,7 @@ if (persona == null)
 				<ion-icon class="iconFunction" name="log-out-outline" size="large"></ion-icon><p>Esci</p>
 			</div>
 		</a>
+	
 	
 	</div>
 	
