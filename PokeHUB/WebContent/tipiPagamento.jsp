@@ -8,81 +8,163 @@ if (persona == null)
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,model.*,control.*,java.text.DecimalFormat"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>Metodi di pagamento</title>
+    <meta charset="UTF-8">
+    <title>Pagina Pagamenti</title>
+
+	<link rel="stylesheet" href="CSS/Pagamenti.css"/>
+    <link rel="stylesheet" href="CSS/Slick/slick.css"/>
+
+   
 </head>
+<body>
+
 <%@ include file="Header.jsp" %>
+
+<h3 style="text-align:center">Gestisci pagamenti</h3>
+
+<div class="container-slider">
 	
-	<h1>Metodi di pagamento</h1>
-		<%
-			Collection<PaymentBean> pagamenti = (Collection<PaymentBean>) request.getSession().getAttribute("PaymentMethod");
-			System.out.println(pagamenti);
-			PaymentBean sistema;
-			
-				Iterator<PaymentBean> iter = pagamenti.iterator();
+	<div class="slider-for">
+	
+	<%
+		Collection<PaymentBean> pagamenti = (Collection<PaymentBean>) request.getSession().getAttribute("PaymentMethod");
+		System.out.println(pagamenti);
+		PaymentBean sistema;
+		
+			Iterator<PaymentBean> iter = pagamenti.iterator();
 				int i = 0;
 				while( iter.hasNext() ) {
 					sistema = iter.next();
 					i++;
 			
 				%>
-					<h1>Pagamento <%=i%></h1> 
-					<h2>Intestatario: <%=sistema.getIntestatarioCarta()%></h2> 
-					<h2>Numero Carta: <%=sistema.getNumeroCarta() %></h2>
-					<h2><a href="PaymentControl?action=delete&id=<%= sistema.getNumeroCarta()%>">Cancella</a></h2>
+					
+					<div class="">
+						<div class="containerinterno">
+							<a href="PaymentControl?action=delete&id=<%= sistema.getNumeroCarta()%>"><ion-icon class="elimina" name="close-outline" size="large"></ion-icon></a>
+							<ion-icon class="modifica" name="create-outline" size="large"></ion-icon>
+							<p class="paragrafoIndirizzo">Carta che termina con <%=sistema.getNumeroCarta().substring(sistema.getNumeroCarta().length()-4, sistema.getNumeroCarta().length()) %></p>
+							<p class="paragrafoIndirizzo">Scadenza carta: <%= sistema.getScadenza().substring(5, 7) %>/<%= sistema.getScadenza().substring(0, 4) %></p>
+							<p class="paragrafoNumero"><%=sistema.getIntestatarioCarta() %></p>     
+						</div>  
+        			</div>
+					
 				<%
 			
 				}
 
 				%>
-				
-		<h2>Inserisci carta:</h2>
-				
-		<form action="PaymentControl?action=insert" method="post">
 		
-		<label for="numeroCarta">Numero Carta:</label><br> 
-		<input name="numeroCarta" type="text" maxlength="16" required placeholder="numero carta"><br> 
+	</div>
+
+</div>
+
+
+<div class="content"></div>
+
+
+<form action="PaymentControl?action=insert" method="post" style="max-width:500px;margin:auto">
+
+	<h3 style="text-align:center">Aggiungi un nuovo pagamento</h3>
+  
+	<div class="input-container">
+		<i class="icon"><ion-icon name="card-outline" size="large"></ion-icon></ion-icon></i>
+		<input class="input-field" name="numeroCarta" type="text" maxlength="16" placeholder="Numero carta">
+	</div>
+	
+	<div class="input-container">
+		<i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
+		<input class="input-field" name="intestatarioCarta" type="text" maxlength="50" placeholder="Intestatario">
+	</div>
 		
-		<label for="intestatarioCarta">Intestario:</label><br> 
-		<input name="intestatarioCarta" type="text" maxlength="50" required placeholder="nome intestatario"><br>
+	
+	<div class="input-container">
+		<i class="icon"><ion-icon name="keypad-outline" size="large"></ion-icon></i>
+		<input class="input-field" name="cvv" type="text" maxlength="3" placeholder="CVV">
+	</div>
 		
-		<label for="cvv">CVV:</label><br> 
-		<input name="cvv" type="text" maxlength="3" required placeholder="cvv"><br>
+	<div class="input-container-month">
+		<i class="icon"><ion-icon name="calendar-number-outline" size="large"></ion-icon></i>
+		<input class="input-field" name ="mese" type="number" min="1" max="12" step="1" placeholder="Mese scadenza">
+	</div>
+	
+	<div class="input-container-year">
+		<i class="icon"><ion-icon name="calendar-number-outline" size="large"></ion-icon></i>
+		<input class="input-field" name ="anno" type="number" min="2022" max="2099" step="1" placeholder="Anno scadenza">
+	</div>
 		
-		<label for="mese">Mese:</label><br>
-		<select name="mese">
- 			<option value="1">Gennaio</option>
-  			<option value="2">Febbraio</option>
-  			<option value="3">Marzo</option>
-  			<option value="4">Aprile</option>
-  			<option value="5">Maggio</option>
-  			<option value="6">Giugno</option>
-  			<option value="7">Luglio</option>
-  			<option value="8">Agosto</option>
-  			<option value="9">Settembre</option>
-  			<option value="10">Ottobre</option>
-  			<option value="11">Novembre</option>
-  			<option value="12">Dicembre</option>
-		</select>
-		
-		<br>
-		
-		<label for="anno">Anno:</label><br> 
-		<input name ="anno" type="number" min="2022" max="2099" step="1" value="2022" />
-		
-		<br><br>
-		
-		<input type="submit" value="Aggiungi carta">
-				
-		</form>
-				
-				<%@ include file="Footer.html" %>
-				
 	
 	
+	<button type="submit" class="btnRegister">Aggiungi pagamento</button>
+	
+</form>
+
+
+
+<div class="content"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="JavaScript/slick.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    
+	$('.slider-for').slick({
+		centerMode: true,
+  		centerPadding: '60px',
+		slidesToShow: 3,
+		dots: true,
+		
+		prevArrow:"<span class='iconSliderLeft'><ion-icon class='iconLeft' name='arrow-back-circle-outline' size='large'></ion-icon></span>",
+		nextArrow:"<span class='iconSliderRight'><ion-icon class='iconRight' name='arrow-forward-circle-outline' size='large'></ion-icon></span>",
+		responsive: [
+			{
+			breakpoint: 1050,
+			settings: {
+				arrows: true,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 2
+			}
+			},
+			{
+			breakpoint: 700,
+			settings: {
+				arrows: true,
+				centerMode: true,
+				centerPadding: '40px',
+				slidesToShow: 1
+			}
+			}
+		]
+	});
+	 
+});
+</script>
 </body>
 </html>

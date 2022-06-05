@@ -3,7 +3,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.sql.Date;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,7 +33,7 @@ public class PaymentControl extends HttpServlet {
 		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
 		
 		if(utente == null) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Login");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginPage.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -55,9 +55,9 @@ public class PaymentControl extends HttpServlet {
 					
 					//si potrebbe gestire con il try catch se fa errore:
 					try {
-						Integer mese = Integer.parseInt(request.getParameter("mese"));
+						int mese = Integer.parseInt(request.getParameter("mese"));
 						System.out.println(mese);
-						Integer anno = Integer.parseInt(request.getParameter("anno"));
+						int anno = Integer.parseInt(request.getParameter("anno"));
 						System.out.println(anno);
 						String numeroCarta = request.getParameter("numeroCarta");
 						System.out.println(numeroCarta);
@@ -73,7 +73,11 @@ public class PaymentControl extends HttpServlet {
 						nuova_carta.setIntestatarioCarta(intestatarioCarta);
 						nuova_carta.setMailCliente(utente.getMail());
 						nuova_carta.setNumeroCarta(numeroCarta);
-						nuova_carta.setScadenza(new Date(anno.intValue(),mese.intValue(),31));
+						
+						String dataScadenza = anno+"-"+mese+"-1";
+						System.out.println("La data di scadenza e': "+dataScadenza);
+						
+						nuova_carta.setScadenza(dataScadenza);
 
 						pagamento.doSave(nuova_carta);
 					} catch(Exception e) {

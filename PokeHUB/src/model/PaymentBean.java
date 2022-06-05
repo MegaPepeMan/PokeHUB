@@ -15,7 +15,7 @@ public class PaymentBean implements Serializable {
 	private String MailCliente;
 	private String IntestatarioCarta;
 	private String CVV;
-	private Date Scadenza;
+	private String Scadenza;
 	  
 	public PaymentBean() {
 		
@@ -23,7 +23,7 @@ public class PaymentBean implements Serializable {
 		MailCliente = "";
 		IntestatarioCarta = "";
 		CVV = "";
-		Scadenza = new Date(0, 0, 1);
+		Scadenza = "2099-01-01";
 		
 	}
 
@@ -59,11 +59,11 @@ public class PaymentBean implements Serializable {
 		CVV = cVV;
 	}
 
-	public Date getScadenza() {
+	public String getScadenza() {
 		return Scadenza;
 	}
 
-	public void setScadenza(Date date) {
+	public void setScadenza(String date) {
 		Scadenza = date;
 	}
 

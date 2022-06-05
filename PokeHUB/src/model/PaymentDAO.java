@@ -32,7 +32,7 @@ public class PaymentDAO {
 				preparedStatement.setString(2,pagamento.getMailCliente());
 				preparedStatement.setString(3, pagamento.getIntestatarioCarta());
 				preparedStatement.setString(4, pagamento.getCVV());
-				preparedStatement.setDate(5,pagamento.getScadenza()); 
+				preparedStatement.setString(5,pagamento.getScadenza()); 
 
 				preparedStatement.executeUpdate();
 
@@ -73,7 +73,7 @@ public class PaymentDAO {
 					bean.setMailCliente(rs.getString("mail_cliente"));
 					bean.setIntestatarioCarta(rs.getString("intestatario_carta"));
 					bean.setCVV(rs.getString("cvv"));
-					bean.setScadenza(rs.getDate("scadenza"));
+					bean.setScadenza(rs.getString("scadenza"));
 					
 					
 				}
@@ -154,7 +154,7 @@ public class PaymentDAO {
 					bean.setNumeroCarta(rs.getString("numero_carta"));
 					bean.setIntestatarioCarta(rs.getString("intestatario_carta"));
 					bean.setMailCliente(rs.getString("mail_cliente"));
-					bean.setScadenza(rs.getDate("scadenza"));
+					bean.setScadenza(rs.getString("scadenza"));
 					bean.setCVV(rs.getString("cvv"));
 					
 					payments.add(bean);
@@ -184,7 +184,7 @@ public class PaymentDAO {
 				preparedStatement.setString(2,pagamento.getMailCliente());
 				preparedStatement.setString(3, pagamento.getIntestatarioCarta());
 				preparedStatement.setString(4, pagamento.getCVV());
-				preparedStatement.setDate(5,pagamento.getScadenza()); 
+				preparedStatement.setString(5,pagamento.getScadenza()); 
 
 
 				preparedStatement.executeUpdate();

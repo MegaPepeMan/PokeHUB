@@ -14,11 +14,7 @@ if (persona == null)
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Slick Slider Responsive</title>
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-    
-	
+    <title>Pagina Indirizzi</title>
 
 	<link rel="stylesheet" href="CSS/Indirizzi.css"/>
     <link rel="stylesheet" href="CSS/Slick/slick.css"/>
@@ -28,6 +24,8 @@ if (persona == null)
 <body>
 
 <%@ include file="Header.jsp" %>
+
+<h3 style="text-align:center">Gestisci indirizzi</h3>
 
 <div class="container-slider">
 	

@@ -74,7 +74,7 @@ public class PreCheckuot extends HttpServlet {
 					nuova_carta.setIntestatarioCarta(intestatarioCarta);
 					nuova_carta.setMailCliente(utente.getMail());
 					nuova_carta.setNumeroCarta(numeroCarta);
-					nuova_carta.setScadenza(new Date(anno.intValue(),mese.intValue(),31));
+					nuova_carta.setScadenza(anno+"-"+mese+"-1");
 
 					pagamenti.doSave(nuova_carta);
 				} catch(Exception e) {
