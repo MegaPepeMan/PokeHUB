@@ -1,0 +1,84 @@
+.table {
+	margin-left: auto; 
+	margin-right: auto;
+	border: 4px solid;
+	border-radius: 20px;
+}
+
+td, th {
+  text-align: center;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 3px solid black;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+
+
+
+
+.codTrack {
+    display: none;
+}
+
+.statusOrdine {
+    display: none;
+}
+
+.indirizzoSped {
+    display: none;
+}
+
+.numCivico {
+    display: none;
+}
+
+.cap {
+    display: none;
+}
+
+.numTelefono {
+    display: none;
+}
+
+
+
+
+
+@media screen and (min-width: 768px) {
+    .codTrack  {
+      display: table-cell;
+    }
+}
+
+@media screen and (min-width: 950px) {
+   .statusOrdine {
+      display: table-cell;
+    }
+}
+
+@media screen and (min-width: 1120px) {
+   .indirizzoSped {
+      display: table-cell;
+    }
+}
+
+@media screen and (min-width: 1420px) {
+   .numCivico {
+      display: table-cell;
+    }
+}
+
+@media screen and (min-width: 1520px) {
+   .cap {
+      display: table-cell;
+    }
+}
+
+@media screen and (min-width: 1620px) {
+   .numTelefono {
+      display: table-cell;
+    }
+}

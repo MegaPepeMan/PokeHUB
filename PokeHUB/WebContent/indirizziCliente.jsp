@@ -149,9 +149,9 @@ $(document).ready(function(){
 			breakpoint: 700,
 			settings: {
 				arrows: true,
-				centerMode: true,
+				centerMode: false,
 				centerPadding: '40px',
-				slidesToShow: 1
+				slidesToShow: 1,
 			}
 			}
 		]

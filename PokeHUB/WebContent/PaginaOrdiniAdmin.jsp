@@ -28,6 +28,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Ordini Admin</title>
+	<link href="CSS/OrdiniAdmin.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -46,21 +47,17 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 		<input type="submit" value="Invia">
 	</form>
 	
-	<table border="1" cellpadding="10" cellspacing="0">
+	<table border="1" cellpadding="10" cellspacing="0" class="table">
 		<tr>
-			<td><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
-			
-			<td><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
-			<td><b>Codice di tracking</b></td>
-			<td><b><a href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
-			<td><b>Status consegna</b></td>
-			<td><b>Indirizzo di spedizione</b></td>
-			<td><b> Numero civico </b></td>
-			<td><b> Cap </b> </td>
-			<td> <b> Numero di telefono</b></td>
-			
-			
-			
+			<td class="idOrdine"><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
+			<td class="cliente"><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
+			<td class="codTrack"><b>Codice di tracking</b></td>
+			<td class="dataOrdine"><b><a href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
+			<td class="statusOrdine"><b>Status consegna</b></td>
+			<td class="indirizzoSped"><b>Indirizzo di spedizione</b></td>
+			<td class="numCivico"><b> Numero civico </b></td>
+			<td class="cap"><b> Cap </b> </td>
+			<td class="numTelefono"> <b> Numero di telefono</b></td>	
 		</tr>
 		
 		
@@ -73,15 +70,15 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 					ordine=it.next();
 					%>
 					<tr>
-					<td><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
-					<td> <%= ordine.getMailCliente() %> </td>
-					<td> <%= ordine.getTrakingOrdine() %> </td>
-					<td> <%= ordine.getDataOrdine() %> </td>
-					<td> <%= ordine.getStato() %> </td>
-					<td> <%= ordine.getVia() %> </td>
-					<td> <%= ordine.getCivico() %> </td>
-					<td> <%= ordine.getCap() %> </td>
-					<td> <%= ordine.getTelefono() %> </td>
+					<td class="idOrdine"><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
+					<td class="cliente"> <%= ordine.getMailCliente() %> </td>
+					<td class="codTrack"> <%= ordine.getTrakingOrdine() %> </td>
+					<td class="dataOrdine"> <%= ordine.getDataOrdine() %> </td>
+					<td class="statusOrdine"> <%= ordine.getStato() %> </td>
+					<td class="indirizzoSped"> <%= ordine.getVia() %> </td>
+					<td class="numCivico"> <%= ordine.getCivico() %> </td>
+					<td class="cap"> <%= ordine.getCap() %> </td>
+					<td class="numTelefono"> <%= ordine.getTelefono() %> </td>
 					</tr> 
 					<% 
 					
@@ -100,10 +97,9 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 	
 		
 	</table>
-	
-	
-	<%@ include file="Footer.html" %>
-	
+
+	<div class="content"></div>
+	<div class="content"></div>
 		
 </body>
 </html>

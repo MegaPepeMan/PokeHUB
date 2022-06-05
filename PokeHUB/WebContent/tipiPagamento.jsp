@@ -48,7 +48,7 @@ if (persona == null)
 						<div class="containerinterno">
 							<a href="PaymentControl?action=delete&id=<%= sistema.getNumeroCarta()%>"><ion-icon class="elimina" name="close-outline" size="large"></ion-icon></a>
 							<ion-icon class="modifica" name="create-outline" size="large"></ion-icon>
-							<p class="paragrafoIndirizzo">Carta che termina con <%=sistema.getNumeroCarta().substring(sistema.getNumeroCarta().length()-4, sistema.getNumeroCarta().length()) %></p>
+							<p class="paragrafoIndirizzo">Carta che termina con ****<%=sistema.getNumeroCarta().substring(sistema.getNumeroCarta().length()-4, sistema.getNumeroCarta().length()) %></p>
 							<p class="paragrafoIndirizzo">Scadenza carta: <%= sistema.getScadenza().substring(5, 7) %>/<%= sistema.getScadenza().substring(0, 4) %></p>
 							<p class="paragrafoNumero"><%=sistema.getIntestatarioCarta() %></p>     
 						</div>  
@@ -156,9 +156,9 @@ $(document).ready(function(){
 			breakpoint: 700,
 			settings: {
 				arrows: true,
-				centerMode: true,
+				centerMode: false,
 				centerPadding: '40px',
-				slidesToShow: 1
+				slidesToShow: 1,
 			}
 			}
 		]
