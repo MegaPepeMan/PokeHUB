@@ -1,7 +1,10 @@
 <%
-UserBean utente = (UserBean) request.getSession().getAttribute("userID");
-if(utente != null) {
-	response.sendRedirect(request.getContextPath() + "/userLogged.jsp");
+UserBean utente = null;
+System.out.println("Lo userID e: "+ session.getAttribute("userID") );
+if (session.getAttribute("userID") != null )
+	{
+		utente = (UserBean)request.getSession().getAttribute("userID");
+		response.sendRedirect(request.getContextPath() + "/userLogged.jsp");
 }
 %>
 <!DOCTYPE HTML>

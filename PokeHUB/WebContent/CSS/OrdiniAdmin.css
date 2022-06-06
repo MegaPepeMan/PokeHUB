@@ -3,6 +3,7 @@
 	margin-right: auto;
 	border: 4px solid;
 	border-radius: 20px;
+	font-size: 13pt;
 }
 
 td, th {
@@ -11,8 +12,8 @@ td, th {
   border-right: none;
   border-left: none;
   border-bottom: 3px solid black;
-  padding-bottom: 25px;
-  padding-top: 25px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 
 
@@ -47,37 +48,37 @@ td, th {
 
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 400px) {
     .codTrack  {
       display: table-cell;
     }
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 750px) {
    .statusOrdine {
       display: table-cell;
     }
 }
 
-@media screen and (min-width: 1120px) {
+@media screen and (min-width: 850px) {
    .indirizzoSped {
       display: table-cell;
     }
 }
 
-@media screen and (min-width: 1420px) {
+@media screen and (min-width: 980px) {
    .numCivico {
       display: table-cell;
     }
 }
 
-@media screen and (min-width: 1520px) {
+@media screen and (min-width: 1050px) {
    .cap {
       display: table-cell;
     }
 }
 
-@media screen and (min-width: 1620px) {
+@media screen and (min-width: 1300px) {
    .numTelefono {
       display: table-cell;
     }

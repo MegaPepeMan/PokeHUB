@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 					
 				} catch (Exception e) {
 					request.getSession().setAttribute("adminRoles", false);
-					request.getSession().setAttribute("userID", false);
+					request.getSession().setAttribute("userID", null);
 					redirectedPage = "/LoginPage.jsp";
 				}
 			}
