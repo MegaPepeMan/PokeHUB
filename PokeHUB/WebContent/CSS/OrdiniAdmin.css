@@ -11,7 +11,7 @@ td, th {
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 3px solid red;
+  border-bottom: 2px solid black;
   padding-bottom: 15px;
   padding-top: 15px;
 }
@@ -20,6 +20,9 @@ table>tbody>tr:last-child>td {
 	border-bottom: none;
 }
 
+input[type="date"]{
+	font-family: "Verdana", monospace;
+}
 
 
 
@@ -46,6 +49,130 @@ table>tbody>tr:last-child>td {
 .numTelefono {
     display: none;
 }
+
+
+body{
+	background-color: white;
+}
+#ricercaDataUtente form {
+    max-width:600px;
+    margin:auto;
+}
+
+* {box-sizing: border-box;}
+
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+
+	
+    padding-right: 20px;
+    
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.btnSearch {
+	margin-left: 10%;
+	margin-right: 10%;
+    width: 80%;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fdd8357b;
+    border: solid 2px white;
+}
+
+.icon {
+  padding: 20px;
+  background: white;
+  color: black;
+  min-width: 50px;
+  max-width: 100px;
+
+  border-bottom-left-radius: 18px;
+  border-top-left-radius: 18px;
+}
+
+.input-field {
+  
+  width: 100%;
+  font-size: large;
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+.input-container:focus-within .icon {  
+    background-color: #fdd835;
+    color: white;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.btnSearch:hover{
+    background-color: #fdd835;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+hr{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-top: 1px solid rgba(128, 128, 128, 0.27);  
+    border-radius: 5px;
+}
+
+#Logo_Testo {
+	width: 60%;
+	height: auto;
+}
+
+
+@media screen and (max-width: 500px) {
+	#login  form {
+	    max-width:300px;
+	    margin:auto;
+	}
+	
+	.input-container {
+    	width: 80%;
+    	margin-left: 10%;
+    	margin-right: 10%;
+	}
+	
+	.btnLogin {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+	}
+
+	.btnRegister {
+		width: 80%;
+		margin-left: 10%;
+    	margin-right: 10%;
+    	margin-bottom: 10%;
+	}
+}
+
+
+
+
+
+
+
+
+
 
 
 

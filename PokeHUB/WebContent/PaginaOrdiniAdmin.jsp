@@ -34,18 +34,36 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 <body>
 	<%@ include file="Header.jsp" %>
 	
-	<form action="OrderControl" method="post">
+	<div class="content"></div>
+	<h3 style="text-align: center;">Data Inizio & Data Fine</h3>
+	<form action="OrderControl" id="ricercaDataUtente" method="post" style="max-width:300px;margin:auto;">
 		<input type="hidden" name="action" value="search">
-		<h3>Data Inizio</h3>
-		<input type="date" name="datai">
-		<br>
-		<h3>Data Fine</h3>
-		<input type="date" name="dataf">
-		<h3>Utente</h3>
-		<input type="text" name="username" value ="*">
-		<br><br>
-		<input type="submit" value="Invia">
+		
+		<div class="input-container">
+            <i class="icon"><ion-icon name="calendar-clear-outline" size="large"></ion-icon></i>
+            <input class="input-field" type="date" placeholder="Data Inizio" name="datai">
+        </div>
+
+		
+		<div class="input-container">
+            <i class="icon"><ion-icon name="calendar-outline" size="large"></ion-icon></i>
+            <input class="input-field" type="date" placeholder="Data Inizio" name="dataf">
+        </div>
+		
+		
+
+		<h3 style="text-align: center;">Utente</h3>
+		<div class="input-container">
+            <i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
+            <input class="input-field" type="text" value="*" name="username">
+        </div>
+        
+        
+        
+		<input type="submit" value="Cerca" class="btnSearch">
 	</form>
+	
+	<div class="content"></div>
 	
 	<table border="1" cellpadding="10" cellspacing="0" class="table">
 	<tbody>
@@ -99,6 +117,9 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 
 	<div class="content"></div>
 	<div class="content"></div>
-		
+	
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
 </body>
 </html>

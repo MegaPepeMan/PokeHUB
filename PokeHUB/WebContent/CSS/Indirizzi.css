@@ -44,7 +44,18 @@ body{
 
 * {box-sizing: border-box;}
 
-.input-container {
+.input-container-dataInizio {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5%;
+
+    padding-right: 20px;
+    
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.input-container-dataFine {
     display: flex;
     width: 100%;
     margin-bottom: 5%;
