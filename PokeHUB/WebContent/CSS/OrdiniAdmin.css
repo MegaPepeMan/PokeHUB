@@ -11,11 +11,14 @@ td, th {
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid red;
   padding-bottom: 15px;
   padding-top: 15px;
 }
 
+table>tbody>tr:last-child>td {
+	border-bottom: none;
+}
 
 
 

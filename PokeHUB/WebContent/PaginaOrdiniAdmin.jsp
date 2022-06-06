@@ -48,6 +48,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 	</form>
 	
 	<table border="1" cellpadding="10" cellspacing="0" class="table">
+	<tbody>
 		<tr>
 			<td class="idOrdine"><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
 			<td class="cliente"><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
@@ -69,25 +70,23 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 				while(it.hasNext()){
 					ordine=it.next();
 					%>
-					<tr>
-					<td class="idOrdine"><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
-					<td class="cliente"> <%= ordine.getMailCliente() %> </td>
-					<td class="codTrack"> <%= ordine.getTrakingOrdine() %> </td>
-					<td class="dataOrdine"> <%= ordine.getDataOrdine() %> </td>
-					<td class="statusOrdine"> <%= ordine.getStato() %> </td>
-					<td class="indirizzoSped"> <%= ordine.getVia() %> </td>
-					<td class="numCivico"> <%= ordine.getCivico() %> </td>
-					<td class="cap"> <%= ordine.getCap() %> </td>
-					<td class="numTelefono"> <%= ordine.getTelefono() %> </td>
+					<tr class="recordOrdini">
+						<td class="idOrdine"><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
+						<td class="cliente"> <%= ordine.getMailCliente() %> </td>
+						<td class="codTrack"> <%= ordine.getTrakingOrdine() %> </td>
+						<td class="dataOrdine"> <%= ordine.getDataOrdine() %> </td>
+						<td class="statusOrdine"> <%= ordine.getStato() %> </td>
+						<td class="indirizzoSped"> <%= ordine.getVia() %> </td>
+						<td class="numCivico"> <%= ordine.getCivico() %> </td>
+						<td class="cap"> <%= ordine.getCap() %> </td>
+						<td class="numTelefono"> <%= ordine.getTelefono() %> </td>
 					</tr> 
 					<% 
 					
 				}
 			}else {
 				%>
-				<tr>
-					<td colspan="6">Nessun ordine disponibile</td>
-				</tr>
+				
 				<% 
 				
 			}
@@ -95,7 +94,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 			%>
 		
 	
-		
+	</tbody>	
 	</table>
 
 	<div class="content"></div>
