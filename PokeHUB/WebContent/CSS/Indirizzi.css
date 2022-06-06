@@ -254,7 +254,7 @@ hr{
 }
 
 .paragrafoIndirizzo {
-    font-size: 17pt;
+    font-size: 85%;
     font-weight: bold;
     color: black;
 
@@ -263,20 +263,10 @@ hr{
 }
 
 .paragrafoNumero {
-    font-size: 17pt;
+    font-size: 85%;
     font-weight: lighter;
     color: black;
 
     position:absolute;                
     bottom:0;                        
-}
-
-@media screen and (max-width: 1000px) {
-	.paragrafoIndirizzo {
-        font-size: 15pt;
-    }
-    
-    .paragrafoNumero {
-        font-size: 15pt;     
-    }
 }
