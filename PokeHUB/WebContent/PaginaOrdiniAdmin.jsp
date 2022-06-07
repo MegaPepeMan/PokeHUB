@@ -35,43 +35,49 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 	<%@ include file="Header.jsp" %>
 	
 	<div class="content"></div>
-	<h3 style="text-align: center;">Data Inizio & Data Fine</h3>
-	<form action="OrderControl" id="ricercaDataUtente" method="post" style="max-width:300px;margin:auto;">
+	<div class="content"></div>
+	<h3 style="text-align: center;">Ricerca per Data & Utente</h3>
+	
+	
+	<form action="OrderControl" method="post">
 		<input type="hidden" name="action" value="search">
 		
-		<div class="input-container">
-            <i class="icon"><ion-icon name="calendar-clear-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="date" placeholder="Data Inizio" name="datai">
+		<div id="ricercaDataUtente">
+			
+			<div class="input-container">
+	            <i class="icon"><ion-icon name="calendar-clear-outline" size="large"></ion-icon></i>
+	            <input class="input-field" type="date" placeholder="Data Inizio" name="datai">
+	        </div>
+	
+			
+			<div class="input-container">
+	            <i class="icon"><ion-icon name="calendar-outline" size="large"></ion-icon></i>
+	            <input class="input-field" type="date" placeholder="Data Inizio" name="dataf">
+	        </div>
+			
+			
+			<div class="input-container">
+	            <i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
+	            <input class="input-field" type="text" value="*" name="username">
+	        </div>
+	        
         </div>
-
-		
-		<div class="input-container">
-            <i class="icon"><ion-icon name="calendar-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="date" placeholder="Data Inizio" name="dataf">
-        </div>
-		
-		
-
-		<h3 style="text-align: center;">Utente</h3>
-		<div class="input-container">
-            <i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="text" value="*" name="username">
-        </div>
-        
-        
         
 		<input type="submit" value="Cerca" class="btnSearch">
 	</form>
 	
 	<div class="content"></div>
 	
+	<hr>
+	
+	<h3 style="text-align: center;">Ordini trovati</h3>
 	<table border="1" cellpadding="10" cellspacing="0" class="table">
 	<tbody>
 		<tr>
-			<td class="idOrdine"><b><a href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
-			<td class="cliente"><b><a href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
+			<td class="idOrdine"><b><a class="linkTabella" href="OrderControl?sort=id_ordine&action=all">ID ordine</a></b></td>
+			<td class="cliente"><b><a class="linkTabella" href="OrderControl?sort=mail_cliente&action=all">Cliente</a></b></td>
 			<td class="codTrack"><b>Codice di tracking</b></td>
-			<td class="dataOrdine"><b><a href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
+			<td class="dataOrdine"><b><a class="linkTabella" href="OrderControl?sort=data_ordine&action=all">Data ordine</a></b></td>
 			<td class="statusOrdine"><b>Status consegna</b></td>
 			<td class="indirizzoSped"><b>Indirizzo di spedizione</b></td>
 			<td class="numCivico"><b> Numero civico </b></td>
@@ -89,7 +95,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 					ordine=it.next();
 					%>
 					<tr class="recordOrdini">
-						<td class="idOrdine"><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
+						<td class="idOrdine"><a class="linkTabella" href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
 						<td class="cliente"> <%= ordine.getMailCliente() %> </td>
 						<td class="codTrack"> <%= ordine.getTrakingOrdine() %> </td>
 						<td class="dataOrdine"> <%= ordine.getDataOrdine() %> </td>
@@ -104,7 +110,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 				}
 			}else {
 				%>
-				
+					<tr><td colspan="9">Nessun ordine trovato</td></tr>
 				<% 
 				
 			}
