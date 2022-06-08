@@ -1,0 +1,139 @@
+.ordine {
+    margin:0 auto;
+    display: grid;
+    font-size: 20pt;
+    font-family:Arial;
+
+    font-weight: 900;
+
+    display: grid;
+    grid-template-areas:
+    'identificativo    bianco      bianco     bianco      dataOrdine'
+    'tracking          bianco      bianco     bianco           right'
+    'immagine        immagine    immagine       plus    totaleOrdine';
+
+    border: solid 5px #fdd835;
+    background-color: #ffe6995d;
+    width: 80%;
+    
+    margin-top: 5%;
+    margin-bottom: 5%;
+    
+    border-radius: 20px;
+}
+.identificativo {
+    grid-area: identificativo;
+    margin-left: 3%;
+    margin-top: -5%;
+}
+
+.tracking {
+    grid-area: tracking;
+    margin-left: 3%;
+    margin-top: -12%;
+}
+
+.dataOrdineEIcona {
+    margin-top: -1%;
+}
+
+.dataOrdine {
+    grid-area: dataOrdine;
+    text-align: right;
+    vertical-align: bottom;
+    margin-right: 3%;
+}
+
+.totaleOrdine {
+    grid-area: totaleOrdine;
+    text-align: right;
+    position:relative;
+}
+
+.testoTotale {
+	position: absolute;
+  	bottom: 0;
+ 	left: 0;
+ 	right: 10%;
+}
+
+.immaginiProdotti {
+    grid-area: immagine;
+    margin-bottom: 1%;
+}
+
+.immagineProdotto {
+    width:100px;
+    height:auto;
+    margin-left: 3%;
+}
+
+.iconaPDF {
+    position: relative;
+    right: 7px;
+    top: 7px;
+}
+
+.iconaPlus {
+	grid-area: immagine;
+	width:50px;
+    height:auto;
+    padding-left: 50px;
+    padding-bottom: 40px;
+}
+
+
+
+@media (max-width: 850px) {
+    .immaginiProdotti {
+        display: none;
+    }
+    .iconaPlus{
+        display: none;
+    }
+
+    .ordine {
+        text-align: center;
+        grid-template-areas:
+        'dataOrdine'
+        'identificativo'
+        'tracking'
+        'totaleOrdine';
+    }
+    .identificativo {
+        margin-left: 0%;
+        margin-top: -10%;
+    }
+    .tracking {
+    	position: relative;
+    	bottom: 50%;
+        margin-left: 0%;
+        margin-top: 0%;
+    }
+    
+    .dataOrdineEIcona {
+        margin-top: 0%;
+        text-align: center;
+    }
+    .dataOrdine {
+        margin-right: 0%;
+    }
+    
+    .totaleOrdine {
+        top: 0;
+        left:5%;
+        margin-right: 0%;
+        text-align: center;
+    }    
+    .iconaPDF {
+        position: relative;
+        right: 5px;
+        top: 5px;
+    }
+    
+    .iconaPlus {
+        position: relative;
+        bottom: 0%;
+        left: 0%;
+    }
+  }

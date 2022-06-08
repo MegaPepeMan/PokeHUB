@@ -87,6 +87,9 @@ public class UserInvoiceControl extends HttpServlet {
 				Collection<OrderBean> totaleOrdini = ordini.doRetrieveByUser(utente.getMail());
 				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
 				
+				//Importo dell'ordine pagato
+				
+				
 				//Ricerca dei dettagli dei prodotti per aggiungere immagini alla pagina
 				Iterator<OrderBean> iterProdotti1 = totaleOrdini.iterator();
 				Iterator<CompositionBean> iterFotoProdotti1;
@@ -95,7 +98,10 @@ public class UserInvoiceControl extends HttpServlet {
 				OrderBean ordine;
 				
 				Collection<CompositionBean> fattura = new LinkedList<CompositionBean>();
+				
+				Map<Integer, Double> mappaTotalePrezzi = new HashMap<Integer, Double>();
 				Map<Integer, Collection<ProductBean> > mappaProdotti = new HashMap<Integer, Collection<ProductBean>>();
+				
 				
 				while(iterProdotti1.hasNext()){
 					ordine=iterProdotti1.next();
@@ -109,10 +115,28 @@ public class UserInvoiceControl extends HttpServlet {
 						fotoProdotti.add(prodotti.doRetrieveByKey(  iterFotoProdotti1.next().getIdentificativo_prodotto()  ) );
 					}	
 					mappaProdotti.put(ordine.getIdOrdine(), fotoProdotti );
+					
+					//Calcolo quanto e' costato l'ordine
+					Iterator<CompositionBean> iterPrezzi = fattura.iterator();
+					CompositionBean composizione;
+					double totaleFattura = 0;
+					while (iterPrezzi.hasNext()) {
+						composizione = iterPrezzi.next();
+						double percentualeIVA = composizione.getIva_acquisto()/100;
+						double prezzoConIVA = (percentualeIVA * composizione.getPrezzo_acquisto() ) + composizione.getPrezzo_acquisto();
+						double totaleProdotti = prezzoConIVA * composizione.getQuantita();
+						
+						totaleFattura = totaleFattura + totaleProdotti ;
+						System.out.println("Il totale a questo punto e': "+totaleFattura);
+						mappaTotalePrezzi.put(ordine.getIdOrdine(), totaleFattura);
+					}
+					
+					
 				}	
 					System.out.println("Le chiavi nella mappa sono: "+mappaProdotti.keySet());
 					
-					
+
+					request.getSession().setAttribute("totaleFattura", mappaTotalePrezzi);
 					request.getSession().setAttribute("dettagliProdotti", mappaProdotti);
 				
 				

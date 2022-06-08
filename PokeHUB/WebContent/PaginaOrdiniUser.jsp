@@ -18,6 +18,7 @@ if(utente == null) {
 	}
 	
 	Map<Integer, Collection<ProductBean> > mappaProdotti = (Map<Integer, Collection<ProductBean> >)request.getSession().getAttribute("dettagliProdotti");
+	Map<Integer, Double > mappaTotalePrezzi = (Map<Integer, Double>)request.getSession().getAttribute("totaleFattura");
 %> 
 		
 <!DOCTYPE html>
@@ -26,7 +27,8 @@ if(utente == null) {
 	
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Ordini Admin</title>
+	<title>Ordini Utente</title>
+	<link href="CSS/ordiniUtente.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -43,25 +45,9 @@ if(utente == null) {
 		<input type="submit" value="Invia">
 	</form>
 	
-	<table border="1" cellpadding="10" cellspacing="0">
-		<tr>
-			<td><b>ID ordine</b></td>
-			
-			<td><b>Cliente</b></td>
-			<td><b>Codice di tracking</b></td>
-			<td><b>Data ordine</b></td>
-			<td><b>Status consegna</b></td>
-			<td><b>Indirizzo di spedizione</b></td>
-			<td><b> Numero civico </b></td>
-			<td><b> Cap </b> </td>
-			<td><b> Numero di telefono</b></td>
-			
-			
-			
-		</tr>
-		
-		
-			<%
+		<%
+			DecimalFormat formatoPrezzo = new DecimalFormat();
+			formatoPrezzo.setMaximumFractionDigits(2);
 			if (ordini != null && ordini.size() != 0) {
 				OrderBean ordine;
 				Iterator<OrderBean> it = ordini.iterator();
@@ -69,31 +55,63 @@ if(utente == null) {
 				while(it.hasNext()){
 					ordine=it.next();
 					%>
-					<tr>
-					<td><a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
-					<td> <%= ordine.getMailCliente() %> </td>
-					<td> <%= ordine.getTrakingOrdine() %> </td>
-					<td> <%= ordine.getDataOrdine() %> </td>
-					<td> <%= ordine.getStato() %> </td>
-					<td> <%= ordine.getVia() %> </td>
-					<td> <%= ordine.getCivico() %> </td>
-					<td> <%= ordine.getCap() %> </td>
-					<td> <%= ordine.getTelefono() %> </td>
-					<%
-					Collection<ProductBean> prodotti = mappaProdotti.get(ordine.getIdOrdine());
-					System.out.println("Per l'ordine "+ ordine.getIdOrdine() +" i prodotti sono:" + prodotti);
-					Iterator<ProductBean> foto = prodotti.iterator();
-					ProductBean prodotto;
-					while ( foto.hasNext() ) {
-						prodotto = foto.next();
-						%>
-						<td> <img src="data:image/png;base64,<%= prodotto.getImmagineProdotto() %>" alt="immagine non presente"/ width="20px" height="20px"> </td>
-						<%
-					}
-					%>
 					
 					
-					</tr> 
+					<div class="ordine">
+				        <div class="identificativo">
+				            <h3>Identificativo ordine: <a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a></h3>
+				        </div>
+				
+				        <div class="tracking">
+				            <h3>Tracking: <%= ordine.getTrakingOrdine() %></h3>
+				        </div>
+				
+				        <div class="dataOrdine">
+				            <h3 class="dataOrdineEIcona"><i><ion-icon class="iconaPDF" name="document-outline" size="large"></ion-icon></i><%= ordine.getDataOrdine() %></h3>
+				        </div>
+				        
+				        <div class="totaleOrdine">
+				        	<div class="testoTotale">
+				            	<h3 >Totale €<%= formatoPrezzo.format(mappaTotalePrezzi.get(ordine.getIdOrdine()) )%></h3>
+				        	</div>
+				        </div>
+				
+				
+				        <div class="immaginiProdotti">
+				            <%
+								Collection<ProductBean> prodotti = mappaProdotti.get(ordine.getIdOrdine());
+								System.out.println("Per l'ordine "+ ordine.getIdOrdine() +" i prodotti sono:" + prodotti);
+								Iterator<ProductBean> foto = prodotti.iterator();
+								ProductBean prodotto;
+								int contatore = 0;
+								while ( foto.hasNext() && contatore < 7) {
+									prodotto = foto.next();
+									%>
+									<img class="immagineProdotto" src="data:image/png;base64,<%= prodotto.getImmagineProdotto() %>" alt="">
+									<%
+									contatore++;
+									if (contatore > 6) {
+										%>
+											<img class="iconaPlus" alt="icona-piu" src="Image/plus-icon.png">
+										<%
+									}
+								}
+							%>
+				            
+				        </div>
+				    
+				    </div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<% 
 					
 				}
@@ -107,12 +125,9 @@ if(utente == null) {
 			}
 	
 			%>
-		
 	
-		
-	</table>
-	
-	
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
 		
 </body>
 </html>
