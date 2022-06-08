@@ -9,12 +9,15 @@ if(utente == null) {
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
+<% 
+	Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
 	if(ordini == null)
 	{
 		response.sendRedirect("./OrderControl?action=all");
 		return;
 	}
+	
+	Map<Integer, Collection<ProductBean> > mappaProdotti = (Map<Integer, Collection<ProductBean> >)request.getSession().getAttribute("dettagliProdotti");
 %> 
 		
 <!DOCTYPE html>
@@ -76,6 +79,20 @@ if(utente == null) {
 					<td> <%= ordine.getCivico() %> </td>
 					<td> <%= ordine.getCap() %> </td>
 					<td> <%= ordine.getTelefono() %> </td>
+					<%
+					Collection<ProductBean> prodotti = mappaProdotti.get(ordine.getIdOrdine());
+					System.out.println("Per l'ordine "+ ordine.getIdOrdine() +" i prodotti sono:" + prodotti);
+					Iterator<ProductBean> foto = prodotti.iterator();
+					ProductBean prodotto;
+					while ( foto.hasNext() ) {
+						prodotto = foto.next();
+						%>
+						<td> <img src="data:image/png;base64,<%= prodotto.getImmagineProdotto() %>" alt="immagine non presente"/ width="20px" height="20px"> </td>
+						<%
+					}
+					%>
+					
+					
 					</tr> 
 					<% 
 					
@@ -95,8 +112,6 @@ if(utente == null) {
 		
 	</table>
 	
-	
-	<%@ include file="Footer.html" %>
 	
 		
 </body>

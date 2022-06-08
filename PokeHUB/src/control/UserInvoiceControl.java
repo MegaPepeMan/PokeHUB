@@ -5,16 +5,24 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CompositionBean;
+import model.CompositionDAO;
 import model.OrderBean;
 import model.OrderDAO;
+import model.ProductBean;
+import model.ProductDAO;
 import model.UserBean;
 
 
@@ -33,18 +41,25 @@ public class UserInvoiceControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
 		
+		//Controllo lato servlet dell'utente
 		if(utente == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 			return;
 		}
 		
+		//Parse parametro action
 		String action = request.getParameter("action");
 		System.out.println("L'azione della sevlet OrderControl e': "+action);
 		if(action == null){
 			action = "all";
 		}
 		
+		//Creazione dei DAO per le interrogazioni al DB
+		ProductDAO prodotti = new ProductDAO();
 		OrderDAO ordini = new OrderDAO();
+		CompositionDAO composizioni = new CompositionDAO();
+		
+		//Ordinamento del risultato in base al parametro
 		if(action.equalsIgnoreCase("all")) {
 			String ordinamento= null;
 			String sort=request.getParameter("sort");
@@ -66,9 +81,41 @@ public class UserInvoiceControl extends HttpServlet {
 			}
 			
 			
+			
+			//Ordini ritrovati in base all'utente
 			try {
 				Collection<OrderBean> totaleOrdini = ordini.doRetrieveByUser(utente.getMail());
 				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+				
+				//Ricerca dei dettagli dei prodotti per aggiungere immagini alla pagina
+				Iterator<OrderBean> iterProdotti1 = totaleOrdini.iterator();
+				Iterator<CompositionBean> iterFotoProdotti1;
+				
+				//Istazio gli oggetti per il recupero delle composizioni degli ordini
+				OrderBean ordine;
+				
+				Collection<CompositionBean> fattura = new LinkedList<CompositionBean>();
+				Map<Integer, Collection<ProductBean> > mappaProdotti = new HashMap<Integer, Collection<ProductBean>>();
+				
+				while(iterProdotti1.hasNext()){
+					ordine=iterProdotti1.next();
+					System.out.println("L'ordine in focus è: "+ ordine.getIdOrdine());
+					
+					fattura = composizioni.doRetrieveByOrder(ordine.getIdOrdine(), null);
+					iterFotoProdotti1 = fattura.iterator();
+					Collection<ProductBean> fotoProdotti = new LinkedList<ProductBean>();
+					while(iterFotoProdotti1.hasNext()) {
+						
+						fotoProdotti.add(prodotti.doRetrieveByKey(  iterFotoProdotti1.next().getIdentificativo_prodotto()  ) );
+					}	
+					mappaProdotti.put(ordine.getIdOrdine(), fotoProdotti );
+				}	
+					System.out.println("Le chiavi nella mappa sono: "+mappaProdotti.keySet());
+					
+					
+					request.getSession().setAttribute("dettagliProdotti", mappaProdotti);
+				
+				
 			} catch (SQLException e) {
 				System.out.println("Errore stringa SQL");
 				e.printStackTrace();
@@ -76,8 +123,13 @@ public class UserInvoiceControl extends HttpServlet {
 				System.out.println("Errore di IO");
 				e.printStackTrace();
 			}
-		}else if(action.equalsIgnoreCase("search")) {
 			
+			
+			
+			
+			
+		}else if(action.equalsIgnoreCase("search")) {
+			//Ordini ritrovati in base alla data inizio e data fine
 			request.getSession().removeAttribute("totaleOrdini");
 			
 			try {
@@ -96,10 +148,13 @@ public class UserInvoiceControl extends HttpServlet {
 					
 					data_inizio = Date.valueOf("1990-1-1");
 					data_fine = Date.valueOf(LocalDate.now());
+					
 				}
+				
 				Collection<OrderBean> totaleOrdini = ordini.doRetrieveByDateAndUser(data_inizio, data_fine, user) ;
 				System.out.println(totaleOrdini);
 				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
+				
 				
 			} catch (SQLException e) {
 				System.out.println("Errore stringa SQL");
@@ -110,7 +165,9 @@ public class UserInvoiceControl extends HttpServlet {
 			}
 			
 		}
-		response.sendRedirect(request.getContextPath()+"/PaginaOrdiniUser.jsp");
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaOrdiniUser.jsp");
+		dispatcher.forward(request, response);
 	
 		
 		
