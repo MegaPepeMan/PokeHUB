@@ -34,16 +34,38 @@ if(utente == null) {
 <body>
 	<%@ include file="Header.jsp" %>
 	
+	
+	<div class="content"></div>
+	<h3 style="text-align: center;">Ricerca per Data</h3>
+	
 	<form action="UserInvoiceControl" method="post">
+		
 		<input type="hidden" name="action" value="search">
-		<h3>Data Inizio</h3>
-		<input type="date" name="datai">
-		<br>
-		<h3>Data Fine</h3>
-		<input type="date" name="dataf">
-		<br><br>
-		<input type="submit" value="Invia">
+		
+		<div id="ricercaDataUtente">
+			
+			<div class="input-container">
+	            <i class="icon"><ion-icon name="calendar-clear-outline" size="large"></ion-icon></i>
+	            <input class="input-field" type="date" placeholder="Data Inizio" name="datai">
+	        </div>
+			
+			<div class="input-container">
+	            <i class="icon"><ion-icon name="calendar-outline" size="large"></ion-icon></i>
+	            <input class="input-field" type="date" placeholder="Data Fine" name="dataf">
+	        </div>
+	        
+        </div>
+        
+		<input type="submit" value="Cerca" class="btnSearch">
 	</form>
+	
+	<div class="content"></div>
+	
+	<hr>
+	
+	
+	
+	
 	
 		<%
 			DecimalFormat formatoPrezzo = new DecimalFormat();
@@ -117,9 +139,7 @@ if(utente == null) {
 				}
 			}else {
 				%>
-				<tr>
-					<td colspan="6">Nessun ordine disponibile</td>
-				</tr>
+					<h3 style="text-align: center;">Nessun ordine trovato</h3>
 				<% 
 				
 			}
