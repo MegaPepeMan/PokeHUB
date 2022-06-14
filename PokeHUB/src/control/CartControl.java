@@ -95,6 +95,8 @@ public class CartControl extends HttpServlet {
 								request.getSession().removeAttribute("cart");
 								request.getSession().setAttribute("cart", cart );
 								
+								
+								
 								RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaCarrello.jsp");
 								dispatcher.forward(request, response);
 								
