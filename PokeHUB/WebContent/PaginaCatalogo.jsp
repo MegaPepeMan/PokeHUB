@@ -16,7 +16,6 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="Header.jsp" %>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*,control.*,java.text.DecimalFormat"%>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,52 +23,91 @@
 	<title>Catalogo DB</title>
 </head>
 
-<body>
+<body class="catalogo">
 
-	<h2>Prodotti:</h2>
-	<a href="product">List</a>
-	<table>
-		<tr>
-			<th><h2>Nome Prodotto <a href="product?sort=nome_prodotto"></h2>Ordina</a></th>
-			<th ><h2>Immagine</h2></th>
-			<th><h2>Prezzo con IVA </h2><a href="product?sort=categoria_prodotto">Ordina</a></th>
-		</tr>
-		<%
+	<%
 			DecimalFormat formatoPrezzo = new DecimalFormat();
 			formatoPrezzo.setMaximumFractionDigits(2);
+			formatoPrezzo.setMinimumFractionDigits(2) ;
 			if (products != null && products.size() != 0) {
-				Iterator<?> it = products.iterator();
-				int i=-1;
-				while (it.hasNext()) {
-					
-					ProductBean bean = (ProductBean) it.next();
-					if(bean.isProdottoMostrato()){
-						i++;
-						if(i%3==0)
-						{
-									
-		%>
-		</tr>
-		<tr><td class="alta"><button class="pulsanteProdotto"><a href="object?id=<%=bean.getIdProdotto()%>"><%=bean.getNomeProdotto()%></a></button>
-			<img class="immagineProdotto" src="data:image/png;base64,<%=bean.getImmagineProdotto()%>" alt="immagine non presente"/>
-			<b>€<%=formatoPrezzo.format((bean.getPrezzoVetrina()/100)*bean.getIva() + bean.getPrezzoVetrina())%></b></td>
-		<%} else{ %>
-		    <td class="alta"> <button class="pulsanteProdotto"> <a href="object?id=<%=bean.getIdProdotto()%>"><%=bean.getNomeProdotto()%></a> </button>
-			<img class="immagineProdotto" src="data:image/png;base64,<%=bean.getImmagineProdotto()%>" alt="immagine non presente"/>
-			<b>€<%=formatoPrezzo.format((bean.getPrezzoVetrina()/100)*bean.getIva() + bean.getPrezzoVetrina())%>
-			<%} %></b></td>
-		<%
+				
+								
+	%>
+
+	<div class="cards">
+        
+        <%
+        
+	        Iterator<?> it = products.iterator();
+			
+			while (it.hasNext()) {
+				ProductBean bean = (ProductBean) it.next();
+				if(bean.isProdottoMostrato()){
+					%>					
+					<div class="card">
+					<a href="object?id=<%=bean.getIdProdotto()%>">
+					<% if(bean.getImmagineProdotto() == null) { 
+						%>
+							<img class="immagineProdotto" src="Image/noImage.png" alt="">
+						<% 
+					} else {
+						%>
+							<img class="immagineProdotto" src="data:image/png;base64,<%=bean.getImmagineProdotto()%>" alt="">
+						<%
 					}
+					%>
+			           <h1 class="nomeProdotto"><%=bean.getNomeProdotto()%></h1> 
+			           <h1 class="prezzoProdotto">€<%=formatoPrezzo.format((bean.getPrezzoVetrina()/100)*bean.getIva() + bean.getPrezzoVetrina())%></h1>
+			        </a>
+			        <%
+			        	if(bean.getQuantita() >= 1) {
+			        		%>
+			        		<a href="cart?addID=<%=bean.getIdProdotto()%>&quantity=1">
+				                <button class="aggiungiCarrello">
+				                    <span>
+				                        <ion-icon class="iconaCarrelloPulsante" name="cart-outline" size="large"></ion-icon>
+				                    </span>
+				                    
+				                    <span class="testoAggiungiCarrello">
+				                        AGGIUNGI AL CARRELLO
+				                    </span>  
+				                </button>
+				           	</a>
+			        		<%
+			        	} else {
+			        		%>
+			        		
+			        		<button class="prodottoEsaurito">
+				                    <span>
+				                        <ion-icon class="iconaProdottoEsaurito" name="close-outline" size="large"></ion-icon>
+				                    </span>
+				                    
+				                    <span class="testoNonDisponibile">
+				             			NON DISPONIBILE
+				                    </span>
+				            </button>
+			        		
+			        		<%
+			        	}
+			        %>
+			           
+			        </div>
+					<%    
 				}
-			} else {
-		%>
-		<tr>
-			<td colspan="6">Nessun prodotto disponibile</td>
-		</tr>
-		<%
 			}
-		%>
-	</table>
+        %>
+        
+        
+        
+        
+        
+       
+        
+    </div>		
+
+	<%
+			}
+	%>
 	
 
 	

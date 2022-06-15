@@ -1,31 +1,91 @@
-@CHARSET "UTF-8";
-
-
-button.pulsanteProdotto{
-	background-color:#ffb5b5;
-	border:2px;	
-	font-size:large;
-	
+html { 
+    font-size: 22px; 
 }
 
-table,tr{
-	width:100%;
-	border:0px solid trasparent;
-	/*border-radius: 10px 10px 10px 10px;*/
-	margin-left: auto;
-	margin-right: auto;
-	width:80%;
+body.catalogo { 
+    padding: 1rem; 
 }
 
-td.alta{
-	border-radius: 0px 0px 0px 0px;
-	border:0px solid trasparent;
-	height:260px;
-	width:260px;
+a:link {
+	text-decoration: none;
 }
 
-img.immagineProdotto{
-	width:30%;
-	display: block;
-	margin:0 auto;
+.card {
+  color: white;
+  padding: 1rem;
+  height: 15rem;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.nomeProdotto , .prezzoProdotto {
+    color: black;
+    font-size: 15pt;
+}
+
+.cards {
+    max-width: 90%;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+
+    /*Questa riga permette l'applicazione di un effetto responsive 
+    senza dover ripetere il codice delle media-queries*/
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.immagineProdotto{
+    height: 180px;
+    width: auto;
+    border-radius: 5px;
+}
+
+.aggiungiCarrello {
+    background-color: #f2a6c7;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    max-width: 150px;
+    
+    font-weight: 600;
+    border: none;
+}
+
+.iconaCarrelloPulsante {
+    float: left;
+    margin-left: 5px;
+}
+
+.aggiungiCarrello:hover {
+    color: white;
+    
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.testoAggiungiCarrello {
+    vertical-align: middle;
+    font-size: 11pt;
+    padding: 0px 5px;
+}
+
+.prodottoEsaurito {
+	background-color: #ff00009a;
+	border-radius: 10px;
+    font-weight: 600;
+    border: none;
+    
+    max-width: 150px;
+}  
+
+.iconaProdottoEsaurito {
+    float: left;
+    margin-left: 5px;
+}
+
+.testoNonDisponibile {
+	font-size: 11pt;
 }
