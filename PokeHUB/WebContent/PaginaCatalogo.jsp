@@ -63,29 +63,27 @@
 			        	if(bean.getQuantita() >= 1) {
 			        		%>
 			        		<a href="cart?addID=<%=bean.getIdProdotto()%>&quantity=1">
-				                <button class="aggiungiCarrello">
-				                    <span>
+				                <div class="aggiungiCarrello">
+				                    <div>
 				                        <ion-icon class="iconaCarrelloPulsante" name="cart-outline" size="large"></ion-icon>
-				                    </span>
+				                    </div>
 				                    
-				                    <span class="testoAggiungiCarrello">
-				                        AGGIUNGI AL CARRELLO
-				                    </span>  
-				                </button>
+				                    <div class="testoAggiungiCarrello" style="">AGGIUNGI AL CARRELLO</div>
+				                </div>
 				           	</a>
 			        		<%
 			        	} else {
 			        		%>
-			        		
-			        		<button class="prodottoEsaurito">
-				                    <span>
-				                        <ion-icon class="iconaProdottoEsaurito" name="close-outline" size="large"></ion-icon>
-				                    </span>
+	                    
+				                <div class="prodottoEsaurito" style="">
+				                    <div>
+				                        <ion-icon class="iconaCarrelloPulsante" name="close-outline" size="large"></ion-icon>
+				                    </div>
 				                    
-				                    <span class="testoNonDisponibile">
-				             			NON DISPONIBILE
-				                    </span>
-				            </button>
+				                    <div class="testoNonDisponibile" style=" ">
+				                    	NON DISPONIBILE
+				                    </div>
+				                </div>
 			        		
 			        		<%
 			        	}

@@ -44,18 +44,22 @@ a:link {
 
 .aggiungiCarrello {
     background-color: #f2a6c7;
+    color: black;
     border-radius: 10px;
     cursor: pointer;
     
-    max-width: 150px;
+    width: 150px;
     
     font-weight: 600;
     border: none;
+    
+    padding: 5px;
+	margin: auto;
 }
 
 .iconaCarrelloPulsante {
     float: left;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 .aggiungiCarrello:hover {
@@ -67,9 +71,8 @@ a:link {
 }
 
 .testoAggiungiCarrello {
-    vertical-align: middle;
-    font-size: 11pt;
-    padding: 0px 5px;
+    margin-left: 30%;
+	font-size: 10pt;
 }
 
 .prodottoEsaurito {
@@ -78,7 +81,10 @@ a:link {
     font-weight: 600;
     border: none;
     
-    max-width: 150px;
+    width: 150px;
+    
+    padding: 5px;
+	margin: auto;
 }  
 
 .iconaProdottoEsaurito {
@@ -87,5 +93,6 @@ a:link {
 }
 
 .testoNonDisponibile {
-	font-size: 11pt;
+	margin-left: 30%;
+	font-size: 10pt;
 }
