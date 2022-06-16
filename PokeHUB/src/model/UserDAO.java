@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class UserDAO {
 	
@@ -92,6 +94,155 @@ public synchronized void doSave(UserBean utente) throws SQLException {
 			}
 		}
 		return bean;
+	}
+	
+	
+	public synchronized UserBean doRetrieveByUser(String utente) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean");
+		UserBean bean = new UserBean();
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				System.out.println("Mail: " + rs.getString("mail"));
+				System.out.println("Nome: " + rs.getString("nome"));
+				System.out.println("Cognome: " + rs.getString("cognome"));
+				System.out.println("Password: " + rs.getString("password"));
+				System.out.println("Cellulare: " + rs.getString("cellulare"));
+				System.out.println("Categoria Utente: " + rs.getString("categoria_utente"));
+				
+				
+				
+				bean.setMail(rs.getString("mail"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setCellulare(rs.getString("cellulare"));
+				bean.setCategoriaUtente(rs.getString("categoria_utente"));
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return bean;
+	}
+	
+	
+	public synchronized Collection<UserBean> doRetrieveAll(String user) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean");
+		
+
+		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE mail = ?";
+		String selectSQLnoUser = "SELECT * FROM " + TABLE_NAME + " ";
+		
+		
+		System.out.println("Creo la stringa SQL");
+		
+		Collection<UserBean> utenti = new LinkedList<UserBean>();
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			if(user.equalsIgnoreCase("*")) {
+				preparedStatement = connection.prepareStatement(selectSQLnoUser);
+			} else {
+				preparedStatement = connection.prepareStatement(selectSQL);
+				preparedStatement.setString(1, user);
+			}
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			
+			while (rs.next()) {
+				
+				UserBean bean = new UserBean();
+				
+				bean.setMail(rs.getString("mail"));
+				bean.setNome(rs.getString("nome"));
+				bean.setCognome(rs.getString("cognome"));
+				bean.setPassword(rs.getString("password"));
+				bean.setCellulare(rs.getString("cellulare"));
+				bean.setCategoriaUtente(rs.getString("categoria_utente"));
+				
+				utenti.add(bean);
+				
+				System.out.println("Ho aggiunto questo utente alla Collection: "+bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		System.out.println("La collection contiene: "+ utenti);
+		return utenti;
+	}
+	
+	
+	public synchronized void doUpdateCategory(String utente,String ruolo) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET categoria_utente = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, ruolo);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 }

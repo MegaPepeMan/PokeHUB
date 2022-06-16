@@ -57,7 +57,7 @@ if (persona == null)
 			</div>
 		</a>
 		
-		<a href="/">
+		<a href="AdminUserControl">
 			<div class="card">
 				<ion-icon class="iconFunction" name="people-outline" size="large"></ion-icon><p>Gestione Utenti</p>
 			</div>
