@@ -96,6 +96,7 @@ if (persona == null)
             
         </table>
 
+		<a href="PreCheckuot">
         <div id="sezioneTotale">
             <div>
                 <h1 class="testoSezioneTotale" style="text-align: center;">Totale da pagare: €<%=formatoPrezzo.format (totaleFattura)%></h1>
@@ -107,7 +108,7 @@ if (persona == null)
                 <h1 id="testoProcediPagamento" style="text-align: center; font-size: 20pt;">PROCEDI CON IL PAGAMENTO</h1>
             </div>
         </div>
-
+		</a>
 
     </div>
 		

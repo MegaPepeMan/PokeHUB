@@ -1,0 +1,14 @@
+.borderBoxPopUp {
+	border-radius: 20px !important;
+	border: 2px solid pink;
+}
+
+body.swal2-shown > [aria-hidden="true"] {
+  transition: 0.2s filter;
+  filter: blur(3px);
+}
+
+body.swal2-hide > [aria-hidden="true"] {
+  transition: 0.8s filter;
+  filter: blur(3px);
+}

@@ -73,7 +73,7 @@ if (persona == null)
 			</div>
 		</a>
 		
-		<a href="/">
+		<a href="AccountControl">
 			<div class="card">
 				<ion-icon class="iconFunction" name="cog-outline" size="large"></ion-icon><p>Impostazioni Account</p>
 			</div>
