@@ -24,20 +24,20 @@
 	</h1>
 	
 	<h1>
-		<%= utente.getCognome() %>
+		<%= utente.getCognome() %> <button id="modificaCognome">Modifica</button>
 	</h1>
 	
 	<h1>
-		<%= utente.getMail() %>
+		<%= utente.getMail() %> <button id="modificaMail">Modifica</button>
 	</h1>
 	
 	<h1>
-		<%= utente.getCellulare() %>
+		<%= utente.getCellulare() %> <button id="modificaCellulare">Modifica</button>
 	</h1>
 	
-	<h1>
-		<%= utente.getMail() %>
-	</h1>
+	
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	
 	
 	<script src="JavaScript/SweetAlert2/sweetalert2.all.min.js" type="text/javascript"></script>
@@ -48,14 +48,36 @@
 			
 			Swal.fire({
 				  showConfirmButton: false,
-				  html: '<h1>Ciaone</h1> <form action="/" method="post" id=""><input type="text"><input type="submit" value="Aggiorna"> </form>',
+				  html: '<h1>Inserisci nuovo nome</h1><form action="AccountControl" method="post" id=""><div class="input-container"><i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getNome() %>" name="nuovoNome"></div><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
 				  customClass: { popup: 'borderBoxPopUp'},
 				})
-
+		} )
+		
+		$('#modificaCognome').on('click', function() {
 			
+			Swal.fire({
+				  showConfirmButton: false,
+				  html: '<h1>Inserisci nuovo cognome</h1><form action="AccountControl" method="get" id=""><div class="input-container"><i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getCognome() %>" name="nuovoCognome"></div><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
+				  customClass: { popup: 'borderBoxPopUp'},
+				})
+		} )
+		
+		$('#modificaMail').on('click', function() {
 			
+			Swal.fire({
+				  showConfirmButton: false,
+				  html: '<h1>Inserisci nuova mail</h1><form action="AccountControl" method="get" id=""><div class="input-container"><i class="icon"><ion-icon name="mail-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getMail() %>" name="nuovoMail"></div><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
+				  customClass: { popup: 'borderBoxPopUp'},
+				})
+		} )
+		
+		$('#modificaCellulare').on('click', function() {
 			
-			
+			Swal.fire({
+				  showConfirmButton: false,
+				  html: '<h1>Inserisci un nuovo numero</h1><form action="AccountControl" method="get" id=""><div class="input-container"><i class="icon"><ion-icon name="call-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getCellulare() %>" name="nuovoCellulare"></div><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
+				  customClass: { popup: 'borderBoxPopUp'},
+				})
 		} )
 	</script>
 	

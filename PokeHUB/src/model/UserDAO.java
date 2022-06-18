@@ -245,4 +245,124 @@ public synchronized void doSave(UserBean utente) throws SQLException {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public synchronized void doUpdatePhone(String utente,String cellulare) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET cellulare = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, cellulare);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public synchronized void doUpdateName(String utente,String nome) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET nome = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, nome);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public synchronized void doUpdateSurname(String utente,String cognome) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET cognome = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, cognome);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 }
