@@ -365,4 +365,78 @@ public synchronized void doSave(UserBean utente) throws SQLException {
 		}
 	}
 	
+	public synchronized void doUpdateMail(String utente,String mail) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET mail = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, mail);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+public synchronized void doUpdatePassword(String utente,String password) throws SQLException {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		System.out.println("Creo il bean per l'aggiornamento");
+
+		String updateSQL = "UPDATE " + TABLE_NAME + " SET password = ? WHERE mail = ?";
+		
+		System.out.println("Creo la stringa SQL per l'aggiornamento");
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			
+			preparedStatement.setString(1, password);
+			preparedStatement.setString(2, utente);
+			
+			System.out.println("Ho preparato la stringa SQL: "+preparedStatement);
+
+			preparedStatement.executeUpdate();
+
+
+			connection.commit();
+			
+			System.out.println("Ho aggiornato l'utente con successo");
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 }

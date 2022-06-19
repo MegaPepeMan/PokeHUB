@@ -35,10 +35,11 @@ public class AccountControl extends HttpServlet {
 			
 			String idUtente = utente.getMail();
 			
-			String nome = request.getParameter("nuovoNome");
-			String cognome = request.getParameter("nuovoCognome");
+			String nome = request.getParameter("nome");
+			String cognome = request.getParameter("cognome");
 			String cellulare = request.getParameter("nuovoCellulare");
-			String mail = request.getParameter("nuovoMail");
+			String mail = request.getParameter("userid");
+			String password = request.getParameter("passid");
 			
 			UserDAO utenti = new UserDAO();
 			
@@ -81,6 +82,24 @@ public class AccountControl extends HttpServlet {
 			
 			 if (mail != null) {
 				System.out.println("La mail passata dalla servlet e': "+ mail); 
+				try {
+					utenti.doUpdateMail(utente.getMail(), mail );
+					request.getSession().removeAttribute("userID");
+					request.getSession().setAttribute("userID", utenti.doRetrieveByUser(mail));
+				} catch (SQLException e) {
+					System.out.println("Errore aggiornamento mail");
+					e.printStackTrace();
+				}
+			}
+			 
+			 if (password != null) {
+					System.out.println("La password passata dalla servlet e': "+ password); 
+					try {
+						utenti.doUpdatePassword(utente.getMail(), password );
+					} catch (SQLException e) {
+						System.out.println("Errore aggiornamento mail");
+						e.printStackTrace();
+					}
 			}
 			
 			

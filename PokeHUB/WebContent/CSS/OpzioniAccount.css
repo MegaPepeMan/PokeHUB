@@ -16,7 +16,7 @@ body.swal2-hide > [aria-hidden="true"] {
 
 .input-container {
     display: flex;
-    width: 100%;
+    width: 95%;
     margin-bottom: 5%;
 
     padding-right: 20px;
@@ -75,4 +75,186 @@ body.swal2-hide > [aria-hidden="true"] {
     -webkit-transition: 0.4s;
     transition: 0.4s;
     outline: none;
+}
+
+#errorMail {
+    display: none;
+}
+#errorPassword {
+    display: none;
+}
+#errorPassword2 {
+	display: none;
+}
+#errorName {
+    display: none;
+}
+#errorSurname {
+    display: none;
+}
+#errorNumber {
+    display: none;
+}
+
+
+
+
+#errorMessageMail {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessagePassword {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessagePassword2 {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageName {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageSurname {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+#errorMessageNumber {
+	font-size: 10pt;
+	color: #ff00009a;
+	display: none;
+    padding-left: 70px;
+    
+    position: relative;
+    float:left;
+    top: -20px;
+    
+    font-style: italic;
+}
+
+.error2 {
+	position: relative;
+    color: white;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ff0000b7;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    vertical-align:middle;
+}
+
+
+
+
+.tabellaOpzioni {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+}
+
+.testoTabella {
+    text-align: left;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-size: 15pt;
+    color: grey;
+}
+
+.testoValoriAccount {
+    padding-right: 10px;
+    font-size: 20pt;
+    padding-top: 0px;
+    color: black;
+}
+
+.tastoModifica {
+    padding: 10px;
+    background-color: #ffd835;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 15pt;
+}
+
+.tastoModifica:hover {
+    color: white;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+
+
+
+
+.modificaElemento {
+    background-color: #f2a6c740;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 130px;
+    font-weight: 600;
+    border: none;
+}
+
+.iconaModificaPulsante {
+    float: left;
+    margin-left: 5px;
+}
+
+.modificaElemento:hover {
+    color: white;
+    background-color: #f2a6c7;
+    
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.testoModificaElemento {
+    float: right;
+    vertical-align: middle;
+    font-size: 10pt;
+    padding: 10px 5px;
 }

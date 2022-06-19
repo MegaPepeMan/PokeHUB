@@ -32,14 +32,14 @@ if(utente != null) {
         
         <div class="input-container">
             <i class="icon"><ion-icon name="lock-closed-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="password" placeholder="La tua password" name="passid" size="12">
+            <input class="input-field" type="password" placeholder="La tua password" id="password1" name="passid" size="12">
             <div id="errorPassword" class="error2"><i> <ion-icon name="warning-outline"></ion-icon> </i></div>
         </div>
         	<p id="errorMessagePassword">Errore formato password</p>
         
         <div class="input-container">
             <i class="icon"><ion-icon name="lock-closed-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="password" placeholder="Ripeti la password" name="passid2" size="12">
+            <input class="input-field" type="password" placeholder="Ripeti la password" id="password2" name="passid2" size="12">
             <div id="errorPassword2" class="error2"><i> <ion-icon name="warning-outline"></ion-icon> </i></div>
         </div>
         	<p id="errorMessagePassword2">Le password non coincidono</p>
@@ -63,6 +63,7 @@ if(utente != null) {
             <input class="input-field" type="text" placeholder="Telefono" name="telefono" size="30">
             <div id="errorNumber" class="error2"><i> <ion-icon name="warning-outline"></ion-icon> </i></div>
         </div>
+        	<p id="errorMessageNumber">Il formato del numero non &egrave; corretto</p>
         
         
         
@@ -92,8 +93,16 @@ if(utente != null) {
 			return false;	
 		}
 		
+		function checkPassword(inputtxt) {
+			var name = /[^\s-]/;
+			if(inputtxt.value.match(name)) 
+				return true
+		
+			return false;	
+		}
+		
 		function checkPhonenumber(inputtxt) {
-			var phoneno = /^([0-9]{3}-[0-9]{7})$/;
+			var phoneno = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 			if(inputtxt.value.match(phoneno)) 
 				return true;
 			
@@ -125,6 +134,8 @@ if(utente != null) {
 			}
 			
 			var email = document.getElementsByName("userid")[0];
+			console.log('Mail:');
+			console.log(email);
 			if(!checkEmail(email)) {
 				valid = false;
 				document.getElementById("errorMail").style.display = 'block';
@@ -134,15 +145,38 @@ if(utente != null) {
 				document.getElementById("errorMessageMail").style.display = 'none';
 			}	
 			
-			var pass = document.getElementsByName("passid2")[0];
-			if(pass != document.getElementsByName("passid")[0]) {
+			var pass1 = document.getElementById("password1");
+			var pass2 = document.getElementById("password2");
+			
+			if( checkPassword(pass1) ){
 				document.getElementById("errorPassword2").style.display = 'none';
 				document.getElementById("errorMessagePassword2").style.display = 'none';
 			} else {
 				valid = false;
+				document.getElementById("errorPassword").style.display = 'block';
+				document.getElementById("errorMessagePassword").style.display = 'block';
+			}
+
+			if( pass1.value === pass2.value ) {
+				console.log('Le password coincidono');
+				document.getElementById("errorPassword2").style.display = 'none';
+				document.getElementById("errorMessagePassword2").style.display = 'none';
+			} else {
+				valid = false;
+				console.log('Le password non coincidono');
 				document.getElementById("errorPassword2").style.display = 'block';
 				document.getElementById("errorMessagePassword2").style.display = 'block';
 			}
+			
+			var phone = document.getElementsByName("telefono")[0];
+			if(!checkPhonenumber(phone)) {
+				valid = false;
+				document.getElementById("errorNumber").style.display = 'block';
+				document.getElementById("errorMessageNumber").style.display = 'block';
+			} else {
+				document.getElementById("errorNumber").style.display = 'none';
+				document.getElementById("errorMessageNumber").style.display = 'none';
+			}	
 			
 			if(valid) obj.submit();
 		}
