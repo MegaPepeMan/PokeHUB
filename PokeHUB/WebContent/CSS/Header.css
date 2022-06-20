@@ -4,205 +4,244 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.borderBoxPopUp {
+	border-radius: 20px !important;
+}
+
+body.swal2-shown > [aria-hidden="true"] {
+  transition: 0.2s filter;
+  filter: blur(3px);
+}
+
+body.swal2-hide > [aria-hidden="true"] {
+  transition: 0.8s filter;
+  filter: blur(3px);
+}
+
+.bodyNavbar {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 #navbar {
   overflow: hidden;
   background-color: #fdd835;
   z-index: 1;
+  display: flexbox;
+  height: 80px;
 }
 
-#navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 2px 3px;
-  text-decoration: none;
-  font-size: 17px;
-  z-index: 1;
+#logoImmagine {
+  height: 80px;
+  width: auto;
+  margin-left: 20px;
 }
-
-
-
-#navbar a.active {
-  background-color: #fdd835;
-  color: white;
-  margin-left: 50px;
-  z-index: 1;
-}
-
 
 #navbarDestra {
-  overflow: hidden;
-  background-color: #fdd835;
-  z-index: 1;
-}
-
-#navbarDestra a {
   float: right;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 15px 15px;
-  text-decoration: none;
-  font-size: 17px;
-  z-index: 1;
+  display: flex;
+  height: 80px;
+  width: fit-content;
 }
 
-#navbarDestra a:hover {
-  background-color: #F3AC94;
-  color: black;
-  z-index: 1;
+.icona {
+  color: white;
+  size: 50%;
+  font-size: 50px;
+  padding: 15px;
+}
 
+
+.iconaRicerca:hover {
+  background-color: #F3AC94;
+  color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   outline: none;
+  cursor: pointer;
 }
+
+.iconaRicerca:hover > .icona {
+  color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+.iconaUtenteDIV:hover {
+  background-color: #F3AC94;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+.iconaUtente:hover > .icona {
+  color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+.iconaCarrelloDIV:hover {
+  background-color: #F3AC94;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+.iconaCarrello:hover > .icona {
+  color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+
+
+
 
 .content {
   padding: 16px;
   z-index: 1;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
+
+
+/* barra di ricerca */
+
+.campoRicerca:focus{
+  outline: none;
 }
 
-.sticky + .content {
-  padding-top: 60px;
-  z-index: 1;
-}
-
-
-
-
-.topnav input[type=search] {
-  float: left;
-
-  border: solid 0px;
-  margin-top: 14px;
-  margin-right: 5%;
-  margin-left: 5%;
-  font-size: 17px;
-  width: 40%;
-  border-radius: 20px 20px 20px 20px;
-
-  padding: 17px 17px;
-
+#barraRicerca {
   box-sizing: border-box;
-
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: none;
-
-  background-color: white;
-}
-
-.topnav input[type=search]:focus {
-  border: 3px solid #F3AC94 
-}
-
-
-
-
-
-#logo {
-  max-width:150px;
-  max-height:75px;
-}
-
-#iconUser {
-  max-width:100px;
-  max-height:50px;
-}
-#iconCart {
-  max-width:100px;
-  max-height:50px;
-}
-
-#search-image {
-  max-width:100px;
-  max-height:50px;
-}
-
-.containerHeader {
   float: left;
-  
-  margin-top: 20px;
-  margin-left: 5%;
-
-  width: 60%;
-  height: 60px
-}
-
-/* Lente di ingrandimento sulla barra di ricerca */
-.formRicerca {
-  display: flex;
-  flex-direction: row;
-}
-
-.search-field {
-  width: 50%;
-  padding: 10px 35px 10px 15px;
-  border: 3px solid #f3ac9499 ;
-  border-radius: 100px;
-  outline: none;
-
-  vertical-align: middle;
-  align-content: center;
-
+  width: 40%;
+  height: 40px;
+  display: none;
+  background-color: white;
+  border:#f3ac9499 3px solid;
+  border-radius: 25px;
+  position: relative;
+  top: 20px;
+  padding-left: 2%;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   outline: none;
+  margin-left: 3%;
 }
 
-.search-button {
-  background: transparent;
+#barraRicerca:hover {
+  border: 3px solid #F3AC94; 
+}
+
+#barraRicerca:focus-within {
+  border: 3px solid #F3AC94; 
+}
+
+.bottoneRicerca {
+  background-color: transparent;
   border: none;
-  outline: none;
-  margin-left: -48px;
-}
-
-.search-button img {
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
+  color: grey;
+  font-size: 20pt;
+  width: 5%;
+  float: right;
+  margin-right: 20px;
+  position: relative;
+  top: 0px;
   cursor: pointer;
 }
 
-.search-field:hover {
+.bottoneRicerca:hover {
+  color: rgb(82, 81, 81);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+}
+
+.campoRicerca{
+  width: 85%;
+  font-size: 16pt;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 2px;
+}
+
+
+/*Barra di ricerca versione Mobile*/
+#barraRicercaResponsive {
+  background-color: white;
+  border:#f3ac9499 3px solid;
+  border-radius: 25px;
+  width: 95%;
+
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
+}
+
+#barraRicercaResponsive:focus-within {
   border: 3px solid #F3AC94; 
 }
 
-.search-field:focus {
+#barraRicercaResponsive:hover {
   border: 3px solid #F3AC94; 
+}
+
+.campoRicercaResponsive {
+  width: 80%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 16pt;
+  padding-left: 2%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.bottoneRicercaResponsive {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  cursor: pointer;
+  font-size: 16pt;
+}
+
+.bottoneRicercaResponsive:hover {
+  color: rgb(82, 81, 81);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;
 }
 
 
 
+@media screen and (min-width: 600px) { 
 
-
-
-
-
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
-  .containerHeader {
-    float: right;
-    margin-right: 5%;
+  #navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
   }
 
-  #navbarDestra {
-    display: inline;
+  .content {
+    padding: 40px;
   }
 
-  .search-field {
-    margin-left: 0%;
-    margin-right: 1%;
-  
+  .iconaRicerca{
+    display: none;
+  }
+
+  #barraRicerca {
+    display: block;
   }
 
 }
