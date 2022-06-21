@@ -6,23 +6,21 @@
 .sezioneCarrello {
     display: flex;
     float: left;
-    max-width: 55%;
-    width: fit-content;
-    background-color: #ffd73578;
+    width: 45%;
     border-radius: 20px;
-    border: black 2px solid;
+    background-color: #fdd8357b;
     font-size: 20pt;
     text-align: center;
     
 }
 
 .sezioneProdotto {
-    max-width: 100%;
+	width: 100%;
     font-size: 20pt;
 }
 
 .sezioneDettaglioProdotto {
-    max-width: 100%;
+	width: 100%;
     font-size: 25pt;
     text-align: right;
     line-height:60px;
@@ -41,7 +39,6 @@
 #sezioneTotale {
     background-color: #f2a6c740;
     border-radius: 20px;
-    border: black 2px solid;
     width: 35%;
     float: right;
     padding: 20px;

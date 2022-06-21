@@ -20,6 +20,7 @@ if (persona == null)
 </head>
 
 <body>
+	<div class="content"></div>
     <%@ include file="Header.jsp" %>
     
     <%
@@ -45,6 +46,7 @@ if (persona == null)
 	
 		DecimalFormat formatoPrezzo = new DecimalFormat();
 		formatoPrezzo.setMaximumFractionDigits(2);
+		formatoPrezzo.setMinimumFractionDigits(2);
 		
 		Iterator<Integer> iter = cart.iterator();
 		while( iter.hasNext() ) {
@@ -57,30 +59,42 @@ if (persona == null)
                     <table class="sezioneProdotto">
                         <tr>
                             <th class="cellaTabellaImmagine">
-                                <img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" class="immagineProdotto" alt="">
+                            <%if(prodotto.getImmagineProdotto() == null) {
+                            	%>
+                            		<a href="object?id=<%=prodotto.getIdProdotto()%>">
+                            			<img class="immagineProdotto" src="Image/noImage.png" alt="">
+                            		</a>
+                            	<%
+                            	} else {
+                            	%>
+                            		<a href="object?id=<%=prodotto.getIdProdotto()%>">
+                            			<img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" class="immagineProdotto" alt="">
+                            		</a>
+                            		
+                            	<%
+                            	}
+                            %>
+                                
                             </th>
                             <th>
                                 <table class="sezioneDettaglioProdotto">
                                     <tr>
-                                        <th><%=prodotto.getNomeProdotto()%></th>
+                                        <th><a href="object?id=<%=prodotto.getIdProdotto()%>"><%=prodotto.getNomeProdotto()%></a></th>
                                     </tr>
                                     <tr>
                                         <th>Quantità: 
                                         <form action="cart" method="get">
                                         	<input type="hidden" name="valueID" value="<%=prodotto.getIdProdotto()%>">
 	                                        <select class="selezionaQuantita" name="quantity" id="" min="1" value="1" onchange="this.form.submit()">
-	                                            <option value="0">0</option>
-	                                            <%for(int i = 1 ; i <= prodotto.getQuantita(); i++) {
+	                                            <option value="0">0 (Rimuovi)</option>
+	                                            <%
+	                                            	boolean maxRaggiunto = false;
+	                                            	for(int i = 1 ; i <= prodotto.getQuantita(); i++) {
 		                                            	if(i ==  quantita.intValue()){ 
 		                                            		%>
 		                                            			<option selected="selected" value="<%=quantita %>"><%=quantita %></option>
 		                                            		<%
-	                                            		} else if(prodotto.getQuantita() ==  quantita.intValue()){
-	                                            			i++;
-	                                            			%>
-	                                            				<option selected="selected" value="<%=quantita %>"><%=quantita %></option>
-	                                            			<%
-	                                            		} else {
+	                                            		}  else {
 	                                            			%>
                                             					<option value="<%=i%>"><%=i%></option>
                                             				<%
@@ -89,6 +103,7 @@ if (persona == null)
 	                                            %>
 	                                        </select>
                                         </form>
+                                        <a href="cart?valueID=<%=prodotto.getIdProdotto()%>&quantity=0">Rimuovi</a>
                                         </th>
                                     </tr>
                                     <tr>
@@ -98,7 +113,10 @@ if (persona == null)
 										double totaleProdotti = prezzoConIVA * quantita;
 										totaleFattura += totaleProdotti;
 									%>
-                                        <th>Prezzo con IVA: €<%=formatoPrezzo.format (totaleProdotti)%></th>
+                                        <th>Prezzo con IVA:</th>
+                                    </tr>
+                                    <tr>
+                                    	<th>€<%=formatoPrezzo.format (totaleProdotti)%></th>
                                     </tr>
                                 </table>
                             </th>
