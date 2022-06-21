@@ -166,12 +166,12 @@ body.swal2-hide > [aria-hidden="true"] {
 }
 
 .campoRicerca{
-  width: 85%;
+  width: 80%;
   font-size: 16pt;
   background-color: transparent;
   border: none;
   position: relative;
-  top: 2px;
+  top: 0px;
 }
 
 
