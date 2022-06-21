@@ -30,6 +30,7 @@ public class CartControl extends HttpServlet {
 
 		
 		Integer id = null;
+		Integer valueID = null;
 		Integer qty = null;
 		ProductDAO prodotto = new ProductDAO();
 		
@@ -57,9 +58,33 @@ public class CartControl extends HttpServlet {
 				//try n.2
 				try {
 						//Caso in cui l'utente sta aggiungendo/rimuovendo prodotti dal carrello
-						id = Integer.parseInt(request.getParameter("addID"));
-						qty = Integer.parseInt(request.getParameter("quantity"));
 						
+						qty = Integer.parseInt(request.getParameter("quantity"));
+						try {
+							//Si e' sulla pagina del carrello e si sta cambiando la quantita' direttamente
+							System.out.println("Provo a modificare direttamente la quantita' ");
+							System.out.println("L'id dell'oggetto di cui si modifichera' la quantita' e': "+request.getParameter("valueID"));
+							valueID = Integer.parseInt(request.getParameter("valueID"));
+							System.out.println("Stai modificando e non aggiungendo la quantita' ");
+							
+							if(qty.intValue() == 0) {
+								cart.remove(valueID);
+							}else {
+								cart.setQuantity(valueID.intValue(), qty.intValue());
+							}
+							
+						} catch (Exception e) {
+							System.out.println("Non stai modificando direttamente la quantita' ");
+						}
+						
+						
+						
+						
+						
+						
+						
+						//Gestione della criticita' quando si aggiunge un prodotto dalla sua pagina
+						id = Integer.parseInt(request.getParameter("addID"));
 						System.out.println("L'ID e': "+id+" , la quantita' e': "+qty+" del prodotto da aggiungere");
 						
 						if( id != null && qty.intValue()>0 ) {
@@ -106,13 +131,7 @@ public class CartControl extends HttpServlet {
 							}
 						} 
 						
-						else if(id != null && qty.intValue()==0){
-							System.out.println("Rimuovo prodotti dal carrello");
-							cart.remove(id);
-							
-							RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaCarrello.jsp");
-							dispatcher.forward(request, response);
-						}
+						
 					} catch(Exception e) {
 						//Il carrello esiste, si sta cercando di accedervi
 						System.out.println("Il carrello esiste, accesso in corso");

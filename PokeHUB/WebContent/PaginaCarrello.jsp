@@ -65,9 +65,31 @@ if (persona == null)
                                         <th><%=prodotto.getNomeProdotto()%></th>
                                     </tr>
                                     <tr>
-                                        <th>Quantità: <select class="selezionaQuantita" name="" id="" min="1" value="1">
-                                            <option value="<%=quantita %>"><%=quantita %></option>
-                                        </select></th>
+                                        <th>Quantità: 
+                                        <form action="cart" method="get">
+                                        	<input type="hidden" name="valueID" value="<%=prodotto.getIdProdotto()%>">
+	                                        <select class="selezionaQuantita" name="quantity" id="" min="1" value="1" onchange="this.form.submit()">
+	                                            <option value="0">0</option>
+	                                            <%for(int i = 1 ; i <= prodotto.getQuantita(); i++) {
+		                                            	if(i ==  quantita.intValue()){ 
+		                                            		%>
+		                                            			<option selected="selected" value="<%=quantita %>"><%=quantita %></option>
+		                                            		<%
+	                                            		} else if(prodotto.getQuantita() ==  quantita.intValue()){
+	                                            			i++;
+	                                            			%>
+	                                            				<option selected="selected" value="<%=quantita %>"><%=quantita %></option>
+	                                            			<%
+	                                            		} else {
+	                                            			%>
+                                            					<option value="<%=i%>"><%=i%></option>
+                                            				<%
+	                                            		}
+	                                            	}
+	                                            %>
+	                                        </select>
+                                        </form>
+                                        </th>
                                     </tr>
                                     <tr>
                                     <%
