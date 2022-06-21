@@ -1,40 +1,125 @@
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: black;
+}
+
+/* selected link */
+a:active {
+  color: black;
+}
+
 .contenitoreGrande {
-    width: 95%;
+	padding-top: 50px;
+    width: 90%;
     margin: 0 auto;
 }
 
 .sezioneCarrello {
-    display: flex;
     float: left;
-    width: 45%;
+    width: 50%;
+    
     border-radius: 20px;
-    background-color: #fdd8357b;
     font-size: 20pt;
     text-align: center;
-    
+    display: block;
 }
 
 .sezioneProdotto {
-	width: 100%;
+    display: inline-block;
+    width: 100%;
     font-size: 20pt;
+    margin-bottom: 10%;
+}
+
+.sezioneProdotto:last-child{
+	margin-bottom: 0%;
+} 
+
+
+.sezioneImmagine {
+    float: left;
+    padding-left: 3%;
+    padding-top: 5%;
 }
 
 .sezioneDettaglioProdotto {
-	width: 100%;
-    font-size: 25pt;
+    float: right;
     text-align: right;
-    line-height:60px;
-    padding: 0px 20px 0px 0px ;
+    font-size: 25pt;
+    padding-right: 5%;
+    
+}
+
+.testoSezioneDettaglio {
+    display: block;
+    width: 100%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    text-align: right;
+    padding-top: 5%;
+    font-size: 20pt;
+    font-weight: 400;
+}
+
+.sezioneDettaglioProdotto > .testoSezioneDettaglio:first-child {
+    margin-top: 6%;
+}
+
+.formSelect {
+    position: relative; 
+    vertical-align: middle;
+    display: flex;
+}
+
+.selectQuantita {
+	font-size: 15pt;
+	border-radius: 20px;
 }
 
 
 .immagineProdotto {
     width: 150px;
     height: auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    padding: 0px 40px;
+    float: left;
+    border-radius: 5px;
 }
+
+.bottoneRimuovi {
+	font-size: 20pt;
+	border-radius: 10px;
+	background-color: #ff00009a;
+	border: none;
+}
+
+.bottoneRimuovi:hover {
+	background-color: #ff0000b7;
+	
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.iconaSpazzatura {
+	position: relative;
+	top: 3px;
+}
+
+
+
+
+
+
+
 
 #sezioneTotale {
     background-color: #f2a6c740;
@@ -42,7 +127,6 @@
     width: 35%;
     float: right;
     padding: 20px;
-    margin-left: 2%;
 }
 
 .divisorioTotaleOrdine {
@@ -56,13 +140,7 @@
 
 .testoSezioneTotale {
     display: block;
-}
-
-.selezionaQuantita {
-    width: 150px;
     font-size: 20pt;
-    border-radius: 20px;
-    text-align: center;
 }
 
 #sezioneTotale:hover {
@@ -87,105 +165,24 @@
 
 
 @media screen and (max-width: 1100px) {
-
-    .cellaTabellaImmagine {
-        width: 60%;
-    }
-
+    
     .contenitoreGrande {
-        width: 80%;
-        margin: 0 auto;
-        background-color: #ffd73578;
-        border-radius: 20px;
-        border: black 2px solid;
-        z-index: -1;
-    } /*ok*/
-    
+    	width: 90%;
+    	margin: 0 auto;
+    	padding-top: 0px;
+	}
+	
     .sezioneCarrello {
-        background-color: none;
-        display: block;
-        float: none;
-        max-width: 100%;
-        width: auto;
-        padding-left: 0%;
-        padding-right: 0%;
-        margin: 0 auto;
-        border-radius: 20px;
-        border: none;
-        font-size: 20pt;
-        text-align: center;
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
-    } /*ok*/
-    
-    .sezioneProdotto {
-        max-width: 100%;
-        font-size: 20pt;
-    }
-    
-    .sezioneDettaglioProdotto {
-        max-width: 100%;
-        font-size: 3vw;
-        text-align: right;
-        line-height:40px;
-        padding: 0px 0px 0px 0px ;
-    } /*ok*/
-    
-    
-    .immagineProdotto {
-        width: 40%;
-        max-width: 500px;
-        min-width: 150px;
-        height: auto;
-        margin-top: 0%;
-        margin-bottom: 0%;
-        padding: 10px 0px;
-        padding-left: 10%;
-        float: left;
-    } /*ok*/
-    
-    #sezioneTotale {
-        z-index: 1;
-        background-color: #f2a6c740;
-        border-radius: 20px;
-        border: black 2px solid;
-    
-        padding: 20px;
-        margin-left: 2%;
-
-
-
-        display: block;
         float: none;
         width: 100%;
-        padding-left: 0%;
-        padding-right: 0%;
-        margin: 0 auto;
-        border: none;
-        border-top: 4px solid black;
-        
+    }
 
-        
-        border-top-left-radius: 0%;
-        border-top-right-radius: 0%;
-    } /*ok*/
-    
-    .divisorioTotaleOrdine {
-        margin-top: 5%;
-        width: 90%;
-        margin-bottom: 5%;
-        border: 2px solid black;
-        border-radius: 5px;
+    #sezioneTotale {
+    	margin-top: 10%;
+    	padding: 0px;
+        float: none;
+        width: 100%;
+        height: auto;
+        display: inline-block;
     }
-    
-    .testoSezioneTotale {
-        display: block;
-    }
-    
-    .selezionaQuantita {
-        width: 50%;
-        font-size: 3vw;
-        border-radius: 20px;
-        text-align: center;
-    }
-  }
+}
