@@ -61,13 +61,13 @@ if (persona == null)
                     <%
                     	if(prodotto.getImmagineProdotto() == null) {
 					%>
-                	<a href="object?id=<%=prodotto.getIdProdotto()%>">
+                	<a href="object?id=<%=prodotto.getIdProdotto()%>" class="linkPaginaProdotto">
 						<img class="immagineProdotto" src="Image/noImage.png" alt="">
 					</a>
 					<%
 						} else {
 					%>
-					<a href="object?id=<%=prodotto.getIdProdotto()%>">
+					<a href="object?id=<%=prodotto.getIdProdotto()%>" class="linkPaginaProdotto">
 						<img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" class="immagineProdotto" alt="">
 					</a>
                             		
@@ -78,7 +78,7 @@ if (persona == null)
 
                     
                 <div class="sezioneDettaglioProdotto">
-                    <p class="testoSezioneDettaglio"><a href="object?id=<%=prodotto.getIdProdotto()%>"><%=prodotto.getNomeProdotto()%></a></p>
+                    <p class="testoSezioneDettaglio"><a href="object?id=<%=prodotto.getIdProdotto()%>" class="linkPaginaProdotto"><%=prodotto.getNomeProdotto()%></a></p>
                     
                     
                     <form action="cart" method="get" class="formSelect">
@@ -103,7 +103,7 @@ if (persona == null)
 						</select>
 						</p>
 					</form>
-					<p class="testoSezioneDettaglio"><button class="bottoneRimuovi"><a href="cart?valueID=<%=prodotto.getIdProdotto()%>&quantity=0"><ion-icon name="trash-outline" class="iconaSpazzatura"></ion-icon> Rimuovi</a></button></p>
+					<p class="testoSezioneDettaglio"><button class="bottoneRimuovi"><a href="cart?valueID=<%=prodotto.getIdProdotto()%>&quantity=0" class="testoBottoneRimuovi"><ion-icon name="trash-outline" class="iconaSpazzatura"></ion-icon> Rimuovi</a></button></p>
                     <p class="testoSezioneDettaglio"><i>Prezzo con IVA:</i></p>
                     <%
 						double percentualeIVA = prodotto.getIva()/100;
@@ -131,13 +131,13 @@ if (persona == null)
 		<a href="PreCheckuot">
 	        <div id="sezioneTotale">
 	            <div>
-	                <h1 class="testoSezioneTotale" style="text-align: center;">Totale da pagare: €<%=formatoPrezzo.format (totaleFattura)%></h1>
+	                <h1 class="testoSezioneTotale">Totale da pagare: €<%=formatoPrezzo.format (totaleFattura)%></h1>
 	            </div>
 	
 	            <hr class="divisorioTotaleOrdine">
 	
 	            <div>    
-	                <h1 id="testoProcediPagamento" style="text-align: center; font-size: 20pt;">PROCEDI CON IL PAGAMENTO</h1>
+	                <h1 id="testoProcediPagamento">PROCEDI CON IL PAGAMENTO</h1>
 	            </div>
 	        </div>
 		</a>
