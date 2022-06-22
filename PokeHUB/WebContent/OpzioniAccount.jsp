@@ -278,12 +278,13 @@
 		        
 			}
 			
-			if(valid) {
+			if(valid == true) {
 				valid = false;
 				//AJAX per testing della Mail
 				var emailTestPass = document.getElementsByName("userid")[0].value;
 				console.log(emailTestPass);
 				$.ajax({  
+					async: false,
 		            //uri della servlet
 		            url: "AjaxUserControl",  
 		            //tipo di richiesta
@@ -293,15 +294,15 @@
 		            //tipo dato ricevuto dalla servlet
 		            dataType: "json",          
 		            success: function(data, textStatus, jqXHR) {  
-		            	alert("Tutto è andato bene. Lo username è libero: "+data);
+		            	console.log("Tutto è andato bene. Lo username è libero: "+data);
 		            	var contenutoJSON = JSON.parse(data);
-		            	alert("L'oggetto convertito in JS contiene: "+contenutoJSON)
+		            	console.log("L'oggetto convertito in JS contiene: "+contenutoJSON)
 		            	if(contenutoJSON){
 		            		valid = true;
-		            		alert("L'username e' libero");
+		            		console.log("L'username e' libero");
 		            	} else {
 		            		valid = false;
-		            		alert("L'username NON e' libero");
+		            		console.log("L'username NON e' libero");
 		            		document.getElementById("errorMail").style.display = 'block';
 		            		document.getElementById("errorMessageMailUsed").style.display = 'block';
 		            	}
@@ -311,8 +312,6 @@
 		            } 
 		        }); 
 			}
-			alert("Saluta Mamma");
-			alert(valid);
 			if(valid) obj.submit();
 		}
 		

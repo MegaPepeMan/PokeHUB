@@ -130,7 +130,8 @@ if(utente != null) {
 				//AJAX per testing della Mail
 				var emailTestPass = document.getElementsByName("userid")[0].value;
 				console.log(emailTestPass);
-		        $.ajax({  
+		        $.ajax({
+		        	async: false,
 		            //uri della servlet
 		            url: "AjaxUserControl",  
 		            //tipo di richiesta
