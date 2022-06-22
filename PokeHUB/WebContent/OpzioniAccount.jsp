@@ -173,7 +173,7 @@
 			
 			Swal.fire({
 				  showConfirmButton: false,
-				  html: '<h1>Inserisci nuova mail</h1><form action="AccountControl" method="post" id="" onsubmit="event.preventDefault(); validateMail(this)"><div class="input-container"><i class="icon"><ion-icon name="mail-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getMail() %>" name="userid"><div id="errorMail" class="error2"><i> <ion-icon name="warning-outline" size="large"></ion-icon> </i></div></div><p id="errorMessageMail">Errore formato mail</p><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
+				  html: '<h1>Inserisci nuova mail</h1><form action="AccountControl" method="post" id="" onsubmit="event.preventDefault(); validateMail(this)"><div class="input-container"><i class="icon"><ion-icon name="mail-outline" size="large"></ion-icon></i><input class="input-field" type="text" placeholder="<%= utente.getMail() %>" name="userid"><div id="errorMail" class="error2"><i> <ion-icon name="warning-outline" size="large"></ion-icon> </i></div></div><p id="errorMessageMail">Errore formato mail</p><p id="errorMessageMailUsed">La mail &eacute; gi&agrave; utilizzata</p><button type="submit" class="btnAggiorna">Aggiorna</button></form>',
 				  customClass: { popup: 'borderBoxPopUp'},
 				})
 		} )
@@ -275,7 +275,44 @@
 			} else {
 				document.getElementById("errorMail").style.display = 'none';
 				document.getElementById("errorMessageMail").style.display = 'none';
+		        
 			}
+			
+			if(valid) {
+				valid = false;
+				//AJAX per testing della Mail
+				var emailTestPass = document.getElementsByName("userid")[0].value;
+				console.log(emailTestPass);
+				$.ajax({  
+		            //uri della servlet
+		            url: "AjaxUserControl",  
+		            //tipo di richiesta
+		            method: "POST",
+		            //dati inviati al server
+		            data: "testMail=" + emailTestPass,
+		            //tipo dato ricevuto dalla servlet
+		            dataType: "json",          
+		            success: function(data, textStatus, jqXHR) {  
+		            	alert("Tutto è andato bene. Lo username è libero: "+data);
+		            	var contenutoJSON = JSON.parse(data);
+		            	alert("L'oggetto convertito in JS contiene: "+contenutoJSON)
+		            	if(contenutoJSON){
+		            		valid = true;
+		            		alert("L'username e' libero");
+		            	} else {
+		            		valid = false;
+		            		alert("L'username NON e' libero");
+		            		document.getElementById("errorMail").style.display = 'block';
+		            		document.getElementById("errorMessageMailUsed").style.display = 'block';
+		            	}
+		            },
+		            error: function(jqXHR, textStatus, errorThrown){
+		            	console.log(jqXHR);
+		            } 
+		        }); 
+			}
+			alert("Saluta Mamma");
+			alert(valid);
 			if(valid) obj.submit();
 		}
 		
