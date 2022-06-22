@@ -147,6 +147,13 @@ if (persona == null)
     <div class="content"></div>
     <div class="content"></div>
        <%
+		} else {
+       %>
+       
+       <h1 style="text-align: center">Nessun prodotto aggiunto al carrello</h1>
+       <h3 style="text-align: center">Vedi un po' <a href="product">qui</a></h3>
+              
+       <%
 		}
        %>   
 

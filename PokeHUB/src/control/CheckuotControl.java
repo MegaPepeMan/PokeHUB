@@ -141,7 +141,8 @@ public class CheckuotControl extends HttpServlet {
 						
 						
 						carrello = new Cart();
-						response.sendRedirect(request.getContextPath()+"/product");
+						request.getSession().setAttribute("ordineConfermato", true);
+						response.sendRedirect(request.getContextPath()+"/OrderComplete");
 					}
 				}
 			}
