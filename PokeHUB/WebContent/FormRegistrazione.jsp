@@ -73,7 +73,7 @@ if(utente != null) {
 
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    
+    <script src="JavaScript/jquery-3.6.0.min.js" type="text/javascript"></script>
     
     <script>
 
@@ -111,7 +111,51 @@ if(utente != null) {
 		
 		
 		function validate(obj) {	
-			var valid = true;	
+			
+			
+			var valid = true;
+			
+			var email = document.getElementsByName("userid")[0];
+			console.log('Mail:');
+			console.log(email);
+			if(!checkEmail(email)) {
+				valid = false;
+				document.getElementById("errorMail").style.display = 'block';
+				document.getElementById("errorMessageMail").style.display = 'block';
+			} else {
+				document.getElementById("errorMail").style.display = 'none';
+				document.getElementById("errorMessageMail").style.display = 'none';
+			}
+			
+			
+			
+			
+			//AJAX
+			var emailTestPass = document.getElementsByName("userid")[0].value;
+			console.log(emailTestPass);
+	        $.ajax({  
+	            //uri della servlet
+	            url: "AjaxUserControl",  
+	            //tipo di richiesta
+	            method: "POST",
+	            //dati inviati al server
+	            data: "testMail=" + emailTestPass,
+	            //tipo dato ricevuto dalla servlet
+	            dataType: "json",          
+	            success: function(data, textStatus, jqXHR) {  
+	            	alert("Tutto è andato bene. Lo username è libero: "+data);  
+	            },
+	            error: function(jqXHR, textStatus, errorThrown){
+	                alert(jqXHR);
+	            } 
+	        }); 
+			
+			
+			
+			
+			
+			
+				
 			
 			var name = document.getElementsByName("nome")[0];
 			if(!checkNamesurname(name)) {
@@ -131,18 +175,6 @@ if(utente != null) {
 			} else {
 				document.getElementById("errorSurname").style.display = 'none';
 				document.getElementById("errorMessageSurname").style.display = 'none';
-			}
-			
-			var email = document.getElementsByName("userid")[0];
-			console.log('Mail:');
-			console.log(email);
-			if(!checkEmail(email)) {
-				valid = false;
-				document.getElementById("errorMail").style.display = 'block';
-				document.getElementById("errorMessageMail").style.display = 'block';
-			} else {
-				document.getElementById("errorMail").style.display = 'none';
-				document.getElementById("errorMessageMail").style.display = 'none';
 			}	
 			
 			var pass1 = document.getElementById("password1");
