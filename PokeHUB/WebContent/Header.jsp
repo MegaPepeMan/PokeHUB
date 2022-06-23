@@ -68,7 +68,7 @@
 			console.log("Inizia la funzione di ricerca")
 			var stringaParziale = document.getElementById("queryRicerca").value;
 			$.ajax({  
-				async: false,
+				async: true,
 	            //uri della servlet
 	            url: "AjaxSuggestControl",  
 	            //tipo di richiesta
@@ -81,6 +81,9 @@
 	            	const prodottiSuggeriti = JSON.stringify(data);
 
 	            	alert("L'oggetto JSON ricevuto: "+prodottiSuggeriti);
+	            	$("barraRicerca").css("border-bottom-left-radius: 0px;");
+	            	$("barraRicerca").css("border-bottom-right-radius: 0px;");
+	            	$("#risultati").addClass( "DivRisultati" )
 	            	$( "#risultati" ).append('<div id="">Ciao</div>');
 	            },
 	            error: function(jqXHR, textStatus, errorThrown){

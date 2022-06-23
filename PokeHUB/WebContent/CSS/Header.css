@@ -25,7 +25,6 @@ body.swal2-hide > [aria-hidden="true"] {
 }
 
 #navbar {
-  overflow: hidden;
   background-color: #fdd835;
   z-index: 1;
   display: flexbox;
@@ -127,10 +126,13 @@ body.swal2-hide > [aria-hidden="true"] {
   display: none;
   background-color: white;
   border:#f3ac9499 3px solid;
-  border-radius: 25px;
+  border-radius: 20px;
+  
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  
   position: relative;
   top: 20px;
-  padding-left: 2%;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   outline: none;
@@ -172,12 +174,42 @@ body.swal2-hide > [aria-hidden="true"] {
   border: none;
   position: relative;
   top: 0px;
+  padding-left: 2%;
 }
 
-#risultati {
+.DivRisultati {
+	box-sizing: border-box;
+
 	background-color: white;
-	width: 100px;
+	font-size: 16pt;
+	z-index: 99;
+	
+	margin-left: -3px;
+	margin-right: -3px;
+	
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+
+	border:#f3ac9499 3px solid;
+	border-top: none;
 }
+
+#barraRicerca:hover > .DivRisultati {
+  border: 3px solid #F3AC94;
+  border-top: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none; 
+}
+
+#barraRicerca:focus-within .DivRisultati  {
+  border: 3px solid #F3AC94;
+  border-top: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  outline: none;  
+}
+
 
 
 /*Barra di ricerca versione Mobile*/
