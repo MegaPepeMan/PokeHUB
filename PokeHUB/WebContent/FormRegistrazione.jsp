@@ -194,8 +194,8 @@ if(utente != null) {
 			var pass2 = document.getElementById("password2");
 			
 			if( checkPassword(pass1) ){
-				document.getElementById("errorPassword2").style.display = 'none';
-				document.getElementById("errorMessagePassword2").style.display = 'none';
+				document.getElementById("errorPassword").style.display = 'none';
+				document.getElementById("errorMessagePassword").style.display = 'none';
 			} else {
 				valid = false;
 				document.getElementById("errorPassword").style.display = 'block';

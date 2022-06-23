@@ -118,6 +118,50 @@ public class ProductDAO {
 		return bean;
 	}
 	
+public synchronized Collection<ProductBean> doRetrieveSuggest(String StringaParziale) throws SQLException, IOException {
+		
+		//fare quando dobbiamo cercare oggetti precisi sul db
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		ProductBean bean = new ProductBean();
+
+		String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME + " WHERE nome_prodotto LIKE ?";
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+			
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			String stringaRicerca = StringaParziale.concat("%");
+			preparedStatement.setString(1, stringaRicerca);
+			
+			System.out.println(stringaRicerca+ " nella stringa: " + selectSQL);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			
+			
+			while (rs.next()) {
+				bean = new ProductBean();
+				bean.setIdProdotto(rs.getInt("id_prodotto"));
+				bean.setNomeProdotto(rs.getString("nome_prodotto"));
+				System.out.println("Gli oggetti trovati sono: "+bean.getIdProdotto()+ " " + bean.getNomeProdotto());
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		products.toString();
+		return products;
+	}
+
+	
 	
 	public synchronized boolean doDelete(int idProdotto) throws SQLException {
 		

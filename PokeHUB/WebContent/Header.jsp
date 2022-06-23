@@ -16,10 +16,11 @@
 
 	<form action="" method="get" class="">
 		<div id="barraRicerca">
-			<input type="text" placeholder="Cerca prodotti" class="campoRicerca" />
+			<input type="text" placeholder="Cerca prodotti" class="campoRicerca" id="queryRicerca" onkeyup="funzioneRicerca()"/>
 			<button type="submit" class="bottoneRicerca">
 				<ion-icon name="search-outline" class="" id=""></ion-icon>
 			</button>
+			<div id="risultati"></div>
 		</div>
 	</form>
 
@@ -48,7 +49,7 @@
 
 <div class="content"></div>
 
-<script src="JavaScript/SweetAlert2/sweetalert2.all.min.js" type="text/javascript"></script>
+	<script src="JavaScript/SweetAlert2/sweetalert2.all.min.js" type="text/javascript"></script>
 	<script src="JavaScript/jquery-3.6.0.min.js" type="text/javascript"></script>	
 
 
@@ -62,6 +63,31 @@
 				})
 		} )
 		
+		
+		function funzioneRicerca() {
+			console.log("Inizia la funzione di ricerca")
+			var stringaParziale = document.getElementById("queryRicerca").value;
+			$.ajax({  
+				async: false,
+	            //uri della servlet
+	            url: "AjaxSuggestControl",  
+	            //tipo di richiesta
+	            method: "POST",
+	            //dati inviati al server
+	            data: "stringaRicerca=" + stringaParziale,
+	            //tipo dato ricevuto dalla servlet
+	            dataType: "json",          
+	            success: function(data, textStatus, jqXHR) {
+	            	const prodottiSuggeriti = JSON.stringify(data);
+
+	            	alert("L'oggetto JSON ricevuto: "+prodottiSuggeriti);
+	            	$( "#risultati" ).append('<div id="">Ciao</div>');
+	            },
+	            error: function(jqXHR, textStatus, errorThrown){
+	            	console.log(jqXHR);
+	            } 
+	        });
+		}
 		
 	</script>
 
