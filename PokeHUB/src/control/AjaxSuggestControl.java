@@ -47,19 +47,22 @@ public class AjaxSuggestControl extends HttpServlet {
 		System.out.println(request.getParameter("stringaRicerca"));
 		ProductDAO prodotti = new ProductDAO();
 		try {
-			Collection<ProductBean> prodottiSuggest = prodotti.doRetrieveSuggest(request.getParameter("stringaRicerca"));
-			Iterator<ProductBean> iter = prodottiSuggest.iterator();
-			
-			ProductBean prodotto = null;
-			while(iter.hasNext()) {
-				prodotto = iter.next();
-				System.out.println("I prodotti ricevuti dalla servlet sono: "+ prodotto.getNomeProdotto() + " " + prodotto.getIdProdotto());
+			if(!request.getParameter("stringaRicerca").equalsIgnoreCase("")) {
+				Collection<ProductBean> prodottiSuggest = prodotti.doRetrieveSuggest(request.getParameter("stringaRicerca"));
+				Iterator<ProductBean> iter = prodottiSuggest.iterator();
+				
+				ProductBean prodotto = null;
+				while(iter.hasNext()) {
+					prodotto = iter.next();
+					System.out.println("I prodotti ricevuti dalla servlet sono: "+ prodotto.getNomeProdotto() + " " + prodotto.getIdProdotto());
+				}
+				
+				oggettoJSON = new Gson().toJson(prodottiSuggest);
+				System.out.println("Oggetto JSON: "+oggettoJSON);
+				
+				response.getWriter().write(oggettoJSON.toString());
 			}
 			
-			oggettoJSON = new Gson().toJson(prodottiSuggest);
-			System.out.println("Oggetto JSON: "+oggettoJSON);
-			
-			response.getWriter().write(oggettoJSON);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

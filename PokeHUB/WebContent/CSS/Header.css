@@ -128,8 +128,8 @@ body.swal2-hide > [aria-hidden="true"] {
   border:#f3ac9499 3px solid;
   border-radius: 20px;
   
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   
   position: relative;
   top: 20px;
@@ -192,6 +192,13 @@ body.swal2-hide > [aria-hidden="true"] {
 
 	border:#f3ac9499 3px solid;
 	border-top: none;
+	
+	padding-top: 2%;
+	padding-left: 2%;
+}
+
+.DivRisultati a {
+	line-height: 10pt;
 }
 
 #barraRicerca:hover > .DivRisultati {

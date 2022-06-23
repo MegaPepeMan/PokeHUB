@@ -78,13 +78,32 @@
 	            //tipo dato ricevuto dalla servlet
 	            dataType: "json",          
 	            success: function(data, textStatus, jqXHR) {
-	            	const prodottiSuggeriti = JSON.stringify(data);
-
-	            	alert("L'oggetto JSON ricevuto: "+prodottiSuggeriti);
-	            	$("barraRicerca").css("border-bottom-left-radius: 0px;");
-	            	$("barraRicerca").css("border-bottom-right-radius: 0px;");
-	            	$("#risultati").addClass( "DivRisultati" )
-	            	$( "#risultati" ).append('<div id="">Ciao</div>');
+	            	
+	            	$("#risultati").empty();
+	            	
+	            	if( data.length >=1) {
+	            		$("#risultati").empty();
+		            	$("#barraRicerca").css({"border-bottom-left-radius":"0px"});
+		            	$("#barraRicerca").css({"border-bottom-right-radius":"0px"});
+		            	$("#risultati").addClass( "DivRisultati" );
+		            	for (const i in data) {
+		            		$( "#risultati" ).append('<div id=""><a href="object?id='+data[i].idProdotto+'">'+data[i].nomeProdotto+'</a></div>');
+						}
+	            	} else {
+	            		$("#risultati").empty();
+	            		$("#risultati").removeClass( "DivRisultati" );
+	            		$("#barraRicerca").css({"border-bottom-left-radius":"20px"});
+		            	$("#barraRicerca").css({"border-bottom-right-radius":"20px"});
+	            	}
+	            	
+	            	if(stringaParziale === ""){
+	            		
+	            		$("#risultati").removeClass( "DivRisultati" );
+	            		$("#barraRicerca").css({"border-bottom-left-radius":"20px"});
+		            	$("#barraRicerca").css({"border-bottom-right-radius":"20px"});
+	            	}
+	            	
+	            	
 	            },
 	            error: function(jqXHR, textStatus, errorThrown){
 	            	console.log(jqXHR);
