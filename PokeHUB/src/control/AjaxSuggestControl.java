@@ -61,6 +61,9 @@ public class AjaxSuggestControl extends HttpServlet {
 				System.out.println("Oggetto JSON: "+oggettoJSON);
 				
 				response.getWriter().write(oggettoJSON.toString());
+			} else {
+				oggettoJSON = new Gson().toJson("");
+				response.getWriter().write(oggettoJSON.toString());
 			}
 			
 		} catch (SQLException e) {
