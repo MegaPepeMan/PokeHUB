@@ -58,15 +58,33 @@
 			
 			Swal.fire({
 				  showConfirmButton: false,
-				  html: '<h1>Ricerca</h1><form action="" method="get" class=""><div id="barraRicercaResponsive"><input type="text" placeholder="Cerca prodotti" class="campoRicercaResponsive" /><button type="submit" class="bottoneRicercaResponsive"><ion-icon name="search-outline" class="" id=""></ion-icon></button></div></form>',
+				  html: '<h1>Ricerca</h1><form action="" method="get" class=""><div id="barraRicercaResponsive"><input type="text" placeholder="Cerca prodotti" class="campoRicercaResponsive" id="queryRicercaResponsive" onkeyup="funzioneRicerca()"/><button type="submit" class="bottoneRicercaResponsive"><ion-icon name="search-outline" class="" id=""></ion-icon></button><div id="risultatiResponsive"></div></div></form>',
 				  customClass: { popup: 'borderBoxPopUp'},
 				})
 		} )
 		
 		
 		function funzioneRicerca() {
+			
+			$("#risultati").empty();
+        	$("#risultatiResponsive").empty();
+        	$("#risultati").removeClass( "DivRisultati" );
+    		$("#barraRicerca").css({"border-bottom-left-radius":"20px"});
+        	$("#barraRicerca").css({"border-bottom-right-radius":"20px"});
+			
 			console.log("Inizia la funzione di ricerca")
-			var stringaParziale = document.getElementById("queryRicerca").value;
+			var stringaParziale;
+
+			
+			
+			if(document.getElementById("queryRicerca").value === ""){
+				stringaParziale = document.getElementById("queryRicercaResponsive").value;
+				console.log("Ricerca query responsive");
+			} else {
+				stringaParziale = document.getElementById("queryRicerca").value;
+				console.log("Ricerca query normale");
+			}
+			
 			$.ajax({  
 				async: true,
 	            //uri della servlet
@@ -79,17 +97,26 @@
 	            dataType: "json",          
 	            success: function(data, textStatus, jqXHR) {
 	            	
+	            	
+	            	
 	            	$("#risultati").empty();
+	            	$("#risultatiResponsive").empty();
 	            	
 	            	if( data.length >=1) {
+	            		$("#risultatiResponsive").empty();
 	            		$("#risultati").empty();
 		            	$("#barraRicerca").css({"border-bottom-left-radius":"0px"});
 		            	$("#barraRicerca").css({"border-bottom-right-radius":"0px"});
 		            	$("#risultati").addClass( "DivRisultati" );
 		            	for (const i in data) {
 		            		$( "#risultati" ).append('<div id=""><a href="object?id='+data[i].idProdotto+'">'+data[i].nomeProdotto+'</a></div>');
+		            		$( "#risultatiResponsive" ).append('<div id=""><a href="object?id='+data[i].idProdotto+'">'+data[i].nomeProdotto+'</a></div>');
 						}
+		            	
+		            	
+		            	
 	            	} else {
+	            		$("#risultatiResponsive").empty();
 	            		$("#risultati").empty();
 	            		$("#risultati").removeClass( "DivRisultati" );
 	            		$("#barraRicerca").css({"border-bottom-left-radius":"20px"});
