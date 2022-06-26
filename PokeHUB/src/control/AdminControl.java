@@ -51,8 +51,14 @@ public class AdminControl extends HttpServlet {
 						request.removeAttribute("IDproduct");
 						request.setAttribute("IDproduct", prodotto.doRetrieveByKey(id));
 					} else if (action.equalsIgnoreCase("delete")) {
+						System.out.println("Nascondo prodotto");
 						int id = Integer.parseInt(request.getParameter("id"));
-						prodotto.doDelete(id);
+						System.out.println("ID prodotto da nascondere: "+id);
+						ProductBean beanProdottoNascosco = prodotto.doRetrieveByKey(id);
+						beanProdottoNascosco.setProdottoMostrato(false);
+						System.out.println("Prodotto da nascondere: "+ beanProdottoNascosco.isProdottoMostrato() );
+						prodotto.doUpdate(beanProdottoNascosco);
+						
 					} else if (action.equalsIgnoreCase("insert")) {
 						String name = request.getParameter("name");
 						String description = request.getParameter("description");
@@ -86,7 +92,7 @@ public class AdminControl extends HttpServlet {
 						
 					} else if (action.equalsIgnoreCase("update")) {
 						
-						//FINIRE STA PARTE AAAAAAA
+
 						System.out.println("Stai facendo l'update");
 						int id = Integer.parseInt(request.getParameter("id"));
 						System.out.println("L'id e':"+id);
@@ -107,6 +113,19 @@ public class AdminControl extends HttpServlet {
 						beanProdotto.setProdottoMostrato(showing);
 						beanProdotto.setCategoriaProdotto(category);
 						beanProdotto.setIdProdotto(id);
+
+						Part filePart = request.getPart("photo");
+						if (filePart != null) {
+				  
+							System.out.println("Immagine nuova ottenuta");
+				            // Obtains input stream of the upload file
+							InputStream inputStream = null;
+				            inputStream = filePart.getInputStream();
+				            beanProdotto.setImmagineProdotto(null);
+				            beanProdotto.setImmagineUpload(null);
+				            beanProdotto.setImmagineUpload(inputStream);
+				        }
+
 						prodotto.doUpdate(beanProdotto);
 					}
 				}			

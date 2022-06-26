@@ -19,18 +19,92 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+	<link href="CSS/OrdiniAdmin.css" rel="stylesheet" type="text/css">
 	<title>Catalogo Admin</title>
 </head>
 
 <body>
 <%@ include file="Header.jsp" %>
-	<br>
-	<br>
-	<a href="PaginaOrdiniAdmin.jsp"><input type="button" value="Ordini Admin"></a>
-	<h2>Prodotti:</h2>
-	<a href="admin">List</a>
-	<table border="1">
+
+
+	<h2 class="testoPaginaCatalogo">Inserisci prodotto:</h2>
+	
+	<form action="admin" method="post" enctype='multipart/form-data'>
+	
+		<input type="hidden" name="action" value="insert">
+		
+		<div id="formProdotti">
+		
+			<div class="input-container">
+				<i class="icon"><ion-icon name="bag-add-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="name" type="text" maxlength="50" required placeholder="Nome prodotto">
+			</div>
+			
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="cash-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="price" type="number" step="any" required placeholder="Prezzo senza IVA">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="iva" type="number" min="1" max="100" step="any" required placeholder="% IVA">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="text-outline" size="large"></ion-icon></i>
+				<textarea class="input-field" name="description" maxlength="2000" rows="3" required placeholder="Inserisci descrizione"></textarea>
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="apps-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="quantity" type="number" min="0" required placeholder="Quantit&agrave;">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="checkbox-outline" size="large"></ion-icon></i>
+				<select class="input-field" name="showing" required>
+	  				<option value="true">Il prodotto &egrave; in vendita</option>
+	  				<option value="false">Il prodotto NON &egrave; in vendita</option>
+				</select>
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="pricetag-outline" size="large"></ion-icon></i>
+				<select class="input-field" name="category" required>
+					<option value="" disabled selected>Seleziona categoria</option> 
+	  				<%
+						if (categories != null && categories.size() != 0) {
+						Iterator<?> it = categories.iterator();
+							
+						while (it.hasNext()) {
+							CategoryBean bean = (CategoryBean) it.next();
+						
+					%>
+					<option value="<%=bean.getNomeCategoria()%>"><%=bean.getNomeCategoria()%></option>
+					<%
+							}
+						}
+					%>
+				</select>
+			</div>
+
+
+			<div class="input-container">
+				<i class="icon"><ion-icon name="image-outline" size="large"></ion-icon></i>
+				<input class="input-field" type="file" name="photo" accept="image/*" required/>
+			</div>
+			
+			
+			
+			<input type="submit" value="Aggiungi" class="btnSearch">
+		</div>
+		
+	</form>
+
+	
+	<h2 class="testoPaginaCatalogo">Prodotti:</h2>
+	<table border="1" cellpadding="10" cellspacing="0" class="table">
 		<tr>
 			<th>Nome Prodotto</th>
 			<th>Immagine</th>
@@ -53,8 +127,8 @@
 			formatoPrezzo.setMaximumFractionDigits(2);
 			%>
 			<td>€<%=formatoPrezzo.format((bean.getPrezzoVetrina()/100)*bean.getIva() + bean.getPrezzoVetrina())%></td>
-			<td><a href="admin?action=delete&id=<%=bean.getIdProdotto()%>">Cancella</a><br>
-				<a href="admin?action=read&id=<%=bean.getIdProdotto()%>">Dettagli</a><br>
+			<td><a href="admin?action=delete&id=<%=bean.getIdProdotto()%>">Nascondi</a><br>
+				<a href="admin?action=read&id=<%=bean.getIdProdotto()%>#dettagliProdotto" id="aggiornaProdotto">Dettagli</a><br>
 		</tr>
 		<%
 				}
@@ -77,76 +151,118 @@
 	
 	%>
 	
-	<h2>Dettagli</h2>
-	<table border="1">
+	<h2 id="dettagliProdotto" class="testoPaginaCatalogo">Dettagli</h2>
+	<table border="1" cellpadding="10" cellspacing="0" class="table">
 		<tr>
 			<th>IdProdotto</th>
 			<th>Nome</th>
 			<th>Prezzo</th>
-			<th>Descrizione</th>
-			<th>IVA</th>
-			<th>ProdottoMostrato</th>
-			<th>CategoriaProdotto</th>
-			<th>Quantità</th>
-			
+			<th class="codTrack">Descrizione</th>
+			<th class="statusOrdine">IVA</th>
+			<th class="indirizzoSped">ProdottoMostrato</th>
+			<th class="numCivico">CategoriaProdotto</th>
+			<th class="cap">Quantità</th>
 		</tr>
 		<tr>
-			<td><%=oggettoDettaglio.getIdProdotto()%></td>
-			<td><%=oggettoDettaglio.getNomeProdotto()%></td>
-			<td><%=oggettoDettaglio.getPrezzoVetrina()%></td>
-			<td><%=oggettoDettaglio.getDescrizione() %></td>
-			<td><%=oggettoDettaglio.getIva()%></td>
-			<td><%=oggettoDettaglio.isProdottoMostrato()%></td>
-			<td><%=oggettoDettaglio.getCategoriaProdotto()%></td>
-			<td><%=oggettoDettaglio.getQuantita()%></td>
+			<td class=" "><%=oggettoDettaglio.getIdProdotto()%></td>
+			<td class=" "><%=oggettoDettaglio.getNomeProdotto()%></td>
+			<td class=" "><%=oggettoDettaglio.getPrezzoVetrina()%></td>
+			<td class="codTrack testoPaginaCatalogoDescrizione"><%=oggettoDettaglio.getDescrizione() %></td>
+			<td class="statusOrdine"><%=oggettoDettaglio.getIva()%></td>
+			<td class="indirizzoSped"><%=oggettoDettaglio.isProdottoMostrato()%></td>
+			<td class="numCivico"><%=oggettoDettaglio.getCategoriaProdotto()%></td>
+			<td class="cap"><%=oggettoDettaglio.getQuantita()%></td>
 		</tr>
 	</table>
 	
-	<h2>Modifica prodotto:</h2>
-	<form action="admin?action=update&id=<%=oggettoDettaglio.getIdProdotto()%>" method="post">
+	<h2 class="testoPaginaCatalogo">Modifica prodotto:</h2>
+	<form action="admin?action=update&id=<%=oggettoDettaglio.getIdProdotto()%>" method="post" enctype="multipart/form-data">
 		
-		<label for="name">Nome Prodotto:</label><br> 
-		<input name="name" type="text" maxlength="50" required value="<%=oggettoDettaglio.getNomeProdotto()%>"><br> 
+		<input type="hidden" name="action" value="insert">
 		
-		<label for="price">Prezzo senza IVA:</label><br> 
-		<input name="price" type="number" min="1" step="any" required value="<%=oggettoDettaglio.getPrezzoVetrina()%>"><br>
+		<div id="formProdotti">
 		
-		<label for="iva">% IVA:</label><br> 
-		<input name="iva" type="number" min="1" max="100" step="any" required value="<%=oggettoDettaglio.getIva()%>"><br>
-		
-		<label for="description">Descrizione:</label><br>
-		<textarea name="description" maxlength="2000" rows="3" required><%=oggettoDettaglio.getDescrizione()%></textarea><br>
-
-		<label for="quantity">Quantità:</label><br> 
-		<input name="quantity" type="number" min="1" value="<%=oggettoDettaglio.getQuantita()%>" required><br>
-		
-		<label for="showing" >Prodotto mostrato:</label><br> 
-		<select name="showing" required>
-  			<option value="true">Si</option>
-  			<option value="false">No</option>
-		</select><br>
-		
-		<label for="category">Categoria:</label><br>
-		<select name="category" required>
-  			
-  		
-  			<%
-			if (categories != null && categories.size() != 0) {
-				Iterator<?> it = categories.iterator();
-				
-				while (it.hasNext()) {
-					CategoryBean bean = (CategoryBean) it.next();
-					
-		%>
-		<option value="<%=bean.getNomeCategoria()%>"><%=bean.getNomeCategoria()%></option>
-		<%
+			<div class="input-container">
+				<i class="icon"><ion-icon name="bag-add-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="name" type="text" maxlength="50" required value="<%=oggettoDettaglio.getNomeProdotto()%>">
+			</div>
+			
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="cash-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="price" type="number" step="any" required value="<%=oggettoDettaglio.getPrezzoVetrina()%>">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="iva" type="number" min="1" max="100" step="any" required value="<%=oggettoDettaglio.getIva()%>">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="text-outline" size="large"></ion-icon></i>
+				<textarea class="input-field" name="description" maxlength="2000" rows="3" required placeholder="Inserisci descrizione"><%=oggettoDettaglio.getDescrizione()%></textarea>
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="apps-outline" size="large"></ion-icon></i>
+				<input class="input-field" name="quantity" type="number" min="0" required placeholder="Quantit&agrave;" value="<%=oggettoDettaglio.getQuantita()%>">
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="checkbox-outline" size="large"></ion-icon></i>
+				<select class="input-field" name="showing" required>
+				<%
+				if( oggettoDettaglio.isProdottoMostrato() ) {
+					%>
+					<option value="true" selected>Il prodotto &egrave; in vendita</option>
+	  				<option value="false">Il prodotto NON &egrave; in vendita</option>	
+					<%
+				} else {
+					%>
+					<option value="true">Il prodotto &egrave; in vendita</option>
+	  				<option value="false" selected>Il prodotto NON &egrave; in vendita</option>	
+					<%
 				}
-			}
-		%>
-		</select><br>
-		<br><br>
-		<input type="submit" value="Aggiorna"><input type="reset" value="Reset">
-		
+				%>
+				</select>
+			</div>
+			
+			<div class="input-container">
+				<i class="icon"><ion-icon name="pricetag-outline" size="large"></ion-icon></i>
+				<select class="input-field" name="category" required>
+					<option value="" disabled selected>Seleziona categoria</option> 
+	  				<%
+						if (categories != null && categories.size() != 0) {
+						Iterator<?> it = categories.iterator();
+							
+						while (it.hasNext()) {
+							CategoryBean bean = (CategoryBean) it.next();
+							if( bean.getNomeCategoria().equalsIgnoreCase( oggettoDettaglio.getCategoriaProdotto() ) ) {
+									%>
+									<option value="<%=bean.getNomeCategoria()%>" selected><%=bean.getNomeCategoria()%></option>
+									<%			
+								} else {
+									%>
+									<option value="<%=bean.getNomeCategoria()%>"><%=bean.getNomeCategoria()%></option>
+									<%
+								}
+					
+							}
+						}
+					%>
+				</select>
+			</div>
+
+
+			<div class="input-container">
+				<i class="icon"><ion-icon name="image-outline" size="large"></ion-icon></i>
+				<input class="input-field" type="file" name="photo" accept="image/*" />
+			</div>
+			
+			
+			
+			<input type="submit" value="Aggiorna" class="btnSearch">
+		</div>		
 	</form>
 	
 	
@@ -158,60 +274,6 @@
 			System.out.println("Oggetto non trovato");
 		}
 	%>
-	
-	<h2>Inserisci prodotto:</h2>
-	
-	<form action="admin" method="post" enctype='multipart/form-data'>
-		<input type="hidden" name="action" value="insert"> 
-		
-		<label for="name">Nome Prodotto:</label><br> 
-		<input name="name" type="text" maxlength="50" required placeholder="inserisci nome"><br> 
-		
-		<label for="price">Prezzo senza IVA:</label><br> 
-		<input name="price" type="number" min="1" step="any" required><br>
-		
-		<label for="iva">% IVA:</label><br> 
-		<input name="iva" type="number" min="1" max="100" step="any"><br>
-		
-		<label for="description">Descrizione:</label><br>
-		<textarea name="description" maxlength="2000" rows="3" required placeholder="inserisci descrizione"></textarea><br>
-
-		<label for="quantity">Quantità:</label><br> 
-		<input name="quantity" type="number" min="1" value="1" required><br>
-		
-		<label for="showing">Prodotto mostrato:</label><br> 
-		<select name="showing" required>
-  			<option value="true">Si</option>
-  			<option value="false">No</option>
-		</select><br>
-		
-		<label for="category">Categoria:</label><br>
-		<select name="category" required>
-  			
-  		
-  			<%
-			if (categories != null && categories.size() != 0) {
-				Iterator<?> it = categories.iterator();
-				
-				while (it.hasNext()) {
-					CategoryBean bean = (CategoryBean) it.next();
-					
-		%>
-		<option value="<%=bean.getNomeCategoria()%>"><%=bean.getNomeCategoria()%></option>
-		<%
-				}
-			}
-		%>
-		</select><br>
-		
-		<label>Immagine prodotto: </label> 
-     	<input type="file" name="photo" accept="image/jpeg" />
-		
-		
-		<br><br>
-		<input type="submit" value="Aggiungi"><input type="reset" value="Reset">
-		
-	</form>
-	<%@ include file="Footer.html" %>
+	<div class="content"></div>
 	</body>
 </html>

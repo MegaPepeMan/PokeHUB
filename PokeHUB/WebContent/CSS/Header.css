@@ -207,6 +207,7 @@ body.swal2-hide > [aria-hidden="true"] {
 
 .DivRisultati  a:link {
 	color: #494949;
+	text-decoration: none;
 }
 
 .DivRisultati  a:visited{

@@ -87,9 +87,17 @@ input[type="date"]{
 body{
 	background-color: white;
 }
+
 #ricercaDataUtente {
     max-width: 80%;
     margin: 0 auto;
+}
+
+#formProdotti {
+	text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
 }
 
 * {box-sizing: border-box;}
@@ -108,6 +116,19 @@ body{
    	
    	
     border-radius: 20px;
+}
+
+#formProdotti > .input-container{
+	margin: 0 auto;
+	width: 80%;
+	min-width: 300px;
+	max-width: none;
+	margin-top: 2%;
+}
+
+input[type="file"] {
+	text-align: center;
+	margin: 0 auto;
 }
 
 
@@ -147,7 +168,9 @@ body{
   outline: none;
   border: none;
   padding-left: 2%;
-  text-align: left; 
+  text-align: left;
+  
+  -webkit-appearance: none; 
 }
 
 .input-container:focus-within .icon {  
@@ -170,12 +193,22 @@ body{
     outline: none;
 }
 
+.testoPaginaCatalogo {
+	text-align: center;
+}
+
+.testoPaginaCatalogoDescrizione {
+	max-width: 200px;
+}
+
 hr{
     margin-top: 5%;
     margin-bottom: 5%;
     border-top: 1px solid rgba(128, 128, 128, 0.27);  
     border-radius: 5px;
 }
+
+
 
 
 
