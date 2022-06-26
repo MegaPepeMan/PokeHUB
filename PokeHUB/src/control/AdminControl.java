@@ -59,6 +59,13 @@ public class AdminControl extends HttpServlet {
 						System.out.println("Prodotto da nascondere: "+ beanProdottoNascosco.isProdottoMostrato() );
 						prodotto.doUpdate(beanProdottoNascosco);
 						
+					} else if (action.equalsIgnoreCase("show")) {	
+						System.out.println("Mostra prodotto");
+						int id = Integer.parseInt(request.getParameter("id"));
+						ProductBean beanProdottoNascosco = prodotto.doRetrieveByKey(id);
+						beanProdottoNascosco.setProdottoMostrato(true);
+						prodotto.doUpdate(beanProdottoNascosco);
+						
 					} else if (action.equalsIgnoreCase("insert")) {
 						String name = request.getParameter("name");
 						String description = request.getParameter("description");

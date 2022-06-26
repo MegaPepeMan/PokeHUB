@@ -13,7 +13,11 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<% Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
+<%
+	DecimalFormat formatoPrezzo = new DecimalFormat();
+	formatoPrezzo.setMaximumFractionDigits(2);
+	formatoPrezzo.setMinimumFractionDigits(2);
+	Collection<OrderBean> ordini= (Collection<OrderBean>)request.getSession().getAttribute("totaleOrdini");
 	if(ordini == null)
 	{
 		response.sendRedirect("./OrderControl?action=all");
