@@ -13,49 +13,86 @@ if (prodotto == null)
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.*,control.*,java.text.DecimalFormat"%>
 <%@ include file="Header.jsp" %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="CSS/oggetto.css" rel="stylesheet" type="text/css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-<title><%=prodotto.getNomeProdotto()%></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="CSS/oggetto.css" rel="stylesheet" type="text/css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title><%=prodotto.getNomeProdotto()%></title>
 </head>
+
+
 <body>
 
-<ul class="testi">
-<li class="left"><h3><%=prodotto.getNomeProdotto()%></h3><%
-	if(prodotto.getImmagineProdotto() != null){
-	%>
-		
-		<img class="riduci img-rounded" src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>"/>
-	<%		
-	}
-	%></li>
-	<li class="left">   <h3 align="center"><%=prodotto.getNomeProdotto()%></h3><br>
-	<h3><%=prodotto.getDescrizione()%></h3>
-	<h3><%=prodotto.getIdProdotto()%></h3>
-	
-	<%
+<%
 	DecimalFormat formatoPrezzo = new DecimalFormat();
 	formatoPrezzo.setMaximumFractionDigits(2);
-	%>
-	<h3>€<%=formatoPrezzo.format((prodotto.getPrezzoVetrina()/100)*prodotto.getIva() + prodotto.getPrezzoVetrina())%></h3>
-	<h3><%=prodotto.getCategoriaProdotto()%></h3>  </li>
-</ul>
-	
-	
-	<br><br><br>
-	
-	<form action="cart" method="post">
-		<input type="hidden" name="addID" value="<%=prodotto.getIdProdotto()%>">
-		
-		<label for="quantity">Quantità:</label><br> 
-		<input name="quantity" type="number" value="1" min="1"  max="<%=prodotto.getQuantita()%>" required><br>
-		<input type="submit" value="Aggiungi">
-	</form>	
+	formatoPrezzo.setMinimumFractionDigits(2);
+%>
+	<div class="content"></div>
 
-	<%@include file="Footer.html" %>
+ 	<div class="containerDettagli">
+        <div class="sezioneFoto">
+        	<%
+	            if(prodotto.getImmagineProdotto() == null) {
+	            	%>
+	            		<img src="Image/noImage.png" alt="" class="fotoProdotto">
+	            	<%	
+	            } else {
+	            	%>
+	            		
+	            	<%
+	            }
+            %>
+            <img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" alt="" class="fotoProdotto">
+        </div>
+        
+        <div class="sezioneTesto">
+            <div class="nomeProdotto"><%=prodotto.getNomeProdotto()%></div>
+            <div class="categoriaProdotto">Categoria: <%=prodotto.getCategoriaProdotto()%></div>
+            <div class="prezzoProdotto">€<%=formatoPrezzo.format((prodotto.getPrezzoVetrina()/100)*prodotto.getIva() + prodotto.getPrezzoVetrina())%></div>
+            <div class="sezioneStelleRecensioni">
+                <img src="Image/stars.png" alt="" class="immagineStelle">
+                <div class="sfondoStelle"></div>
+            </div>
+            <div class="descrizioneProdotto">Descrizione:<br><br><%=prodotto.getDescrizione()%></div>
+            
+            <div class="sezioneFormPulsante">
+            <%
+	            if(prodotto.getQuantita() == 0) {
+	            	%>
+	            		<button class="pulsanteNonDisponibile"><ion-icon class="iconaPulsanteCarrello" name="close-outline" size="large"></ion-icon>NON DISPONIBILE</button>
+	            	<%	
+	            } else {
+	            	%>
+            		<form action="cart" method="post">
+			        	<input type="hidden" name="addID" value="<%=prodotto.getIdProdotto()%>">
+			        	<input name="quantity" class="quantitaProdotto" type="number" value="1" min="1"  max="<%=prodotto.getQuantita()%>" required>
+			        	<button type="submit" class="pulsanteCarrello"><ion-icon class="iconaPulsanteCarrello" name="cart-outline" size="large"></ion-icon>AGGIUNGI AL CARRELLO</button>  
+			        </form>
+	            	<%
+	            }
+            %>
+            
+		        
+		        
+		        
+			</div>
+        </div>
+        
+    </div>
+
+
+	
+	
+	
+	
+	<div class="content"></div>
+	
+	<script src="JavaScript/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script>
+		$('img.fotoProdotto').zoom();
+	</script>
 	
 </body>
 </html>
