@@ -8,7 +8,7 @@ public class RatingBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String mailCliente;
-	private int idProdotto;
+	private Integer idProdotto;
 	private String descrizione;
 	private double punteggio;
 	
@@ -17,7 +17,7 @@ public class RatingBean implements Serializable {
 	public RatingBean() {
 		super();
 		this.mailCliente = "";
-		this.idProdotto = 0;
+		this.idProdotto = null;
 		this.descrizione = "";
 		this.punteggio = 0;
 	}
@@ -30,7 +30,7 @@ public class RatingBean implements Serializable {
 		this.mailCliente = mailCliente;
 	}
 	
-	public int getIdProdotto() {
+	public Integer getIdProdotto() {
 		return idProdotto;
 	}
 	

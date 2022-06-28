@@ -1,16 +1,11 @@
 package model;
 
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
-import java.util.Collection;
-import java.util.LinkedList;
 
 
 
@@ -27,7 +22,7 @@ public class RatingDAO {
 		PreparedStatement preparedStatement = null;
 
 		String insertSQL = "INSERT INTO " + RatingDAO.TABLE_NAME
-				+ " (mail_cliente, identificativo_prodotto, descrizione, punteggio) VALUES (?, ?, ?, ?,)";
+				+ " (mail_cliente, identificativo_prodotto, descrizione, punteggio) VALUES (?, ?, ?, ?)";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -37,7 +32,8 @@ public class RatingDAO {
 			preparedStatement.setString(3, valutazione.getDescrizione() );
 			preparedStatement.setDouble(4, valutazione.getPunteggio() );
 			
-
+			System.out.println("La preparedStatement: "+preparedStatement);
+			
 			preparedStatement.executeUpdate();
 
 			connection.commit();
@@ -68,6 +64,8 @@ public class RatingDAO {
 			preparedStatement.setString(1, idUtente);
 			preparedStatement.setInt(2, idProdotto);
 
+			
+			System.out.println("La preparedStatement: "+preparedStatement);
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {

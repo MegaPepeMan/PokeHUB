@@ -3,7 +3,10 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +21,8 @@ import model.OrderBean;
 import model.OrderDAO;
 import model.ProductBean;
 import model.ProductDAO;
+import model.RatingBean;
+import model.RatingDAO;
 import model.UserBean;
 
 /**
@@ -46,9 +51,13 @@ public class RatingControl extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else {
 			
+			request.getSession().setAttribute("prodottiRecensione", null);
+			
 			OrderDAO ordini = new OrderDAO();
 			CompositionDAO composizioni = new CompositionDAO();
 			ProductDAO prodotti = new ProductDAO();
+			RatingDAO recensioni = new RatingDAO();
+			Map<Integer,ProductBean> prodottiDaRecensire = new HashMap<Integer,ProductBean>();
 			
 			Collection<OrderBean> ordiniUtente = null;
 			try {
@@ -71,6 +80,10 @@ public class RatingControl extends HttpServlet {
 					while(itComposizioneOrdine.hasNext()) {
 						CompositionBean prodottoComposizione = itComposizioneOrdine.next();
 						ProductBean prodotto = prodotti.doRetrieveByKey(prodottoComposizione.getIdentificativo_prodotto());
+						RatingBean valutazione = recensioni.doRetrieveByKey(utente.getMail(), prodottoComposizione.getIdentificativo_prodotto());
+						if(valutazione.getIdProdotto() == null) {
+							prodottiDaRecensire.put(prodotto.getIdProdotto(), prodotto);
+						}
 					}
 					
 					
@@ -81,8 +94,38 @@ public class RatingControl extends HttpServlet {
 				}
 			}
 			
+			//Gestione form valutazione
+			Integer idNuovoProdotto = null;
+			Integer valutazioneNuovoProdotto = null;
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaValutazione.jsp");
+			try {
+				idNuovoProdotto = Integer.parseInt( request.getParameter("prodotto") );
+				valutazioneNuovoProdotto = Integer.parseInt( request.getParameter("rating") );
+				System.out.println("ID Prodotto: "+idNuovoProdotto);
+				System.out.println("Rating: "+valutazioneNuovoProdotto);
+				
+				RatingBean valutazione = new RatingBean();
+				
+				valutazione.setDescrizione("");
+				valutazione.setIdProdotto(idNuovoProdotto.intValue());
+				valutazione.setMailCliente( utente.getMail() );
+				valutazione.setPunteggio(valutazioneNuovoProdotto.doubleValue());
+				
+				System.out.println("Creato con successo il Bean: "+ valutazione.getMailCliente() + " " + valutazione.getPunteggio() + " " + valutazione.getIdProdotto() + " " + valutazione.getDescrizione() );
+				
+				recensioni.doSave(valutazione);
+				
+				
+				
+			} catch (Exception e) {
+				System.out.println("Nessun valore passato");
+			}
+			
+			
+			
+			
+			request.getSession().setAttribute("prodottiRecensione", prodottiDaRecensire);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ValutazioneProdotti.jsp");
 			dispatcher.forward(request, response);
 		}
 		

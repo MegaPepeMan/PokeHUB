@@ -67,7 +67,7 @@ if (persona == null)
 			}
 		%>
 		
-		<a href="/">
+		<a href="RatingControl">
 			<div class="card">
 				<ion-icon name="star-half-outline" size="large"></ion-icon><p>Valutazione Prodotti</p>
 			</div>
