@@ -38,7 +38,7 @@ if (session.getAttribute("userID") != null ) {
         <%
         	if( tentativoLoginErrato ) {
         		%>
-        			<h4 class="invalidAttempt">Mail e/o password errate</h4>
+        			<h4 class="invalidAttempt">L'indirizzo e-mail e la password non sono stati immessi correttamente.</h4>
         		<%
         	}
         %>
