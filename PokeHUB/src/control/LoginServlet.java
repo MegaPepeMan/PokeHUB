@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				try {
 					UserBean persona = checkLogin(mail, password);
+					request.getSession().setAttribute("invalidAttempt", false);
 					if (persona.getCategoriaUtente().equalsIgnoreCase("amministratore")) {
 						request.getSession().setAttribute("adminRoles", true);
 					}
@@ -34,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 					redirectedPage = "/userLogged.jsp";
 					
 				} catch (Exception e) {
+					request.getSession().setAttribute("invalidAttempt", true);
 					request.getSession().setAttribute("adminRoles", false);
 					request.getSession().setAttribute("userID", null);
 					redirectedPage = "/LoginPage.jsp";

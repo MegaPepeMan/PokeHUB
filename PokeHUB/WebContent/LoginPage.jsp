@@ -1,8 +1,13 @@
 <%
 UserBean utente = null;
+Boolean tentativoLoginErrato = false ;
+if (session.getAttribute("invalidAttempt") != null ) {
+	tentativoLoginErrato = (Boolean)request.getSession().getAttribute("invalidAttempt");
+} else 
+
 System.out.println("Lo userID e: "+ session.getAttribute("userID") );
-if (session.getAttribute("userID") != null )
-	{
+System.out.println("Il tentativo e: "+ session.getAttribute("invalidAttempt") );
+if (session.getAttribute("userID") != null ) {
 		utente = (UserBean)request.getSession().getAttribute("userID");
 		response.sendRedirect(request.getContextPath() + "/userLogged.jsp");
 }
@@ -22,13 +27,21 @@ if (session.getAttribute("userID") != null )
       
         <div class="input-container">
             <i class="icon"><ion-icon name="person-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="text" placeholder="Indirizzo E-Mail" name="username">
+            <input class="input-field" type="text" placeholder="Indirizzo E-Mail" name="username" required>
         </div>
         
         <div class="input-container">
             <i class="icon"><ion-icon name="lock-closed-outline" size="large"></ion-icon></i>
-            <input class="input-field" type="password" placeholder="La tua password" name="password">
+            <input class="input-field" type="password" placeholder="La tua password" name="password" required>
         </div>
+        
+        <%
+        	if( tentativoLoginErrato ) {
+        		%>
+        			<h4 class="invalidAttempt">Mail e/o password errate</h4>
+        		<%
+        	}
+        %>
       
         <button type="submit" class="btnLogin">Accedi</button>
     </form>
