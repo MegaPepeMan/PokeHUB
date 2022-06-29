@@ -1,11 +1,4 @@
-<% 
-UserBean persona = (UserBean) session.getAttribute("userID");
-if (persona == null)
-{	
-    response.sendRedirect("/LoginPage.jsp");
-    return;
-}
-%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.text.DecimalFormat"%>
 

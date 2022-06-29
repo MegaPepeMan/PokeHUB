@@ -38,10 +38,10 @@ public class CartControl extends HttpServlet {
 		//try n.1
 		try {
 				//Ottengo gli attributi di sessione e inizializzo id e qty
-				UserBean utente = (UserBean) request.getSession().getAttribute("userID");
+				
 
 				
-				System.out.println("L'utente "+ utente.getNome() +" "+ utente.getCognome()+" sta accedendo al carrello");
+
 
 			
 				//Caso in cui l'utente e' gia' loggato
@@ -93,15 +93,15 @@ public class CartControl extends HttpServlet {
 								
 								
 								if(cart.findObject(id) == null) {
-									System.out.println("Non è mai stato aggiunto questo prodotto");
+									System.out.println("Non e' mai stato aggiunto questo prodotto");
 									cart.addProduct(id,qty);
 								}
 								else if ( cart.quantityObject(id) + qty.intValue() <= prodotto.doRetrieveByKey(id).getQuantita() ) {
-									System.out.println("La quantità massima non è stata raggiunta");
+									System.out.println("La quantita'� massima non e' stata raggiunta");
 									cart.addProduct(id,qty);
 								}
 								else if( cart.quantityObject(id) + qty.intValue() > prodotto.doRetrieveByKey(id).getQuantita() ) {
-									System.out.println("La quantità massima è stata raggiunta");
+									System.out.println("La quantita'� massima e' stata raggiunta");
 									System.out.println("Prodotti rimanenti: "+ (prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id)));
 									qty = prodotto.doRetrieveByKey(id).getQuantita() - cart.quantityObject(id) - qty.intValue();
 									if (qty.intValue()<0) {
