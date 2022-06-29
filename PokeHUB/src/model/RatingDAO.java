@@ -86,5 +86,40 @@ public class RatingDAO {
 		return bean;
 	}
 	
+	public synchronized double doAvarage(int idProdotto) throws SQLException, IOException {
+		
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		double punteggioMedio = 0;
+
+		//SELECT AVG(punteggio) AS punteggioMedio FROM valutazione WHERE identificativo_prodotto = 5;
+		String selectSQL = "SELECT AVG(punteggio) AS punteggioMedio FROM " + RatingDAO.TABLE_NAME + " WHERE identificativo_prodotto = ? ";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement.setInt(1, idProdotto);
+
+			
+			System.out.println("La preparedStatement: "+preparedStatement);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				punteggioMedio = rs.getDouble("punteggioMedio");
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return punteggioMedio;
+	}
+	
 
 }

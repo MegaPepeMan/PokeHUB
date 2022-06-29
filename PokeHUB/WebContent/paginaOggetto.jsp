@@ -1,5 +1,6 @@
 <% 
 ProductBean prodotto = (ProductBean) request.getAttribute("IDproduct");
+double valutazione = (double) request.getAttribute("valutazione");
 if (prodotto == null)
 {	
     response.sendRedirect("./product");
@@ -52,6 +53,14 @@ if (prodotto == null)
             <div class="categoriaProdotto">Categoria: <%=prodotto.getCategoriaProdotto()%></div>
             <div class="prezzoProdotto">€<%=formatoPrezzo.format((prodotto.getPrezzoVetrina()/100)*prodotto.getIva() + prodotto.getPrezzoVetrina())%></div>
             <div class="sezioneStelleRecensioni">
+            <%
+            	if(valutazione == 0) {
+           		%>
+           		<div class="nessunaValutazione">Nessuna valutazione</div>
+           		<%
+            	}
+            %>
+            	
                 <img src="Image/stars.png" alt="" class="immagineStelle">
                 <div class="sfondoStelle"></div>
             </div>
@@ -81,17 +90,15 @@ if (prodotto == null)
         </div>
         
     </div>
-
-
-	
-	
-	
 	
 	<div class="content"></div>
 	
 	<script src="JavaScript/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script>
-		$('img.fotoProdotto').zoom();
+		var valutazioneDB = <%=valutazione%>;
+		// valutazioneDB : 5 = y px : 200px
+		var pixelColorati = (valutazioneDB * 200) / 5;
+		$(".sfondoStelle").css("width", pixelColorati+"px");
 	</script>
 	
 </body>

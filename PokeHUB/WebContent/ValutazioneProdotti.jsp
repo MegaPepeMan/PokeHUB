@@ -12,7 +12,8 @@
 	<form action="RatingControl" method="post">
 		<select name="prodotto" required>
 		<%
-			Map<Integer,ProductBean> prodottiRecensione = (Map<Integer,ProductBean>) request.getSession().getAttribute("prodottiRecensione");
+			Map<Integer,ProductBean> prodottiRecensione = null;
+			prodottiRecensione = (Map<Integer,ProductBean>) request.getSession().getAttribute("prodottiRecensione");
 			Set<Integer> setProdotti =prodottiRecensione.keySet();
 			Iterator<Integer> it = setProdotti.iterator();
 			while(it.hasNext()) {

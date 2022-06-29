@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ProductBean;
 import model.ProductDAO;
+import model.RatingDAO;
 
 /**
  * Servlet implementation class ProductCatalogControl
@@ -31,12 +32,14 @@ public class ProductCatalogControl extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		ProductDAO prodotto = new ProductDAO();
+		RatingDAO valutazione = new RatingDAO();
 		
 		try {
 			ProductBean oggetto= prodotto.doRetrieveByKey(id);
 			request.setAttribute("IDproduct", oggetto);
 			
 			if(oggetto.isProdottoMostrato()) {
+				request.setAttribute("valutazione", valutazione.doAvarage(id));
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/paginaOggetto.jsp");
 				dispatcher.forward(request, response);
 			}

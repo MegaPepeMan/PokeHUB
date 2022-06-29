@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -51,7 +50,7 @@ public class RatingControl extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else {
 			
-			request.getSession().setAttribute("prodottiRecensione", null);
+			request.getSession().removeAttribute("prodottiRecensione");
 			
 			OrderDAO ordini = new OrderDAO();
 			CompositionDAO composizioni = new CompositionDAO();
@@ -60,39 +59,6 @@ public class RatingControl extends HttpServlet {
 			Map<Integer,ProductBean> prodottiDaRecensire = new HashMap<Integer,ProductBean>();
 			
 			Collection<OrderBean> ordiniUtente = null;
-			try {
-				ordiniUtente = ordini.doRetrieveByUser(utente.getMail());
-			} catch (SQLException | IOException e) {
-				System.out.println("Errore ritrovamento ordini");
-				e.printStackTrace();
-			}
-			
-			Collection<ProductBean>  prodottiRecensione;
-			Iterator<OrderBean> itOrdiniUtente = ordiniUtente.iterator();
-			
-			while(itOrdiniUtente.hasNext()) {
-				OrderBean ordine = itOrdiniUtente.next();
-				try {
-					Collection<CompositionBean> composizioniOrdine = composizioni.doRetrieveByOrder(ordine.getIdOrdine(), null);
-					
-					Iterator<CompositionBean> itComposizioneOrdine = composizioniOrdine.iterator();
-					
-					while(itComposizioneOrdine.hasNext()) {
-						CompositionBean prodottoComposizione = itComposizioneOrdine.next();
-						ProductBean prodotto = prodotti.doRetrieveByKey(prodottoComposizione.getIdentificativo_prodotto());
-						RatingBean valutazione = recensioni.doRetrieveByKey(utente.getMail(), prodottoComposizione.getIdentificativo_prodotto());
-						if(valutazione.getIdProdotto() == null) {
-							prodottiDaRecensire.put(prodotto.getIdProdotto(), prodotto);
-						}
-					}
-					
-					
-					
-				} catch (SQLException e) {
-					System.out.println("Errore ritrovamento composizione dell'ordine");
-					e.printStackTrace();
-				}
-			}
 			
 			//Gestione form valutazione
 			Integer idNuovoProdotto = null;
@@ -124,7 +90,47 @@ public class RatingControl extends HttpServlet {
 			
 			
 			
+			try {
+				ordiniUtente = ordini.doRetrieveByUser(utente.getMail());
+			} catch (SQLException | IOException e) {
+				System.out.println("Errore ritrovamento ordini");
+				e.printStackTrace();
+			}
+			
+
+			Iterator<OrderBean> itOrdiniUtente = ordiniUtente.iterator();
+			
+			while(itOrdiniUtente.hasNext()) {
+				OrderBean ordine = itOrdiniUtente.next();
+				try {
+					Collection<CompositionBean> composizioniOrdine = composizioni.doRetrieveByOrder(ordine.getIdOrdine(), null);
+					
+					Iterator<CompositionBean> itComposizioneOrdine = composizioniOrdine.iterator();
+					
+					while(itComposizioneOrdine.hasNext()) {
+						CompositionBean prodottoComposizione = itComposizioneOrdine.next();
+						ProductBean prodotto = prodotti.doRetrieveByKey(prodottoComposizione.getIdentificativo_prodotto());
+						RatingBean valutazione = recensioni.doRetrieveByKey(utente.getMail(), prodottoComposizione.getIdentificativo_prodotto());
+						if(valutazione.getIdProdotto() == null) {
+							prodottiDaRecensire.put(prodotto.getIdProdotto(), prodotto);
+						}
+					}
+					
+					
+					
+				} catch (SQLException e) {
+					System.out.println("Errore ritrovamento composizione dell'ordine");
+					e.printStackTrace();
+				}
+			}
+			
+			
+			
+			
+			
+			
 			request.getSession().setAttribute("prodottiRecensione", prodottiDaRecensire);
+			System.out.println("I prodotti da recensire sono: "+ prodottiDaRecensire.toString() );
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ValutazioneProdotti.jsp");
 			dispatcher.forward(request, response);
 		}
