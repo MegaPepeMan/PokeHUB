@@ -10,7 +10,7 @@
 <body>
 <%@ include file="Header.jsp" %>
 	
-	
+	<div class="content"></div>
 
 	<div class="cards">
 	<%
@@ -31,11 +31,11 @@
 					<%
 						if(prodotto.getImmagineProdotto() == null) {
 			            	%>
-			            		<img src="Image/noImage.png" alt="" class="immagineProdotto">
+			            		<img src="Image/noImage.png" alt="" class="immagineProdottoAssente">
 			            	<%	
 			            } else {
 			            	%>
-			            		<img class="immagineProdottoAssente" src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>">
+			            		<img class="immagineProdotto" src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>">
 			            	<%
 			            }
 					%>
@@ -43,7 +43,7 @@
 						
 						<div class="sezioneTesto">
 							<p class="testoCard"><%=prodotto.getNomeProdotto()%></p>
-							<div class="tastoValuta" id="<%=prodotto.getIdProdotto()%>"><ion-icon name="star-half-outline"></ion-icon>Valuta prodotto</div>
+							<div class="tastoValuta" id="<%=prodotto.getIdProdotto()%>"><ion-icon name="star-half-outline"></ion-icon> Valuta prodotto</div>
 						</div>
 					</div>
 					<script>
@@ -51,7 +51,7 @@
 							
 							Swal.fire({
 								  showConfirmButton: false,
-								  html: '<form action="RatingControl" method="get"><input type="hidden" name="prodotto" value="<%=prodotto.getIdProdotto()%>"><input type="radio" name="rating" value="1"><label>1</label><input type="radio" name="rating" value="2"><label>2</label><input type="radio" name="rating" value="3"><label>3</label><input type="radio" name="rating" value="4"><label>4</label><input type="radio" name="rating" value="5"><label>5</label><br><button type="submit">Inserisci</button></form>',
+								  html: '<form action="RatingControl" method="get"><h1 class="testoValutaProdottoPopUp">Valuta "<%=prodotto.getNomeProdotto()%>"</h1><div class="containerValutazione"><input type="hidden" name="prodotto" value="<%=prodotto.getIdProdotto()%>"><input type="radio" id="radio1" name="rating" value="1"><label for="radio1"><ion-icon name="star" size="large"></ion-icon></label><input type="radio" id="radio2" name="rating" value="2"><label for="radio2"><ion-icon name="star" size="large"></ion-icon></label><input type="radio" id="radio3" name="rating" value="3"><label for="radio3"><ion-icon name="star" size="large"></ion-icon></label><input type="radio" id="radio4" name="rating" value="4"><label for="radio4"><ion-icon name="star" size="large"></ion-icon></label><input type="radio" id="radio5" name="rating" value="5"><label for="radio5"><ion-icon name="star" size="large"></ion-icon></label></div> <button type="submit" class="bottoneInserisci">Inserisci</button></form>',
 								  customClass: { popup: 'borderBoxPopUp'},
 								})
 						} )

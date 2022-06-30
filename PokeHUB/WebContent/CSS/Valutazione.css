@@ -7,37 +7,240 @@
 }
 
 .immagineProdotto {
-	width: 100px;
-	height: auto;
+	width: auto;
+	height: 150px;
+	border-radius: 5px;
 }
 
 .immagineProdottoAssente {
-	width: 100px;
-	height: auto;
+	width: auto;
+	height: 150px;
+	border-radius: 5px;
 }
 
 .card {
 	text-align: center;
-	background-color: dodgerblue;
-	color: white;
-	padding: 1rem;
+	background-color: #ffe6995d;
+	border: solid 5px #fdd835;
+	border-radius: 20px;
+	color: black;
+	padding: 3rem;
+	padding-top: 1rem;
+	padding-bottom: 10rem;
 	height: 200px;
+	
+	font-size: 20pt;
+	font-weight: 600;
+	font-family: Arial;
 }
 
 .sezioneImmagine {
-	float: left;
 	margin: 0;
 }
 
 .sezioneTesto {
-	float: left;
+
 	
 }
 
 .testoCard {
 	margin: 0;
+	margin-bottom: 20px;
 }
 
 .tastoValuta {
 	cursor: pointer;
+	background-color: #f2a6c7;
+	border-radius: 10px;
+	font-weight: 600;
+	padding: 10px 0px;
 }
+
+.tastoValuta:hover {
+	color: white;
+	-webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+
+
+.containerValutazione {
+    margin-bottom: 20px;
+}
+
+.containerValutazione input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.containerValutazione label {
+    display: inline-block;
+    margin: 0px -4px;
+    padding-right: 10px;
+    
+    height: 30px;
+    width: 30px;
+}
+
+.containerValutazione label:hover {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.containerValutazione input[type="radio"]:checked + label > ion-icon  {
+    color: #fdd835;
+}
+
+.containerValutazione input[type="radio"]:not(:checked) + label > ion-icon  {
+    color: #fdd835;
+}
+
+
+#radio1 + label > ion-icon {
+    color: #fdd835;
+}
+
+#radio1:checked ~ #radio2 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio1:checked ~ #radio3 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio1:checked ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio1:checked ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio2:checked ~ #radio3 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio2:checked ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio2:checked ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio3:checked ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio3:checked ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+#radio4:checked ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+}
+
+
+
+
+
+
+#radio1:hover ~ #radio2 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio1:hover ~ #radio3 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio1:hover ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio1:hover ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio2:hover ~ #radio3 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio2:hover ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio2:hover ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio3:hover ~ #radio4 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio3:hover ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+#radio4:hover ~ #radio5 + label > ion-icon  {
+    color: #ffea8f7b;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+
+
+.bottoneInserisci {
+    cursor: pointer;
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-radius: 20px;
+    background-color: #f2a6c740;
+    color: black;
+    font-size: 16pt;
+}
+
+.bottoneInserisci:hover {
+    background-color: #f2a6c7;
+    color: white;
+    
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    outline: none;
+}
+
+.testoValutaProdottoPopUp {
+	margin-bottom: 20px;
+}
+
