@@ -8,12 +8,22 @@
 .sezioneFoto {
     float: left;
     width: 30%;
+    position:relative;
 }
 
 .fotoProdotto {
+	position: absolute;
     width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: transform 0.5s;
+    z-index: 5;
+}
+
+.fotoProdotto:hover {
+  	-ms-transform: scale(1.5); /* IE 9 */
+  	-webkit-transform: scale(1.5); /* Safari 3-8 */
+  	transform: scale(1.5);
 }
 
 .sezioneTesto {
@@ -155,6 +165,12 @@
 	
 	.quantitaProdotto {
 		width: 85px;
+	}
+	
+	.fotoProdotto:hover {
+  		-ms-transform: scale(1); /* IE 9 */
+  		-webkit-transform: scale(1); /* Safari 3-8 */
+  		transform: scale(1);
 	}
 	
 	
