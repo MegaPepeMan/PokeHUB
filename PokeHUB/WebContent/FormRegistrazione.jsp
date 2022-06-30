@@ -146,6 +146,7 @@ if(utente != null) {
 		            	console.log("L'oggetto convertito in JS contiene: "+contenutoJSON)
 		            	if(contenutoJSON){
 		            		console.log("L'username e' libero");
+		            		document.getElementById("errorMessageMailUsed").style.display = 'none';
 		            	} else {
 		            		valid = false;
 		            		document.getElementById("errorMail").style.display = 'block';

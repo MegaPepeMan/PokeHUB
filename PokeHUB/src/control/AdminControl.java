@@ -122,7 +122,10 @@ public class AdminControl extends HttpServlet {
 						beanProdotto.setIdProdotto(id);
 
 						Part filePart = request.getPart("photo");
-						if (filePart != null) {
+						
+						
+						System.out.println( "La size e':"+filePart.getSize() );
+						if (filePart.getSize() != 0) {
 				  
 							System.out.println("Immagine nuova ottenuta");
 				            // Obtains input stream of the upload file
@@ -131,9 +134,12 @@ public class AdminControl extends HttpServlet {
 				            beanProdotto.setImmagineProdotto(null);
 				            beanProdotto.setImmagineUpload(null);
 				            beanProdotto.setImmagineUpload(inputStream);
+				            prodotto.doUpdate(beanProdotto);
+				        } else {
+				        	prodotto.doUpdateNoImage(beanProdotto);
 				        }
 
-						prodotto.doUpdate(beanProdotto);
+						
 					}
 				}			
 			} catch (SQLException e) {

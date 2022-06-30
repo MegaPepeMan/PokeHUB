@@ -305,5 +305,37 @@ public synchronized Collection<ProductBean> doRetrieveSuggest(String StringaParz
 		}
 	}
 	
+	public void doUpdateNoImage(ProductBean prodotto) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String updateSQL =" UPDATE "+ProductDAO.TABLE_NAME+" SET nome_prodotto = ?, prezzo_vetrina = ?, descrizione = ?, iva = ?, prodotto_mostrato = ?, categoria_prodotto = ?, quantita = ? WHERE (id_prodotto = ?)" ;
+		//UPDATE `db_pokehub`.`prodotto` SET `nome_prodotto` = '1234', `prezzo_vetrina` = '124.00', `descrizione` = '123quattroCinque', `iva` = '19.00', `prodotto_mostrato` = '0', `categoria_prodotto` = 'Accessori', `quantita` = '12', `immagine_prodotto` = ? WHERE (`id_prodotto` = '17');
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			
+			preparedStatement.setString(1, prodotto.getNomeProdotto() );
+			preparedStatement.setDouble(2, prodotto.getPrezzoVetrina() );
+			preparedStatement.setString(3, prodotto.getDescrizione() );
+			preparedStatement.setDouble(4, prodotto.getIva() );
+			preparedStatement.setBoolean(5, prodotto.isProdottoMostrato() );
+			preparedStatement.setString(6, prodotto.getCategoriaProdotto() );
+			preparedStatement.setInt(7, prodotto.getQuantita() );
+			preparedStatement.setInt(8, prodotto.getIdProdotto() );
+			
+			preparedStatement.executeUpdate();
+
+			connection.commit();
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 
 }

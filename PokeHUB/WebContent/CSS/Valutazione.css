@@ -1,0 +1,43 @@
+.cards {
+	width: 80%;
+	margin: 0 auto;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.immagineProdotto {
+	width: 100px;
+	height: auto;
+}
+
+.immagineProdottoAssente {
+	width: 100px;
+	height: auto;
+}
+
+.card {
+	text-align: center;
+	background-color: dodgerblue;
+	color: white;
+	padding: 1rem;
+	height: 200px;
+}
+
+.sezioneImmagine {
+	float: left;
+	margin: 0;
+}
+
+.sezioneTesto {
+	float: left;
+	
+}
+
+.testoCard {
+	margin: 0;
+}
+
+.tastoValuta {
+	cursor: pointer;
+}
