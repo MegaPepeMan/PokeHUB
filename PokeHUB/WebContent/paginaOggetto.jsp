@@ -37,15 +37,15 @@ if (prodotto == null)
         	<%
 	            if(prodotto.getImmagineProdotto() == null) {
 	            	%>
-	            		<img src="Image/noImage.png" alt="" class="fotoProdotto">
+	            		<img src="Image/noImage.png" alt="" class="fotoProdottoAssente">
 	            	<%	
 	            } else {
 	            	%>
-	            		
+	        			<img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" alt="" class="fotoProdotto">
 	            	<%
 	            }
             %>
-            <img src="data:image/png;base64,<%=prodotto.getImmagineProdotto()%>" alt="" class="fotoProdotto">
+            
         </div>
         
         <div class="sezioneTesto">
