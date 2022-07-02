@@ -75,6 +75,8 @@
 
 	</div>
 
+	<div class="content"></div>
+
 	<script src="JavaScript/SweetAlert2/sweetalert2.all.min.js" type="text/javascript"></script>
 	<script src="JavaScript/jquery-3.6.0.min.js" type="text/javascript"></script>
 	

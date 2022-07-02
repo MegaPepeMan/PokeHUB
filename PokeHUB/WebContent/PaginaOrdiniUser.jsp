@@ -70,6 +70,7 @@ if(utente == null) {
 		<%
 			DecimalFormat formatoPrezzo = new DecimalFormat();
 			formatoPrezzo.setMaximumFractionDigits(2);
+			formatoPrezzo.setMinimumFractionDigits(2);
 			if (ordini != null && ordini.size() != 0) {
 				OrderBean ordine;
 				Iterator<OrderBean> it = ordini.iterator();

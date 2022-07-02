@@ -126,7 +126,7 @@ public class CheckuotControl extends HttpServlet {
 								composizioni.doSave(composizione);
 								
 								prodotto.setQuantita(prodotto.getQuantita()-carrello.quantityObject(idProdotto));
-								prodotti.doUpdate(prodotto);
+								prodotti.doUpdateNoImage(prodotto);
 								
 								
 							} catch (SQLException e) {

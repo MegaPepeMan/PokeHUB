@@ -31,6 +31,7 @@ public class AdminControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		
 		//controllo per l'identita' della persona collegata
 		UserBean utente = (UserBean)request.getSession().getAttribute("userID");
@@ -105,6 +106,7 @@ public class AdminControl extends HttpServlet {
 						System.out.println("L'id e':"+id);
 						String name = request.getParameter("name");
 						String description = request.getParameter("description");
+						System.out.println("La descrizione e': "+description);
 						double price = Double.parseDouble(request.getParameter("price"));
 						int quantity = Integer.parseInt(request.getParameter("quantity"));
 						double iva = Double.parseDouble(request.getParameter("iva"));

@@ -33,7 +33,6 @@
 		
 		
         <div class="sezioneCarrello">
-            <h1>Carrello</h1>
 
 			<%
 		
