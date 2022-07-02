@@ -23,14 +23,15 @@
 }
 .identificativo {
     grid-area: identificativo;
+    height: 1rem;
     margin-left: 3%;
-    margin-top: -5%;
+    margin-top: 0px;
 }
 
 .tracking {
     grid-area: tracking;
     margin-left: 3%;
-    margin-top: -12%;
+    margin-top: 0px;
 }
 
 .dataOrdineEIcona {
@@ -66,6 +67,7 @@
     width:100px;
     height:auto;
     margin-left: 3%;
+    border-radius: 5px;
 }
 
 .iconaPDF {
