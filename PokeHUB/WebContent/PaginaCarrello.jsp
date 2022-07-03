@@ -141,10 +141,10 @@
        <%
 		} else {
        %>
-       
-       <h1 style="text-align: center">Nessun prodotto aggiunto al carrello</h1>
-       <h3 style="text-align: center">Vedi un po' <a href="product">qui</a></h3>
-              
+	       
+	       <h1 style="text-align: center">Nessun prodotto aggiunto al carrello</h1>
+	       <h3 style="text-align: center"><a href="product" class="linkSitoCarrelloVuoto">Acquista qui</a></h3>
+	       <img alt="" src="Image/emptyCart.jpg" class="immagineCarrelloVuoto">       
        <%
 		}
        %>   

@@ -195,6 +195,29 @@ a:visited {
     outline: none;
 }
 
+.immagineCarrelloVuoto {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+	height: auto;
+}
+
+.linkSitoCarrelloVuoto:link {
+	text-decoration: none;
+	
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.linkSitoCarrelloVuoto:hover {
+	color: #f2c100;
+	
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
 
 
 
