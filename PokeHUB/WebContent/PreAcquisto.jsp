@@ -119,8 +119,12 @@
                             <h1 class="testoSezioneAcquistaOra">Paga con:</h1>
 		                            
 								<%
+									boolean pagamentiPresenti = false;
+									boolean indirizziPresenti = false;
+									
 						  			Collection<?> pagamenti = (Collection<?>) request.getSession().getAttribute("pagamentiUtente");
 									if (pagamenti != null && pagamenti.size() != 0) {
+										pagamentiPresenti = true;
 										%>
 										<select name="creditCard" required id="selectPagamenti">
 										<%
@@ -137,6 +141,10 @@
 										%>
 										</select>
 										<%
+									} else {
+										%>
+											<h1 class="testoSezioneAcquistaOra">NESSUNA CARTA AGGIUNTA</h1>
+										<%
 									}
 								%>
 
@@ -147,6 +155,7 @@
                             <%
 					  			Collection<?> indirizzi = (Collection<?>) request.getSession().getAttribute("indirizziUtente");
 								if (indirizzi != null && indirizzi.size() != 0) {
+									indirizziPresenti = true;
 									%>
 									<select name="shipmentAddress" required id="selectIndirizzi">
 									<%
@@ -162,15 +171,35 @@
 									%>
 									</select>
 									<%
+								} else {
+									%>
+										<h1 class="testoSezioneAcquistaOra">NESSUN INDIRIZZO AGGIUNTO</h1>
+									<%
 								}
 							%>
                         </div>
+                        
+                        <% 
+                        if(pagamentiPresenti && indirizziPresenti){
+                        	%>
+                        		<button type="submit" class="bottoneProcediPagamento">
+		                            <div class="procediPagamento">
+		                                <h1 id="testoProcediPagamento" style="text-align: center; font-size: 20pt;">ACQUISTA ORA</h1>
+		                            </div>
+		                        </button>
+                        	<%
+                        } else {
+                        	%>
+	                    		<div class="bottoneProcediPagamento">
+		                            <div class="procediPagamento">
+		                                <h1 id="testoProcediPagamento" style="text-align: center; font-size: 20pt;">Aggiungi informazioni per completare l'ordine</h1>
+		                            </div>
+		                        </div>
+                    		<%
+                        }
+                        %>
             
-                        <button type="submit" class="bottoneProcediPagamento">
-                            <div class="procediPagamento">
-                                <h1 id="testoProcediPagamento" style="text-align: center; font-size: 20pt;">ACQUISTA ORA</h1>
-                            </div>
-                        </button>
+                        
                     </div>
             
         </form>
