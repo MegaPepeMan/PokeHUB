@@ -26,10 +26,6 @@ if (persona == null)
 <%@ include file="Header.jsp" %>
 
 <h3 style="text-align:center">Gestisci pagamenti</h3>
-
-<div class="container-slider">
-	
-	<div class="slider-for">
 	
 	<%
 		Collection<PaymentBean> pagamenti = (Collection<PaymentBean>) request.getSession().getAttribute("PaymentMethod");
@@ -38,7 +34,15 @@ if (persona == null)
 		
 			Iterator<PaymentBean> iter = pagamenti.iterator();
 				int i = 0;
-				while( iter.hasNext() ) {
+				
+				if(pagamenti.size() != 0 ) {
+					%>
+						<div class="container-slider">
+							<div class="slider-for">
+					<%
+					}
+				
+				while( iter.hasNext() && pagamenti.size() != 0  ) {
 					sistema = iter.next();
 					i++;
 			
@@ -65,7 +69,17 @@ if (persona == null)
 </div>
 
 
-<div class="content"></div>
+<%
+	if(pagamenti.size() != 0 ) {
+		%>
+			<div class="content"></div>
+		<%
+	} else {
+		%>
+			<h4 style="text-align:center; padding: 5%; color: #FF00009A; font-style: italic">Nessun pagamento aggiunto</h4>
+		<%
+	}
+%>
 
 
 <form action="PaymentControl?action=insert" method="post" style="max-width:500px;margin:auto">
@@ -167,4 +181,7 @@ $(document).ready(function(){
 });
 </script>
 </body>
+
+<%@ include file="Footer.html" %>
+
 </html>
