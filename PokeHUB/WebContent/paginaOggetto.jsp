@@ -102,4 +102,6 @@ if (prodotto == null)
 	</script>
 	
 </body>
+<div class="content"></div><div class="content"></div><div class="content"></div>
+	<%@ include file="Footer.html" %>
 </html>

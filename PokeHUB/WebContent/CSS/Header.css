@@ -2,6 +2,8 @@
   margin: 0;
   font-size: 28px;
   font-family: Arial, Helvetica, sans-serif;
+  
+  
 }
 
 .borderBoxPopUp {
@@ -26,7 +28,6 @@ body.swal2-hide > [aria-hidden="true"] {
 
 #navbar {
   background-color: #fdd835;
-  z-index: 1;
   display: flexbox;
   height: 80px;
 }
@@ -329,7 +330,7 @@ body.swal2-hide > [aria-hidden="true"] {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 6;
   }
 
   .content {

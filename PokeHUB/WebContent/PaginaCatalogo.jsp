@@ -112,4 +112,6 @@
 
 	
 	</body>
+	
+	<%@ include file="Footer.html" %>
 </html>
