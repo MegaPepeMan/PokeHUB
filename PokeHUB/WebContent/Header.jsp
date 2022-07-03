@@ -58,7 +58,7 @@
 			
 			Swal.fire({
 				  showConfirmButton: false,
-				  html: '<h1>Ricerca</h1><form action="" method="get" class=""><div id="barraRicercaResponsive"><input type="text" placeholder="Cerca prodotti" class="campoRicercaResponsive" id="queryRicercaResponsive" onkeyup="funzioneRicerca()"/><button type="submit" class="bottoneRicercaResponsive"><ion-icon name="search-outline" class="" id=""></ion-icon></button><div id="risultatiResponsive"></div></div></form>',
+				  html: '<h1>Ricerca</h1><div id="barraRicercaResponsive"><input type="text" placeholder="Cerca prodotti" class="campoRicercaResponsive" id="queryRicercaResponsive" onkeyup="funzioneRicerca()"/><button type="submit" class="bottoneRicercaResponsive"><ion-icon name="search-outline" class="" id=""></ion-icon></button><div id="risultatiResponsive"></div></div>',
 				  customClass: { popup: 'borderBoxPopUp'},
 				})
 		} )
