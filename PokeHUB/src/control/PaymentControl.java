@@ -25,10 +25,7 @@ public class PaymentControl extends HttpServlet {
 
     public PaymentControl() {
         super();
-    }
-
-    
-    
+    } 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
 		
@@ -75,16 +72,11 @@ public class PaymentControl extends HttpServlet {
 							
 							String dataScadenza = anno+"-"+mese+"-1";
 							System.out.println("La data di scadenza e': "+dataScadenza);
-							
 							nuova_carta.setScadenza(dataScadenza);
-
 							pagamento.doSave(nuova_carta);
 						} catch(Exception e) {
 							System.out.println("Errore inserimento carta di credito");
 						}
-						
-						
-						
 					} 
 				}			
 			} catch (SQLException e) {
@@ -99,26 +91,10 @@ public class PaymentControl extends HttpServlet {
 				System.out.println("Errore ricerca dei metodi di pagamento del cliente");
 				e.printStackTrace();
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/tipiPagamento.jsp");
 			dispatcher.forward(request, response);
-
 		}
-		
-		
 	}
-
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

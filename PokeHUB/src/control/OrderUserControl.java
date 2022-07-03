@@ -25,24 +25,16 @@ import model.UserBean;
 @WebServlet("/OrderUserControl")
 public class OrderUserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
     public OrderUserControl() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		UserBean utente = (UserBean) request.getSession().getAttribute("userID");
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		UserBean utente = (UserBean) request.getSession().getAttribute("userID");		
 		if(utente == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 			return;
 		}
-		
 		request.getSession().removeAttribute("fattura");
 		request.getSession().removeAttribute("prodotti");
 		Integer id = null;
@@ -52,11 +44,9 @@ public class OrderUserControl extends HttpServlet {
 		catch (Exception e) {
 			System.out.println("Parsing non riuscito del valore Integer");
 		}
-		
 		OrderDAO ordini = new OrderDAO();
 		CompositionDAO fatture = new CompositionDAO();
 		ProductDAO fotoProdotti = new ProductDAO();
-	
 		OrderBean ordine = new OrderBean();
 		try {
 			ordine = ordini.doRetrieveByKey(id.intValue());
@@ -64,7 +54,6 @@ public class OrderUserControl extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 		Collection<CompositionBean> fattura = null;
 		try {
 			System.out.println("Ricerca composizione dell'ordine");
@@ -72,8 +61,7 @@ public class OrderUserControl extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}																																										
 		Iterator<CompositionBean> it = fattura.iterator();
 		ProductBean fotoProdotto;
 		Collection<ProductBean> prodotti = new LinkedList<ProductBean>();
@@ -88,18 +76,12 @@ public class OrderUserControl extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		
-		
 		request.getSession().setAttribute("ordine", ordine);
 		request.getSession().setAttribute("prodotti",prodotti);
 		request.getSession().setAttribute("fattura",fattura);
-		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaFattura.jsp");
 		dispatcher.forward(request, response);
 	}
-
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

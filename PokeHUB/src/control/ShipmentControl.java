@@ -75,23 +75,11 @@ public class ShipmentControl extends HttpServlet {
 				System.out.println("Errore ricerca dei metodi di pagamento del cliente");
 				e.printStackTrace();
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/indirizziCliente.jsp");
 			dispatcher.forward(request, response);
 		}
 
 	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

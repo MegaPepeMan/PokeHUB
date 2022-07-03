@@ -73,8 +73,6 @@ public class AjaxSuggestControl extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	/**

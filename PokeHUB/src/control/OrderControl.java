@@ -65,11 +65,8 @@ public class OrderControl extends HttpServlet {
 					case "data_ordine":
 						ordinamento="data_ordine";
 						break;
-					
 				}
 			}
-			
-			
 			try {
 				Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll(ordinamento);
 				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
