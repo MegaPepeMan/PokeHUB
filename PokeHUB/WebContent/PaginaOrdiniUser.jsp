@@ -83,7 +83,7 @@ if(utente == null) {
 					<div class="ordine">
 				        <div class="identificativo">
 				        	<!-- <h3>Identificativo ordine: <a href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a></h3>   -->
-				            <h3>Identificativo ordine: <a href="PDFInvoiceControl"><%= ordine.getIdOrdine()  %></a></h3>
+				            <h3>Identificativo ordine: <a href="PDFInvoiceControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a></h3>
 				        </div>
 				
 				        <div class="tracking">

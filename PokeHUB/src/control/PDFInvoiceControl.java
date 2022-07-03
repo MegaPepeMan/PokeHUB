@@ -1,17 +1,31 @@
 package control;
 
-import java.io.File;
+
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import model.CompositionBean;
+import model.CompositionDAO;
+import model.OrderBean;
+import model.OrderDAO;
+import model.ProductBean;
+import model.ProductDAO;
+import model.UserBean;
 
 /**
  * Servlet implementation class PDFInvoiceControl
@@ -34,6 +48,18 @@ public class PDFInvoiceControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		response.setContentType("application/pdf");
+		  
+        response.setHeader("Content-disposition","inline; filename = invoice.pdf");
+  
+        
+        
+        UserBean utente = (UserBean) request.getSession().getAttribute("userID");		
+		if(utente == null) {
+			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
+			return;
+		}
+		
 		Integer id = null;
 		try {
 			id = Integer.valueOf(request.getParameter("idOrdine"));
@@ -41,35 +67,77 @@ public class PDFInvoiceControl extends HttpServlet {
 		catch (Exception e) {
 			System.out.println("Parsing non riuscito del valore Integer");
 		}
-		
-
-		response.setContentType("application/pdf");
-        response.setHeader("Content-disposition","inline; filename='Downloaded.pdf'");
-  
-        
-        String path = "D:\\invoice.pdf";
-        PdfWriter pdfWriter = new PdfWriter(path);
+		OrderDAO ordini = new OrderDAO();
+		CompositionDAO fatture = new CompositionDAO();
+		ProductDAO fotoProdotti = new ProductDAO();
+		OrderBean ordine = new OrderBean();
+		try {
+			ordine = ordini.doRetrieveByKey(id.intValue());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Collection<CompositionBean> fattura = null;
+		try {
+			System.out.println("Ricerca composizione dell'ordine");
+			fattura = fatture.doRetrieveByOrder(id, null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}																																										
+		Iterator<CompositionBean> it = fattura.iterator();
+		Collection<ProductBean> prodotti = new LinkedList<ProductBean>();
+		while(it.hasNext()) {
+			try {
+				prodotti.add( fotoProdotti.doRetrieveByKey(  it.next().getIdentificativo_prodotto()  ) );
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
         
         
         
         try {
-        	
-
+  
             Document document = new Document();
   
             PdfWriter.getInstance(document, response.getOutputStream());
   
             document.open();
   
-            document.add(new Paragraph("GeeksforGeeks"));
-            document.add(new Paragraph("This is a demo to write data to pdf\n using servlet\nThank You"));
-            document.
+            document.add(new Paragraph("FATTURA"));
+            
+            
+            Iterator<CompositionBean> iterFattura = fattura.iterator();
+            while(iterFattura.hasNext()) {
+    			CompositionBean composizione = iterFattura.next();
+    			
+    			ProductBean prodotto = null;
+    			try {
+    				prodotto = fotoProdotti.doRetrieveByKey(composizione.getIdentificativo_prodotto());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			document.add(new Paragraph( prodotto.getNomeProdotto() ) );
+    			document.add(new Paragraph( composizione.toString() ) );
+    		}
+            
+            
   
             document.close();
         }
         catch (DocumentException de) {
             throw new IOException(de.getMessage());
         }
+        
 	}
 
 	/**
