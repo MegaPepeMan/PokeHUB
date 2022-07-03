@@ -229,4 +229,7 @@ if(utente != null) {
 	</script>
     
 </body>
+
+<%@ include file="Footer.html" %>
+
 </html>

@@ -140,7 +140,7 @@ if(utente == null) {
 				}
 			}else {
 				%>
-					<h3 style="text-align: center;">Nessun ordine trovato</h3>
+					<h4 style="text-align:center; padding: 5%; color: #FF00009A; font-style: italic">Nessun ordine trovato</h4>
 				<% 
 				
 			}
@@ -151,4 +151,7 @@ if(utente == null) {
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
 		
 </body>
+
+<%@ include file="Footer.html" %>
+
 </html>

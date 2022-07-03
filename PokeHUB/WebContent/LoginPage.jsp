@@ -58,6 +58,7 @@ if (session.getAttribute("userID") != null ) {
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
+<%@ include file="Footer.html" %>
 
 </html>
 

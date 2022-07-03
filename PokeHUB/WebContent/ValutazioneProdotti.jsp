@@ -20,7 +20,9 @@
 				
 				if(setProdotti.size() < 1 ) {
 					%>
-						<h1 style="text-align: center;">Nessun prodotto da valutare</h1>
+							<h1 style="text-align: center;">Nessun prodotto da valutare</h1>
+						</div>
+						<img alt="" src="Image/empyRating.png" class="immagineValutazioneVuoto">
 					<%
 				} else {
 						
@@ -83,4 +85,7 @@
 	
 
 </body>
+
+<%@ include file="Footer.html" %>
+
 </html>
