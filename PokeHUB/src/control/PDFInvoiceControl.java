@@ -3,6 +3,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -99,6 +100,11 @@ public class PDFInvoiceControl extends HttpServlet {
 			}
 		}
         
+		
+		DecimalFormat formatoPrezzo = new DecimalFormat();
+		formatoPrezzo.setMaximumFractionDigits(2);
+		formatoPrezzo.setMinimumFractionDigits(2);
+		double totaleFattura=0;
         
         
         try {
@@ -127,7 +133,13 @@ public class PDFInvoiceControl extends HttpServlet {
 					e.printStackTrace();
 				}
     			document.add(new Paragraph( prodotto.getNomeProdotto() ) );
-    			document.add(new Paragraph( composizione.toString() ) );
+    			
+    			double percentualeIVA = composizione.getIva_acquisto()/100;
+				double prezzoConIVA = (percentualeIVA * composizione.getPrezzo_acquisto() ) + composizione.getPrezzo_acquisto();
+				double totaleProdotti = prezzoConIVA * composizione.getQuantita();
+				totaleFattura += totaleProdotti;
+    			
+    			document.add(new Paragraph("Quantit\u00E0: " + composizione.getQuantita() +" IVA: "+ composizione.getIva_acquisto()+"% €" + formatoPrezzo.format(totaleProdotti) ) );
     		}
             
             
