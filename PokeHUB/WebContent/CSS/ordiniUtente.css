@@ -183,33 +183,7 @@ hr{
 
 
 
-@media screen and (max-width: 500px) {
-	#ricercaDataUtente {
-	    max-width: 300px;
-	    margin: 0 auto;
-	}
-	
-	.input-container {
-    	width: 100%;
-    	
-	}
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 850px) {
+@media screen and (max-width: 850px) {
     .immaginiProdotti {
         display: none;
     }
@@ -226,12 +200,13 @@ hr{
         'totaleOrdine';
     }
     .identificativo {
+    	height: max-content;
         margin-left: 0%;
-        margin-top: -10%;
+        margin-top: 0%;
+        margin-bottom: 0%;
     }
     .tracking {
-    	position: relative;
-    	bottom: 50%;
+    	height: max-content;
         margin-left: 0%;
         margin-top: 0%;
     }
@@ -242,14 +217,20 @@ hr{
     }
     .dataOrdine {
         margin-right: 0%;
+        height: max-content;
     }
     
     .totaleOrdine {
-        top: 0;
-        left:5%;
+    	height: max-content;
         margin-right: 0%;
         text-align: center;
-    }    
+    }
+    
+    .testoTotale {
+		position: relative;
+	 	right: 0%;
+	}
+        
     .iconaPDF {
         position: relative;
         right: 5px;
@@ -261,4 +242,17 @@ hr{
         bottom: 0%;
         left: 0%;
     }
-  }
+}
+  
+  
+@media screen and (max-width: 500px) {
+	#ricercaDataUtente {
+	    max-width: 300px;
+	    margin: 0 auto;
+	}
+	
+	.input-container {
+    	width: 100%;
+	}
+	
+}

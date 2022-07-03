@@ -27,9 +27,7 @@ if (persona == null)
 
 <h3 style="text-align:center">Gestisci indirizzi</h3>
 
-<div class="container-slider">
-	
-	<div class="slider-for">
+
 	
 	<%
 			Collection<AddressBean> indirizzi = (Collection<AddressBean>) request.getSession().getAttribute("ShipmentMethod");
@@ -38,7 +36,15 @@ if (persona == null)
 			
 				Iterator<AddressBean> iter = indirizzi.iterator();
 				int i = 0;
-				while( iter.hasNext() ) {
+				
+				if(indirizzi.size() != 0 ) {
+				%>
+					<div class="container-slider">
+						<div class="slider-for">
+				<%
+				}
+				
+				while( iter.hasNext() && indirizzi.size() != 0  ) {
 					sistema = iter.next();
 					i++;
 			
@@ -54,17 +60,25 @@ if (persona == null)
         			</div>
 					
 				<%
-			
-				}
-
+					}
 				%>
 		
 	</div>
 
 </div>
 
+<%
+	if(indirizzi.size() != 0 ) {
+		%>
+			<div class="content"></div>
+		<%
+	} else {
+		%>
+			<h4 style="text-align:center; padding: 5%; color: #FF00009A; font-style: italic">Nessun indirizzo aggiunto</h4>
+		<%
+	}
+%>
 
-<div class="content"></div>
 
 
 <form action="ShipmentControl?action=insert" method="post" style="max-width:500px;margin:auto">
@@ -160,4 +174,7 @@ $(document).ready(function(){
 });
 </script>
 </body>
+
+<%@ include file="Footer.html" %>
+
 </html>
