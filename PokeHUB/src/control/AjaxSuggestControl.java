@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +17,7 @@ import com.google.gson.Gson;
 
 import model.ProductBean;
 import model.ProductDAO;
-import model.UserBean;
-import model.UserDAO;
+
 
 /**
  * Servlet implementation class AjaxUserControl
@@ -39,13 +38,17 @@ public class AjaxSuggestControl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+        
         PrintWriter out = response.getWriter();
         String oggettoJSON = null;
         
 		System.out.println(request.getParameter("stringaRicerca"));
+		
 		ProductDAO prodotti = new ProductDAO();
+		
 		try {
 			if(!request.getParameter("stringaRicerca").equalsIgnoreCase("")) {
 				Collection<ProductBean> prodottiSuggest = prodotti.doRetrieveSuggest(request.getParameter("stringaRicerca"));

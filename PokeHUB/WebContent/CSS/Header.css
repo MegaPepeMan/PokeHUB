@@ -158,14 +158,6 @@ body.swal2-hide > [aria-hidden="true"] {
   margin-right: 20px;
   position: relative;
   top: 0px;
-  cursor: pointer;
-}
-
-.bottoneRicerca:hover {
-  color: rgb(82, 81, 81);
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: none;
 }
 
 .campoRicerca{

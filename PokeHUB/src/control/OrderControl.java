@@ -16,6 +16,8 @@ import model.OrderBean;
 import model.OrderDAO;
 import model.UserBean;
 
+//Servlet che gestisce il recupero degli ordini di un utente
+
 @WebServlet("/OrderControl")
 public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,12 +34,12 @@ public class OrderControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		UserBean utente=(UserBean) request.getSession().getAttribute("userID");
-		
-		
+
 		if(utente == null) {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 			return;
 		}
+		
 		else if(!utente.getCategoriaUtente().equalsIgnoreCase("amministratore")) {
 			response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
 			return;
@@ -45,11 +47,15 @@ public class OrderControl extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		System.out.println("L'azione della sevlet OrderControl e': "+action);
+		
 		if(action == null){
 			action = "all";
 		}
+		
 		OrderDAO ordini = new OrderDAO();
+		
 		if(action.equalsIgnoreCase("all")) {
+			
 			String ordinamento= null;
 			String sort=request.getParameter("sort");
 			
@@ -67,6 +73,7 @@ public class OrderControl extends HttpServlet {
 						break;
 				}
 			}
+			
 			try {
 				Collection<OrderBean> totaleOrdini = ordini.doRetrieveAll(ordinamento);
 				request.getSession().setAttribute("totaleOrdini", totaleOrdini);
@@ -77,6 +84,7 @@ public class OrderControl extends HttpServlet {
 				System.out.println("Errore di IO");
 				e.printStackTrace();
 			}
+			
 		}else if(action.equalsIgnoreCase("search")) {
 			
 			request.getSession().removeAttribute("totaleOrdini");

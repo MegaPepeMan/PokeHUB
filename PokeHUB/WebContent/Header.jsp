@@ -14,15 +14,15 @@
 <div id="navbar">
   <a href="product" style="float: left;"><img id="logoImmagine" src="Image/Logo_Immagine.png" alt=""></a>
 
-	<form action="" method="get" class="">
-		<div id="barraRicerca">
-			<input type="text" placeholder="Cerca prodotti" class="campoRicerca" id="queryRicerca" onkeyup="funzioneRicerca()"/>
-			<button type="submit" class="bottoneRicerca">
-				<ion-icon name="search-outline" class="" id=""></ion-icon>
-			</button>
-			<div id="risultati"></div>
-		</div>
-	</form>
+	
+	<div id="barraRicerca">
+		<input type="text" placeholder="Cerca prodotti" class="campoRicerca" id="queryRicerca" onkeyup="funzioneRicerca()"/>
+		<button type="submit" class="bottoneRicerca">
+			<ion-icon name="search-outline" class="" id=""></ion-icon>
+		</button>
+		<div id="risultati"></div>
+	</div>
+
 
 
   <div id="navbarDestra">
