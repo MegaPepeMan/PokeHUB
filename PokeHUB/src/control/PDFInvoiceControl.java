@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -34,6 +35,7 @@ import model.OrderDAO;
 import model.ProductBean;
 import model.ProductDAO;
 import model.UserBean;
+import model.UserDAO;
 
 /**
  * Servlet implementation class PDFInvoiceControl
@@ -75,6 +77,7 @@ public class PDFInvoiceControl extends HttpServlet {
 		catch (Exception e) {
 			System.out.println("Parsing non riuscito del valore Integer");
 		}
+		UserDAO utenti = new UserDAO();
 		OrderDAO ordini = new OrderDAO();
 		CompositionDAO fatture = new CompositionDAO();
 		ProductDAO fotoProdotti = new ProductDAO();
@@ -85,6 +88,17 @@ public class PDFInvoiceControl extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		if( !ordine.getMailCliente().equalsIgnoreCase(utente.getMail()) ) {
+			if( utente.getCategoriaUtente().equalsIgnoreCase("amministratore") ) {
+				
+			} else {
+				response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+				return;
+			}
+		}
+		
+		
 		Collection<CompositionBean> fattura = null;
 		try {
 			System.out.println("Ricerca composizione dell'ordine");
@@ -122,6 +136,8 @@ public class PDFInvoiceControl extends HttpServlet {
   
             document.open();
             
+            Font fontCliente = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+            
             String relativeWebPath = "/Image/Logo.png";
             String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
             
@@ -133,16 +149,25 @@ public class PDFInvoiceControl extends HttpServlet {
             PdfPTable logoAndUser = new PdfPTable(2);
             
             PdfPCell logoSinistro = new PdfPCell(logo);
-            PdfPCell ClienteDestro = new PdfPCell(new Phrase("Cliente: \n" + utente.getNome()+ " " + utente.getCognome()+ "\n" + ordine.getVia() + " " + ordine.getCivico() + " " + ordine.getCap() + "\nN. Telefono: " + ordine.getTelefono()));
+            
+            UserBean utenteFattura = new UserBean();
+			try {
+				utenteFattura = utenti.doRetrieveByUser(ordine.getMailCliente());
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            PdfPCell ClienteDestro = new PdfPCell(new Phrase("Cliente: \n" + utenteFattura.getNome()+ " " + utenteFattura.getCognome()+ "\n" + ordine.getVia() + " " + ordine.getCivico() + " " + ordine.getCap() + "\nN. Telefono: " + ordine.getTelefono(),fontCliente ));
             
             //utente.getNome()+ " " + utente.getCognome()+ "\n" + ordine.getVia() + " " + ordine.getCivico() + " " + ordine.getCap() + "\nN. Telefono: " + ordine.getTelefono()
             
             logoSinistro.setBorder(Rectangle.NO_BORDER);
             ClienteDestro.setBorder(Rectangle.NO_BORDER);
+            ClienteDestro.setHorizontalAlignment(Element.ALIGN_RIGHT);
             logoAndUser.addCell(logoSinistro);
             logoAndUser.addCell(ClienteDestro);
-            
-            
+            logoAndUser.setSpacingAfter(13);
+            logoAndUser.setWidthPercentage(95);
             document.add(logoAndUser);
 
             
@@ -194,8 +219,10 @@ public class PDFInvoiceControl extends HttpServlet {
     		}
             PdfPTable pdfPTable2 = new PdfPTable(2);
             
-            pdfPTable2.addCell("Totale ordine: ");
-            pdfPTable2.addCell("\u20ac " + formatoPrezzo.format(totaleFattura) );
+            pdfPTable2.addCell(new Phrase("Totale ordine: ",fontCliente));
+            pdfPTable2.addCell(new Phrase("\u20ac " + formatoPrezzo.format(totaleFattura),fontCliente));
+            pdfPTable.setWidthPercentage(95);
+            pdfPTable2.setWidthPercentage(95);
             document.add(pdfPTable);            
             document.add(pdfPTable2);
             
