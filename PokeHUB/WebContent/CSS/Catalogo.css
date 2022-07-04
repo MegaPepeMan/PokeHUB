@@ -16,7 +16,7 @@ a:link {
 
 .linkCategorie {
 	display: inline;
-	color: #fdd8357b;
+	color: #f7c4d9;
 	font-weight: bold;
 }
 
@@ -27,7 +27,7 @@ a:link {
 }
 
 .linkCategorie:hover {
-	color: #fdd835;
+	color: #f2a6c7;
 	
 	-webkit-transition: 0.3s;
     transition: 0.3s;
@@ -35,7 +35,7 @@ a:link {
 }
 
 .separatoreLink {
-	color: #fdd8357b;
+	color: #f2a6c740;
 	display: inline;
 }
 

@@ -27,14 +27,6 @@
 
 <body class="catalogo">
 
-	<%
-			DecimalFormat formatoPrezzo = new DecimalFormat();
-			formatoPrezzo.setMaximumFractionDigits(2);
-			formatoPrezzo.setMinimumFractionDigits(2) ;
-			if (products != null && products.size() != 0) {
-				
-								
-	%>
 	<div class="content"></div>
 	<div class="categorie">
 		<a href="product" class="linkCategorie">Home </a>
@@ -56,6 +48,16 @@
 		}
 	%>
 	</div>
+
+	<%
+			DecimalFormat formatoPrezzo = new DecimalFormat();
+			formatoPrezzo.setMaximumFractionDigits(2);
+			formatoPrezzo.setMinimumFractionDigits(2) ;
+			if (products != null && products.size() != 0) {
+				
+								
+	%>
+	
 
 	<div class="cards">
         
@@ -127,6 +129,10 @@
     </div>		
 
 	<%
+			} else {
+				%>
+					<h1 style="text-align: center;">Nessun prodotto presente nella categoria</h1>
+				<%
 			}
 	%>
 	
