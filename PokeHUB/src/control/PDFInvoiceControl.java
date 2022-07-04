@@ -4,6 +4,7 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -145,8 +146,9 @@ public class PDFInvoiceControl extends HttpServlet {
             document.add(logoAndUser);
 
             
-            PdfPTable pdfPTable = new PdfPTable(5);
+            PdfPTable pdfPTable = new PdfPTable(6);
             
+            pdfPTable.addCell("Immagine");
             pdfPTable.addCell("Articolo");
             pdfPTable.addCell("Quantit\u00E0");
             pdfPTable.addCell("IVA");
@@ -176,10 +178,15 @@ public class PDFInvoiceControl extends HttpServlet {
 				double totaleProdotti = prezzoConIVA * composizione.getQuantita();
 				totaleFattura += totaleProdotti;
 				
+				byte[] decoded = Base64.getDecoder().decode(prodotto.getImmagineProdotto());
+				Image immagineProdotto = Image.getInstance(decoded);
+				immagineProdotto.scalePercent(10);
+				
+				pdfPTable.addCell(immagineProdotto);
 				pdfPTable.addCell(prodotto.getNomeProdotto());
 				pdfPTable.addCell( String.valueOf(composizione.getQuantita()) );
-				pdfPTable.addCell( formatoPrezzo.format(composizione.getIva_acquisto()) );
-				pdfPTable.addCell( formatoPrezzo.format(prezzoConIVA) );
+				pdfPTable.addCell( formatoPrezzo.format(composizione.getIva_acquisto())+"%" );
+				pdfPTable.addCell("\u20ac " + formatoPrezzo.format(prezzoConIVA) );
 				pdfPTable.addCell("\u20ac " + formatoPrezzo.format(totaleProdotti) );
 				
 		        
