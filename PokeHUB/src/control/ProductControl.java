@@ -43,6 +43,19 @@ public class ProductControl extends HttpServlet {
 			System.out.println("Error categories:" + e.getMessage());
 		}
 		
+		if(request.getParameter("categoria") != null) {
+			request.removeAttribute("products");
+			try {
+				request.setAttribute("products", prodotto.doRetrieveByCategory(request.getParameter("categoria")) );
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PaginaCatalogo.jsp");
 		dispatcher.forward(request, response);

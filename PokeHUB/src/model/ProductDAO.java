@@ -337,5 +337,73 @@ public synchronized Collection<ProductBean> doRetrieveSuggest(String StringaParz
 		}
 	}
 	
+public synchronized Collection<ProductBean> doRetrieveByCategory(String category) throws SQLException, IOException {
+		
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		Collection<ProductBean> products = new LinkedList<ProductBean>();
+
+		String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME + " WHERE categoria_prodotto = ? ";
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, category );
+			System.out.println("La stringa per la ricerca dei prodotti della categoria e': "+ preparedStatement);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				ProductBean bean = new ProductBean();
+
+				bean.setIdProdotto(rs.getInt("id_prodotto"));
+				bean.setNomeProdotto(rs.getString("nome_prodotto"));
+				bean.setPrezzoVetrina(rs.getDouble("prezzo_vetrina"));
+				bean.setDescrizione(rs.getString("descrizione"));
+				bean.setIva(rs.getDouble("iva"));
+				bean.setProdottoMostrato(rs.getBoolean("prodotto_mostrato"));
+				bean.setCategoriaProdotto(rs.getString("categoria_prodotto"));
+				bean.setQuantita(rs.getInt("quantita"));
+				
+				if( rs.getBlob("immagine_prodotto")!= null ) {
+					Blob blob = rs.getBlob("immagine_prodotto");
+
+					InputStream inputStream = blob.getBinaryStream();
+					ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+					byte[] buffer = new byte[4096];
+					int bytesRead = -1;
+
+					while ((bytesRead = inputStream.read(buffer)) != -1) {
+					outputStream.write(buffer, 0, bytesRead);
+					}
+
+					byte[] imageBytes = outputStream.toByteArray();
+					String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+					inputStream.close();
+					outputStream.close();
+					
+					bean.setImmagineProdotto(base64Image);
+					
+				}
+				
+				
+				products.add(bean);
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return products;
+	}
+	
 
 }

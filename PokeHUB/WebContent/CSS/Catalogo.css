@@ -10,6 +10,35 @@ a:link {
 	text-decoration: none;
 }
 
+.categorie {
+	text-align:center;
+}
+
+.linkCategorie {
+	display: inline;
+	color: #fdd8357b;
+	font-weight: bold;
+}
+
+.linkCategorie:link {
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.linkCategorie:hover {
+	color: #fdd835;
+	
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.separatoreLink {
+	color: #fdd8357b;
+	display: inline;
+}
+
 .card {
   color: white;
   padding: 1rem;

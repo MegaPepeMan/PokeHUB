@@ -11,6 +11,8 @@
 	
 	ProductBean product = (ProductBean) request.getAttribute("product");
 	
+	Collection<?> categories = (Collection<?>) request.getAttribute("categories");
+	
 %>
 
 <!DOCTYPE html>
@@ -33,6 +35,27 @@
 				
 								
 	%>
+	<div class="content"></div>
+	<div class="categorie">
+		<a href="product" class="linkCategorie">Home </a>
+		<p class="separatoreLink"> | </p>	
+	<%
+		int contatoreSeparatore = 0;
+		Iterator<?> iterCategorie = categories.iterator();
+		while(iterCategorie.hasNext() ) {
+			CategoryBean categoria = (CategoryBean) iterCategorie.next();
+			%>
+			<a href="product?categoria=<%=categoria.getNomeCategoria()%>" class="linkCategorie"><%=categoria.getNomeCategoria()%></a>
+			<%
+			contatoreSeparatore++;
+			if (contatoreSeparatore < categories.size()) {
+				%>
+				<p class="separatoreLink"> | </p>
+				<%	
+			}
+		}
+	%>
+	</div>
 
 	<div class="cards">
         
