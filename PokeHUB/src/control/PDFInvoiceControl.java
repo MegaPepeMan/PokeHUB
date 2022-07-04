@@ -17,7 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import model.CompositionBean;
@@ -114,11 +120,43 @@ public class PDFInvoiceControl extends HttpServlet {
             PdfWriter.getInstance(document, response.getOutputStream());
   
             document.open();
-  
-            document.add(new Paragraph("FATTURA"));
             
+            String relativeWebPath = "/Image/Logo.png";
+            String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
+            
+            //Questo statement lancia un'eccezione
+            Image logo = Image.getInstance(absoluteDiskPath);
+            
+            logo.scalePercent(10);
+            
+            PdfPTable logoAndUser = new PdfPTable(2);
+            
+            PdfPCell logoSinistro = new PdfPCell(logo);
+            PdfPCell ClienteDestro = new PdfPCell(new Phrase("Cliente: \n" + utente.getNome()+ " " + utente.getCognome()+ "\n" + ordine.getVia() + " " + ordine.getCivico() + " " + ordine.getCap() + "\nN. Telefono: " + ordine.getTelefono()));
+            
+            //utente.getNome()+ " " + utente.getCognome()+ "\n" + ordine.getVia() + " " + ordine.getCivico() + " " + ordine.getCap() + "\nN. Telefono: " + ordine.getTelefono()
+            
+            logoSinistro.setBorder(Rectangle.NO_BORDER);
+            ClienteDestro.setBorder(Rectangle.NO_BORDER);
+            logoAndUser.addCell(logoSinistro);
+            logoAndUser.addCell(ClienteDestro);
+            
+            
+            document.add(logoAndUser);
+
+            
+            PdfPTable pdfPTable = new PdfPTable(5);
+            
+            pdfPTable.addCell("Articolo");
+            pdfPTable.addCell("Quantit\u00E0");
+            pdfPTable.addCell("IVA");
+            pdfPTable.addCell("Prezzo con IVA per unit\u00E0");
+            pdfPTable.addCell("Prezzo con IVA totale");
             
             Iterator<CompositionBean> iterFattura = fattura.iterator();
+            
+            
+            
             while(iterFattura.hasNext()) {
     			CompositionBean composizione = iterFattura.next();
     			
@@ -132,15 +170,27 @@ public class PDFInvoiceControl extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-    			document.add(new Paragraph( prodotto.getNomeProdotto() ) );
     			
     			double percentualeIVA = composizione.getIva_acquisto()/100;
 				double prezzoConIVA = (percentualeIVA * composizione.getPrezzo_acquisto() ) + composizione.getPrezzo_acquisto();
 				double totaleProdotti = prezzoConIVA * composizione.getQuantita();
 				totaleFattura += totaleProdotti;
-    			
-    			document.add(new Paragraph("Quantit\u00E0: " + composizione.getQuantita() +" IVA: "+ composizione.getIva_acquisto()+"% €" + formatoPrezzo.format(totaleProdotti) ) );
+				
+				pdfPTable.addCell(prodotto.getNomeProdotto());
+				pdfPTable.addCell( String.valueOf(composizione.getQuantita()) );
+				pdfPTable.addCell( formatoPrezzo.format(composizione.getIva_acquisto()) );
+				pdfPTable.addCell( formatoPrezzo.format(prezzoConIVA) );
+				pdfPTable.addCell("\u20ac " + formatoPrezzo.format(totaleProdotti) );
+				
+		        
+			 
     		}
+            PdfPTable pdfPTable2 = new PdfPTable(2);
+            
+            pdfPTable2.addCell("Totale ordine: ");
+            pdfPTable2.addCell("\u20ac " + formatoPrezzo.format(totaleFattura) );
+            document.add(pdfPTable);            
+            document.add(pdfPTable2);
             
             
   
