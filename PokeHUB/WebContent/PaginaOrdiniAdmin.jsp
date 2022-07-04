@@ -99,7 +99,7 @@ if(!utente.getCategoriaUtente().equalsIgnoreCase("Amministratore")){
 					ordine=it.next();
 					%>
 					<tr class="recordOrdini">
-						<td class="idOrdine"><a class="linkTabella" href="OrderUserControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
+						<td class="idOrdine"><a class="linkTabella" href="PDFInvoiceControl?idOrdine=<%=ordine.getIdOrdine()%>"><%= ordine.getIdOrdine()  %></a>  </td>
 						<td class="cliente"> <%= ordine.getMailCliente() %> </td>
 						<td class="codTrack"> <%= ordine.getTrakingOrdine() %> </td>
 						<td class="dataOrdine"> <%= ordine.getDataOrdine() %> </td>

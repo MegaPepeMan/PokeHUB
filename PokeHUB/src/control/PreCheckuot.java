@@ -39,6 +39,7 @@ public class PreCheckuot extends HttpServlet {
 		if(utente == null) {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginPage.jsp");
 			dispatcher.forward(request, response);
+			return;
 		}
 		
 		AddressDAO indirizzi = new AddressDAO();

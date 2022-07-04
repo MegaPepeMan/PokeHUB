@@ -15,7 +15,7 @@ import model.AddressBean;
 import model.AddressDAO;
 import model.UserBean;
 
-
+//Servlet che gestisce tutti gli indirizzi dell'utente
 @WebServlet("/ShipmentControl")
 public class ShipmentControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

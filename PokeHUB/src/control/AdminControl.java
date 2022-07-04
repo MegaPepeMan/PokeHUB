@@ -15,7 +15,7 @@ import javax.servlet.http.Part;
 
 import model.*;
 
-
+//Permette di aggiornare a ggiungere prodotti al catalogo
 @WebServlet("/admin")
 @MultipartConfig
 public class AdminControl extends HttpServlet {

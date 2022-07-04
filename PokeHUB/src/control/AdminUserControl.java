@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.UserBean;
 import model.UserDAO;
 
-
+//Servlet dell'admin. Permette di aggiornare le autorizzazioni degli utenti
 @WebServlet("/AdminUserControl")
 public class AdminUserControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class AdminUserControl extends HttpServlet {
 				String user = request.getParameter("cercaUtente");
 				String userUpdate = request.getParameter("utente");
 				
-				System.out.println("L'utente è: "+user);
+				System.out.println("L'utente e': "+user);
 				
 				
 					if (user != null) {

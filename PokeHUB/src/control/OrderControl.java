@@ -16,8 +16,7 @@ import model.OrderBean;
 import model.OrderDAO;
 import model.UserBean;
 
-//Servlet che gestisce il recupero degli ordini di un utente
-
+//Servlet che gestisce il recupero degli ordini di un utente per l'admin
 @WebServlet("/OrderControl")
 public class OrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

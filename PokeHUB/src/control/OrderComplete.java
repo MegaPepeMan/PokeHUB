@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.OrderDAO;
 import model.UserBean;
 
-/**
- * Servlet implementation class OrderComplete
- */
+//Servlet che fa accedere ad una JSP usa-e-getta qunado l'ordine e' completo
 @WebServlet("/OrderComplete")
 public class OrderComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +35,10 @@ public class OrderComplete extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/LoginPage.jsp");
 		    return;
 		} else {
+			if(request.getSession().getAttribute("ordineConfermato") == null ) {
+				response.sendRedirect(request.getContextPath()+"/userLogged.jsp");
+			    return;
+			}
 			boolean ordineCompletato = (boolean) request.getSession().getAttribute("ordineConfermato");
 			if (!ordineCompletato) {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product");

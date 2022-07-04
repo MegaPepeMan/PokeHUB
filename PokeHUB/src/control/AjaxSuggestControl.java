@@ -19,9 +19,7 @@ import model.ProductBean;
 import model.ProductDAO;
 
 
-/**
- * Servlet implementation class AjaxUserControl
- */
+//Servlet per l'uso di AJAX nella ricerca dei prodotti
 @WebServlet("/AjaxSuggestControl")
 public class AjaxSuggestControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

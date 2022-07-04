@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.UserBean;
 import model.UserDAO;
 
-/**
- * Servlet implementation class RegistrationControl
- */
+//Servlet che gestisce la registrazione al sito
 @WebServlet("/RegistrationControl")
 public class RegistrationControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

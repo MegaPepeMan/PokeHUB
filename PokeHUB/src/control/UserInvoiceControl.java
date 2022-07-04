@@ -26,7 +26,7 @@ import model.ProductDAO;
 import model.UserBean;
 
 
-
+//Vecchia servlet inutilizzata che generava la fattura
 @WebServlet("/UserInvoiceControl")
 public class UserInvoiceControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

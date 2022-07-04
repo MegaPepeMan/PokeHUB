@@ -45,7 +45,7 @@ public class CartControl extends HttpServlet {
 
 			
 				//Caso in cui l'utente e' gia' loggato
-				Cart cart = (Cart) request.getSession().getAttribute("cart"); 		//qui potrebbe generarsi il throw
+				Cart cart = (Cart) request.getSession().getAttribute("cart");
 				
 				if(cart == null) {
 					cart = new Cart();

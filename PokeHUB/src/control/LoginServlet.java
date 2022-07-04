@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//Servlet che controlla i tentativi di login (Validi e non validi)
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 

@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Logout
- */
+//Servlet che invalida la sessione quando l'utente fa logout
 @WebServlet("/Logout")
 public class LogoutControl extends HttpServlet {
 

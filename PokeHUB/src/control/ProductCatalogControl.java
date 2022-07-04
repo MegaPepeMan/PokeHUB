@@ -14,9 +14,7 @@ import model.ProductBean;
 import model.ProductDAO;
 import model.RatingDAO;
 
-/**
- * Servlet implementation class ProductCatalogControl
- */
+//Servlet che riporta alla pagina dell'articolo in vendita specifico
 @WebServlet("/object")
 public class ProductCatalogControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

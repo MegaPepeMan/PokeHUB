@@ -18,7 +18,7 @@ import model.PaymentDAO;
 import model.UserBean;
 
 
-
+//Servlet che gestisce tutti i tipi di pagamento dell'utente
 @WebServlet("/PaymentControl")
 public class PaymentControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;

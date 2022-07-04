@@ -112,7 +112,7 @@ public class CheckuotControl extends HttpServlet {
 							composizione = new CompositionBean();
 							
 							try {
-								System.out.println("Questo è il carrello visto dalla servlet CheckoutControl: "+carrello);
+								System.out.println("Questo e' il carrello visto dalla servlet CheckoutControl: "+carrello);
 								prodotto = prodotti.doRetrieveByKey(idProdotto);
 								ordine = ordini.doRetrieveLastInsert(utente.getMail());
 								

@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ProductControl
- */
+//Servlet che inserisce i prodotti sulla homepage
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

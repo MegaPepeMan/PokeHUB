@@ -37,9 +37,7 @@ import model.ProductDAO;
 import model.UserBean;
 import model.UserDAO;
 
-/**
- * Servlet implementation class PDFInvoiceControl
- */
+//Servlet che produce il PDF di un ordine
 @WebServlet("/PDFInvoiceControl")
 public class PDFInvoiceControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -141,7 +139,7 @@ public class PDFInvoiceControl extends HttpServlet {
             String relativeWebPath = "/Image/Logo.png";
             String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
             
-            //Questo statement lancia un'eccezione
+
             Image logo = Image.getInstance(absoluteDiskPath);
             
             logo.scalePercent(10);
@@ -203,11 +201,23 @@ public class PDFInvoiceControl extends HttpServlet {
 				double totaleProdotti = prezzoConIVA * composizione.getQuantita();
 				totaleFattura += totaleProdotti;
 				
-				byte[] decoded = Base64.getDecoder().decode(prodotto.getImmagineProdotto());
-				Image immagineProdotto = Image.getInstance(decoded);
-				immagineProdotto.scalePercent(10);
+				if(prodotto.getImmagineProdotto() != null) {
+					byte[] decoded = Base64.getDecoder().decode(prodotto.getImmagineProdotto());
+					Image immagineProdotto = Image.getInstance(decoded);
+					immagineProdotto.scalePercent(10);
+					
+					pdfPTable.addCell(immagineProdotto);
+				} else {
+					String relativeWebPathNoImage = "/Image/noImage.png";
+		            String absoluteDiskPathNoImage = getServletContext().getRealPath(relativeWebPathNoImage);
+		            
+
+		            Image immagineProdotto = Image.getInstance(absoluteDiskPathNoImage);
+					immagineProdotto.scalePercent(10);
+					
+					pdfPTable.addCell(immagineProdotto);
+				}
 				
-				pdfPTable.addCell(immagineProdotto);
 				pdfPTable.addCell(prodotto.getNomeProdotto());
 				pdfPTable.addCell( String.valueOf(composizione.getQuantita()) );
 				pdfPTable.addCell( formatoPrezzo.format(composizione.getIva_acquisto())+"%" );
