@@ -10,8 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Ordine confermato</title>
+	<meta charset="ISO-8859-1">
+	<title>Ordine confermato</title>
+	<link href="CSS/ordineConfermato.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%@ include file="Header.jsp" %>
@@ -23,6 +24,6 @@
 	<h1 style="text-align: center;">Ordine confermato</h1>
 	<h3 style="text-align: center;">L'ordine <%=ordine.getIdOrdine()%> &eacute; stato confermato</h3>
 	<h3 style="text-align: center;">L'ordine verr&aacute; spedito a <%=persona.getNome() %> <%=persona.getCognome() %> <%=ordine.getVia()%> <%=ordine.getCivico() %> <%=ordine.getCap() %></h3>
-	<h3 style="text-align: center;">Clicca <a href="product">qui</a> per tornare alla Home</h3>
+	<h3 style="text-align: center;"><a href="product" class="linkHome">Clicca qui per tornare alla Home</a></h3>
 </body>
 </html>

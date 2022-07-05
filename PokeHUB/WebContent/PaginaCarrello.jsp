@@ -156,6 +156,7 @@
 
 </body>
 
+<div class="content"></div>
 <%@ include file="Footer.html" %>
 
 </html>

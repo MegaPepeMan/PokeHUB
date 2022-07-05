@@ -1,0 +1,25 @@
+.linkHome:link {
+	text-decoration: none;
+	color: #ffde59;
+
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.linkHome:visited {
+	text-decoration: none;
+	color: #ffde59;
+
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.linkHome:hover {
+	color: #f2c100;
+
+	-webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
